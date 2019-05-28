@@ -88,12 +88,47 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OtherWindows\DodajEtiketuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\DodajTipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\DodajVrstuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\PregledEtiketaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\PregledTipovaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Etiketa.cs" />
     <Compile Include="model\StatusUgrozenosti.cs" />
     <Compile Include="model\TuristickiStatus.cs" />
     <Compile Include="model\Vrsta.cs" />
+    <Compile Include="OtherWindows\DodajEtiketuWindow.xaml.cs">
+      <DependentUpon>DodajEtiketuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherWindows\DodajTipWindow.xaml.cs">
+      <DependentUpon>DodajTipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherWindows\DodajVrstuWindow.xaml.cs">
+      <DependentUpon>DodajVrstuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherWindows\PregledEtiketaWindow.xaml.cs">
+      <DependentUpon>PregledEtiketaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherWindows\PregledTipovaWindow.xaml.cs">
+      <DependentUpon>PregledTipovaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -120,6 +155,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\Maps\map_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Maps\map_3.png" />
+    <Resource Include="Data\Maps\map_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Maps\map_1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

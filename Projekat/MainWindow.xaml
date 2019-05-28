@@ -8,8 +8,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d"
     Title="Ugrožene vrste"
-    Height="450"
-    Width="800">
+    Height="500"
+    Width="1000"
+    MinHeight="500"
+    MinWidth="1000">
     <Window.Resources>
 
     </Window.Resources>
@@ -36,19 +38,24 @@
             </Grid.ColumnDefinitions>
             <Button
                 Grid.Column="0"
-                Style="{StaticResource MaterialDesignFlatButton}">Dodaj vrstu</Button>
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click">Dodaj vrstu</Button>
             <Button
                 Grid.Column="1"
-                Style="{StaticResource MaterialDesignFlatButton}">Dodaj tip</Button>
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click_1">Dodaj tip</Button>
             <Button
                 Grid.Column="2"
-                Style="{StaticResource MaterialDesignFlatButton}">Pregled tipova</Button>
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click_2">Pregled tipova</Button>
             <Button
                 Grid.Column="3"
-                Style="{StaticResource MaterialDesignFlatButton}">Dodaj etiketu</Button>
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click_3">Dodaj etiketu</Button>
             <Button
                 Grid.Column="4"
-                Style="{StaticResource MaterialDesignFlatButton}">Pregled etiketa</Button>
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click_4">Pregled etiketa</Button>
             <Separator
                 Grid.Column="5"
                 Background="Transparent"></Separator>
@@ -57,7 +64,8 @@
                 Style="{StaticResource MaterialDesignFlatButton}">Sačuvaj</Button>
             <Button
                 Grid.Column="7"
-                Style="{StaticResource MaterialDesignFlatButton}">Učitaj</Button>
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click_5">Učitaj</Button>
         </Grid>
         <Grid
             DockPanel.Dock="Bottom">
@@ -91,7 +99,7 @@
                         Width="150"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         ToolTip="Pretraga po imenu i oznaci"
-                        Margin="10,2,2,2" />
+                        Margin="8,8,8,8" />
                     <materialDesign:PopupBox
                         StaysOpen="True"
                         Margin="10,2,2,2">
@@ -214,7 +222,7 @@
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         ToolTip="Pretraži"
-                        Margin="10,2,2,2">
+                        Margin="8,8,8,8">
                         <materialDesign:PackIcon
                             Kind="Search"
                             Height="24"
@@ -222,30 +230,35 @@
                     </Button>
                 </StackPanel>
                 <materialDesign:ColorZone
+                    Height="56"
                     Mode="PrimaryLight"
                     Grid.Column="2">
                     <StackPanel
                         Orientation="Horizontal">
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4"
+                            Margin="4 4 4 0"
                             IsChecked="True"
-                            Content="Mapa 1" />
+                            Content="Mapa 1"
+                            Checked="RadioButton_Checked_3" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4"
+                            Margin="4 4 4 0"
                             IsChecked="False"
-                            Content="Mapa 2" />
+                            Content="Mapa 2"
+                            Checked="RadioButton_Checked" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4"
+                            Margin="4 4 4 0"
                             IsChecked="False"
-                            Content="Mapa 3" />
+                            Content="Mapa 3"
+                            Checked="RadioButton_Checked_1" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4"
+                            Margin="4 4 4 0"
                             IsChecked="False"
-                            Content="Mapa 4" />
+                            Content="Mapa 4"
+                            Checked="RadioButton_Checked_2" />
                     </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
@@ -276,15 +289,20 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <ScrollViewer
+            <Border
                 Grid.Row="1"
                 Grid.Column="1"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollBarVisibility="Auto">
-                <Image
-                    Source="/Data/slika_sveta.png"
-                    Stretch="None" />
-            </ScrollViewer>
+                BorderBrush="Gainsboro"
+                BorderThickness="1">
+                <ScrollViewer
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+                    <Image
+                        Name="mapImage"
+                        Source="Data/Maps/map_1.png"
+                        Stretch="None" />
+                </ScrollViewer>
+            </Border>
         </Grid>
     </DockPanel>
 </Window>

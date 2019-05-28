@@ -34,3 +34,13 @@ E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 
 E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\MaterialDesignThemes.Wpf.pdb
 E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\MaterialDesignThemes.Wpf.xml
 E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\App.baml
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajVrstuWindow.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajVrstuWindow.baml
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajTipWindow.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajTipWindow.baml
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledTipovaWindow.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledTipovaWindow.baml
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajEtiketuWindow.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajEtiketuWindow.baml
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledEtiketaWindow.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledEtiketaWindow.baml
