@@ -1,12 +1,290 @@
-﻿<Window x:Class="Projekat.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+﻿<Window
+    x:Class="Projekat.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Projekat"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    Title="Ugrožene vrste"
+    Height="450"
+    Width="800">
+    <Window.Resources>
+
+    </Window.Resources>
+    <DockPanel>
+        <Grid
+            DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="0"
+                Style="{StaticResource MaterialDesignFlatButton}">Dodaj vrstu</Button>
+            <Button
+                Grid.Column="1"
+                Style="{StaticResource MaterialDesignFlatButton}">Dodaj tip</Button>
+            <Button
+                Grid.Column="2"
+                Style="{StaticResource MaterialDesignFlatButton}">Pregled tipova</Button>
+            <Button
+                Grid.Column="3"
+                Style="{StaticResource MaterialDesignFlatButton}">Dodaj etiketu</Button>
+            <Button
+                Grid.Column="4"
+                Style="{StaticResource MaterialDesignFlatButton}">Pregled etiketa</Button>
+            <Separator
+                Grid.Column="5"
+                Background="Transparent"></Separator>
+            <Button
+                Grid.Column="6"
+                Style="{StaticResource MaterialDesignFlatButton}">Sačuvaj</Button>
+            <Button
+                Grid.Column="7"
+                Style="{StaticResource MaterialDesignFlatButton}">Učitaj</Button>
+        </Grid>
+        <Grid
+            DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="0.15*" />
+                <ColumnDefinition
+                    Width="0.85*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Column="0">
+                    <TextBox
+                        materialDesign:HintAssist.Hint="Pretraga"
+                        Width="150"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        ToolTip="Pretraga po imenu i oznaci"
+                        Margin="10,2,2,2" />
+                    <materialDesign:PopupBox
+                        StaysOpen="True"
+                        Margin="10,2,2,2">
+                        <materialDesign:PopupBox.ToggleContent>
+                            <materialDesign:PackIcon
+                                Kind="FilterVariant" />
+                        </materialDesign:PopupBox.ToggleContent>
+                        <Grid
+                            Width="300">
+                            <Grid.Resources>
+                                <Style
+                                    TargetType="CheckBox"
+                                    BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                    <Setter
+                                        Property="Margin"
+                                        Value="8,8,8,8" />
+                                </Style>
+                                <Style
+                                    TargetType="ComboBox"
+                                    BasedOn="{StaticResource MaterialDesignComboBox}">
+                                    <Setter
+                                        Property="materialDesign:HintAssist.IsFloating"
+                                        Value="True" />
+                                    <Setter
+                                        Property="Margin"
+                                        Value="8,8,8,8" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignTitleTextBlock}"
+                                Margin="8,8,8,16">
+                            FILTER
+                            </TextBlock>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                materialDesign:HintAssist.Hint="Tip">
+                                <ComboBoxItem>
+                                    item 1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    item 2
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                materialDesign:HintAssist.Hint="Status ugroženosti">
+                                <ComboBoxItem>
+                                    item 1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    item 2
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    item 3
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <CheckBox
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Grid.ColumnSpan="2">
+                                Opasna po ljude
+                            </CheckBox>
+                            <CheckBox
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2">
+                                Na IUCN listi
+                            </CheckBox>
+                            <CheckBox
+                                Grid.Column="0"
+                                Grid.Row="5"
+                                Grid.ColumnSpan="2">
+                                Živi u naseljenom regionu
+                            </CheckBox>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="6"
+                                Grid.ColumnSpan="2"
+                                materialDesign:HintAssist.Hint="Turistički status">
+                                <ComboBoxItem>
+                                    item 1
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    item 2
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    item 3
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+                    </materialDesign:PopupBox>
+                    <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        ToolTip="Pretraži"
+                        Margin="10,2,2,2">
+                        <materialDesign:PackIcon
+                            Kind="Search"
+                            Height="24"
+                            Width="24" />
+                    </Button>
+                </StackPanel>
+                <materialDesign:ColorZone
+                    Mode="PrimaryLight"
+                    Grid.Column="2">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="True"
+                            Content="Mapa 1" />
+                        <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="False"
+                            Content="Mapa 2" />
+                        <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="False"
+                            Content="Mapa 3" />
+                        <RadioButton
+                            Style="{StaticResource MaterialDesignTabRadioButton}"
+                            Margin="4"
+                            IsChecked="False"
+                            Content="Mapa 4" />
+                    </StackPanel>
+                </materialDesign:ColorZone>
+            </Grid>
+            <ScrollViewer
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    ItemsSource="{Binding VrsteSource}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Chip
+                                Margin="3,3,3,3"
+                                Content="{Binding Oznaka}">
+                                <materialDesign:Chip.Icon>
+                                    <Image
+                                        Source="{Binding Ikonica}" />
+                                </materialDesign:Chip.Icon>
+                            </materialDesign:Chip>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <ScrollViewer
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
+                <Image
+                    Source="/Data/slika_sveta.png"
+                    Stretch="None" />
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
 </Window>
