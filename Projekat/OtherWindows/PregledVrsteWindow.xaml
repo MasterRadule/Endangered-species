@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Projekat.OtherWindows.DodajVrstuWindow"
+    x:Class="Projekat.OtherWindows.PregledVrsteWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -271,12 +271,23 @@
             Grid.Row="11"
             Orientation="Horizontal"
             HorizontalAlignment="Right">
-            <Button
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                Width="100"
-                Margin="8 8 8 8">
-                _DODAJ
-            </Button>
+            <StackPanel
+                Grid.Row="4"
+                Orientation="Vertical"
+                HorizontalAlignment="Right">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Width="100"
+                    Margin="8 8 8 8">
+                    _SAČUVAJ
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Width="100"
+                    Margin="8 8 8 8">
+                    _OBRIŠi
+                </Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

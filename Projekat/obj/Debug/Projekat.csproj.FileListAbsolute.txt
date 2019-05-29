@@ -44,3 +44,5 @@ E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 
 E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajEtiketuWindow.baml
 E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledEtiketaWindow.g.cs
 E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledEtiketaWindow.baml
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledVrsteWindow.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\OtherWindows\PregledVrsteWindow.baml

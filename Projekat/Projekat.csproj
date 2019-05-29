@@ -108,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OtherWindows\PregledVrsteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Etiketa.cs" />
@@ -128,6 +132,9 @@
     </Compile>
     <Compile Include="OtherWindows\PregledTipovaWindow.xaml.cs">
       <DependentUpon>PregledTipovaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherWindows\PregledVrsteWindow.xaml.cs">
+      <DependentUpon>PregledVrsteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

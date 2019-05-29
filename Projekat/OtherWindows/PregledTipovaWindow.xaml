@@ -125,8 +125,8 @@
             </StackPanel>
             <StackPanel
                 Grid.Row="4"
-                Orientation="Horizontal"
-                HorizontalAlignment="Center">
+                Orientation="Vertical"
+                HorizontalAlignment="Right">
                 <Button
                     Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Width="100"

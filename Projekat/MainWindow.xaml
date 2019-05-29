@@ -237,28 +237,29 @@
                         Orientation="Horizontal">
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4 4 4 0"
                             IsChecked="True"
                             Content="Mapa 1"
-                            Checked="RadioButton_Checked_3" />
+                            Checked="RadioButton_Checked_3"
+                            Height="Auto" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4 4 4 0"
                             IsChecked="False"
                             Content="Mapa 2"
-                            Checked="RadioButton_Checked" />
+                            Checked="RadioButton_Checked"
+                            Height="Auto" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4 4 4 0"
                             IsChecked="False"
                             Content="Mapa 3"
-                            Checked="RadioButton_Checked_1" />
+                            Checked="RadioButton_Checked_1"
+                            Height="Auto" />
+
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
-                            Margin="4 4 4 0"
                             IsChecked="False"
                             Content="Mapa 4"
-                            Checked="RadioButton_Checked_2" />
+                            Checked="RadioButton_Checked_2"
+                            Height="Auto" />
                     </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>

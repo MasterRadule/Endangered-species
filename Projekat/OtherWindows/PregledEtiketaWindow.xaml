@@ -118,19 +118,20 @@
             </StackPanel>
             <StackPanel
                 Grid.Row="3"
-                Orientation="Horizontal"
-                HorizontalAlignment="Center">
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedLightButton}"
-                    Width="100"
-                    Margin="8 8 8 8">
-                    _SAČUVAJ
-                </Button>
+                Orientation="Vertical"
+                HorizontalAlignment="Right">
+
                 <Button
                     Style="{StaticResource MaterialDesignRaisedAccentButton}"
                     Width="100"
                     Margin="8 8 8 8">
                     _OBRIŠi
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Width="100"
+                    Margin="8 8 8 8">
+                    _SAČUVAJ
                 </Button>
             </StackPanel>
         </Grid>
