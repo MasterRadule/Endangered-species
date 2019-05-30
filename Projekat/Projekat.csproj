@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5B0B083A-7776-4362-9D96-40C1A33339C4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Projekat</RootNamespace>
     <AssemblyName>Projekat</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -76,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utility\Loader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +88,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Common\GlavniKontejner.cs" />
+    <Compile Include="Common\Mapa.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,10 +120,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\Etiketa.cs" />
-    <Compile Include="model\StatusUgrozenosti.cs" />
-    <Compile Include="model\TuristickiStatus.cs" />
-    <Compile Include="model\Vrsta.cs" />
+    <Compile Include="Model\Etiketa.cs" />
+    <Compile Include="Common\Pin.cs" />
+    <Compile Include="Model\StatusUgrozenosti.cs" />
+    <Compile Include="Model\Tip.cs" />
+    <Compile Include="Model\TuristickiStatus.cs" />
+    <Compile Include="Model\Vrsta.cs" />
     <Compile Include="OtherWindows\DodajEtiketuWindow.xaml.cs">
       <DependentUpon>DodajEtiketuWindow.xaml</DependentUpon>
     </Compile>

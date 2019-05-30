@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projekat.model
+namespace Projekat.Model
 {
+    [Serializable]
     public enum StatusUgrozenosti
     {
         KriticnoUgrozena,

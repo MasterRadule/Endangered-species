@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Projekat.Common;
+using Projekat.Utility;
 
 namespace Projekat
 {
@@ -21,9 +23,14 @@ namespace Projekat
     /// </summary>
     public partial class MainWindow : Window
     {
+        public GlavniKontejner GlavniKontejner { get; set; }
+        public int AktivnaMapa { get; set; }
+        public string Putanja { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            Loader.Test();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -61,11 +68,24 @@ namespace Projekat
             // Configure open file dialog box
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Document"; // Default file name
-            dlg.DefaultExt = ".txt"; // Default file extension
-            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+            dlg.DefaultExt = ".es"; // Default file extension
+            dlg.Filter = "Endangered species maps (.es)|*.es"; // Filter files by extension
+            dlg.Multiselect = false;
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                string novaPutanja = dlg.FileName;
+
+                if(!novaPutanja.Equals(Putanja))
+                {
+                    Putanja = novaPutanja;
+                    GlavniKontejner = Loader.Deserijalizuj(Putanja);
+                }
+
+            }
+            
         }
 
         private void SetMapImage(string path)
@@ -77,23 +97,36 @@ namespace Projekat
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            AktivnaMapa = 1;
             SetMapImage("Data/Maps/map_2.png");
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
+            AktivnaMapa = 2;
             SetMapImage("Data/Maps/map_3.png");
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
+            AktivnaMapa = 3;
             SetMapImage("Data/Maps/map_4.png");
         }
 
         private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
         {
-            if(mapImage!=null) // on window startup, this button is checked, but image is still not loaded
+            if (mapImage != null) // on window startup, this button is checked, but image is still not loaded
+            {
+                AktivnaMapa = 0;
                 SetMapImage("Data/Maps/map_1.png");
+            }
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            if(Putanja != null)
+                Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
+            // dodati snackbar Uspesno sacuvano
         }
     }
 }
