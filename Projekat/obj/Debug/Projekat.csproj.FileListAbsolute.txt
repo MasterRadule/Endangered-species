@@ -139,3 +139,4 @@ C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\O
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\Projekat.g.resources
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\Projekat.Properties.Resources.resources
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\Projekat.csproj.GenerateResource.Cache
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\obj\Debug\GeneratedInternalTypeHelper.g.cs

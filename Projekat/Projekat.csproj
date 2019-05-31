@@ -84,6 +84,7 @@
     <Compile Include="Model\TuristickiStatus.cs" />
     <Compile Include="Model\Vrsta.cs" />
     <Compile Include="Utility\Loader.cs" />
+    <Compile Include="Validation\NotEmptyValidationRule .cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

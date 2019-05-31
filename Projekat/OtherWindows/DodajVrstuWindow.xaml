@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Projekat.OtherWindows"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:val="clr-namespace:Projekat.Validation"
     mc:Ignorable="d"
     Title="Dodaj vrstu"
     Height="Auto"
@@ -100,16 +101,43 @@
         <TextBox
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
-            ToolTip="Ljudski čitljiva oznaka" />
+            ToolTip="Ljudski čitljiva oznaka"
+            MaxLength="10"
+            Width="120"
+            HorizontalAlignment="Left">
+            <Binding
+                Path=".">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
-            ToolTip="Ljudski čitljiva oznaka" />
+            ToolTip="Ljudski čitljiva oznaka">
+            <Binding
+                Path=".">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
-            ToolTip="Ljudski čitljiva oznaka" />
+            ToolTip="Ljudski čitljiva oznaka">
+            <Binding
+                Path=".">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <ComboBox
             Grid.Column="0"
             Grid.Row="3"
@@ -182,20 +210,30 @@
                 Orientation="Horizontal"
                 Grid.Column="0">
                 <TextBox
+                    PreviewTextInput="NumberValidationTextBox"
                     Grid.Column="0"
                     Name="GodisnjiPrihod"
-                    ToolTip="Ljudski čitljiva oznaka">
+                    MaxLength="10"
+                    ToolTip="Ljudski čitljiva oznaka"
+                    KeyDown="GodisnjiPrihod_KeyDown">
+                    <Binding
+                        Path=".">
+                        <Binding.ValidationRules>
+                            <val:NotEmptyValidationRule
+                                ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
                     <materialDesign:HintAssist.Hint>
                         <StackPanel
                             Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                VerticalAlignment="Bottom"
-                                Kind="Euro"
-                                Margin=" 0 0 0 0" />
                             <TextBlock
                                 VerticalAlignment="Center">
                                 Godišnji prihod
                             </TextBlock>
+                            <materialDesign:PackIcon
+                                VerticalAlignment="Bottom"
+                                Kind="Euro"
+                                Margin=" 4 0 0 0" />
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
                 </TextBox>
@@ -205,9 +243,10 @@
                 Margin="8 8 8 8"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
+                SelectedDate="1.1.2000."
                 Width="Auto"
-                FlowDirection="RightToLeft"
-                materialDesign:HintAssist.Hint="Datum otkrivanja" />
+                materialDesign:HintAssist.Hint="Datum otkrivanja"
+                PreviewKeyDown="DatePicker_PreviewKeyDown" />
         </Grid>
 
         <Grid

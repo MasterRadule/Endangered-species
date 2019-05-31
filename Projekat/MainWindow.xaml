@@ -264,10 +264,18 @@
                     </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
-            <ScrollViewer
+            <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.RowSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0 0 0 8"
+                Style="{StaticResource MaterialDesignTitleTextBlock}">
+                Pregled vrsta
+            </TextBlock>
+            <ScrollViewer
+                Grid.Row="1"
+                Grid.Column="0"
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
                 <ItemsControl

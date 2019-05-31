@@ -19,7 +19,7 @@ namespace Projekat.Model
         public bool IUCN { get; set; }
         public bool ZiviUNaseljenomRegionu { get; set; }
         public TuristickiStatus TuristickiStatus { get; set; }
-        public double GodisnjiPrihod { get; set; }
+        public decimal GodisnjiPrihod { get; set; }
         public DateTime DatumOtkrivanja;
         public List<Etiketa> Etikete { get; set; }
 
@@ -40,7 +40,7 @@ namespace Projekat.Model
             IUCN = info.GetBoolean("IUCN");
             ZiviUNaseljenomRegionu = info.GetBoolean("ZiviUNaseljenomRegionu");
             TuristickiStatus = (TuristickiStatus)info.GetValue("TuristickiStatus", typeof(TuristickiStatus));
-            GodisnjiPrihod = info.GetDouble("GodisnjiPrihod");
+            GodisnjiPrihod = info.GetDecimal("GodisnjiPrihod");
             DatumOtkrivanja = info.GetDateTime("DatumOtkrivanja");
             Etikete = (List<Etiketa>)info.GetValue("Etikete", typeof(List<Etiketa>));
 

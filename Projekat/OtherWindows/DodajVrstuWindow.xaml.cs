@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,5 +36,30 @@ namespace Projekat.OtherWindows
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
         }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
+            if (decimal.TryParse(newText, out decimal test))
+            {
+                if (test >= 0)
+                {
+                    return;
+                }
+            }
+            e.Handled = true;
+        }
+
+        private void GodisnjiPrihod_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Tab && e.Key != Key.Escape)
+                e.Handled = true;
+        }
+
     }
 }
