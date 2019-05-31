@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,16 @@ namespace Projekat.OtherWindows
         public DodajEtiketuWindow()
         {
             InitializeComponent();
+        }
+
+        private void Dodaj(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceneEtikete.Add(new Etiketa()
+            {
+                Oznaka = oznakaBox.Text,
+                Opis = opisBox.Text,
+                Boja = odabirBoje.SelectedColorText
+            });
         }
     }
 }

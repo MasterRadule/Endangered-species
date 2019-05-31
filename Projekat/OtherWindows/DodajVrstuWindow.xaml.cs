@@ -22,6 +22,7 @@ namespace Projekat.OtherWindows
         public DodajVrstuWindow()
         {
             InitializeComponent();
+            DataContext = (MainWindow)Application.Current.MainWindow;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -50,17 +50,13 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            string oznaka = oznakaBox.Text;
-            string ime = imeBox.Text;
-            string opis = opisBox.Text;
-            Tip t = new Tip()
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceniTipovi.Add(new Tip()
             {
-                Oznaka = oznaka,
-                Ime = ime,
-                Opis = opis,
+                Oznaka = oznakaBox.Text,
+                Ime = imeBox.Text,
+                Opis = opisBox.Text,
                 Ikonica = Bi
-            };
-            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceniTipovi.Add(t);
+            });
         }
     }
 }
