@@ -53,6 +53,34 @@ namespace Projekat.Utility
             v.TuristickiStatus = TuristickiStatus.DelimicnoHabituirana;
             v.ZiviUNaseljenomRegionu = true;
 
+            Vrsta v1 = new Vrsta();
+            v1.DatumOtkrivanja = new DateTime();
+            v1.GodisnjiPrihod = 1500;
+            v1.Ikonica.BeginInit();
+            v1.Ikonica.UriSource = new Uri(@"C:\Users\korisnik\Downloads\Telegram Desktop\photo_2019-05-28_15-12-40.jpg", UriKind.Absolute);
+            v1.Ikonica.EndInit();
+            v1.Ime = "Tigar";
+            v1.IUCN = false;
+            v1.Opasna = true;
+            v1.Opis = "grrr";
+            v1.Oznaka = "MUU";
+            v1.StatusUgrozenosti = StatusUgrozenosti.KriticnoUgrozena;
+            v1.TuristickiStatus = TuristickiStatus.DelimicnoHabituirana;
+            v1.ZiviUNaseljenomRegionu = true;
+
+            Etiketa e = new Etiketa();
+            e.Boja = "crvena";
+            e.Opis = "c";
+            e.Oznaka = "C";
+
+            Etiketa e1 = new Etiketa();
+            e.Boja = "crvena";
+            e.Opis = "c";
+            e.Oznaka = "C";
+
+            v.Etikete.Add(e);
+            kontejner.NekorisceneEtikete.Add(e1);
+
             Tip t = new Tip();
             t.Ikonica.BeginInit();
             t.Ikonica.UriSource = new Uri(@"C:\Users\korisnik\Downloads\Telegram Desktop\photo_2019-05-28_15-12-40.jpg", UriKind.Absolute);
@@ -61,14 +89,25 @@ namespace Projekat.Utility
             t.Opis = "mjau";
             t.Oznaka = "F";
 
+            Tip t1 = new Tip();
+            t1.Ikonica.BeginInit();
+            t1.Ikonica.UriSource = new Uri(@"C:\Users\korisnik\Downloads\Telegram Desktop\photo_2019-05-28_15-12-40.jpg", UriKind.Absolute);
+            t1.Ikonica.EndInit();
+            t1.Ime = "Macka";
+            t1.Opis = "mjau";
+            t1.Oznaka = "F";
+
+            kontejner.NekorisceniTipovi.Add(t1);
+
             v.Tip = t;
+            v1.Tip = t;
+            kontejner.NeprikazaneVrste.Add(v1);
 
             Pin p = new Pin();
             p.Vrsta = v;
             p.X = 40;
             p.Y = 30;
 
-            p.Mapa = kontejner.Mape[0];
             kontejner.Mape[0].Pinovi.Add(p);
 
             Serijalizuj(kontejner, "kontejner.es");

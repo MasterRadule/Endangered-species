@@ -12,7 +12,6 @@ namespace Projekat.Common
     {
         public double X { get; set; }
         public double Y { get; set; }
-        public Mapa Mapa { get; set; }
         public Vrsta Vrsta { get; set; }
     }
 }

@@ -30,7 +30,9 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
-            Loader.Test();
+            //Loader.Test();
+            GlavniKontejner = new GlavniKontejner();
+            Putanja = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "endangered_species.es");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

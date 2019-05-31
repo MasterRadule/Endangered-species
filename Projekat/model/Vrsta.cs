@@ -21,7 +21,7 @@ namespace Projekat.Model
         public TuristickiStatus TuristickiStatus { get; set; }
         public double GodisnjiPrihod { get; set; }
         public DateTime DatumOtkrivanja;
-        List<Etiketa> Etikete { get; set; }
+        public List<Etiketa> Etikete { get; set; }
 
         public Vrsta()
         {
