@@ -290,6 +290,20 @@
                             <materialDesign:Chip
                                 Margin="3,3,3,3"
                                 Content="{Binding Oznaka}">
+                                <materialDesign:Chip.Resources>
+                                    <Style
+                                        TargetType="Border">
+                                        <Setter
+                                            Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect
+                                                    Color="Black"
+                                                    BlurRadius="8"
+                                                    ShadowDepth="7" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </materialDesign:Chip.Resources>
                                 <materialDesign:Chip.Icon>
                                     <Image
                                         Source="{Binding Ikonica}" />
@@ -316,8 +330,7 @@
             <materialDesign:Snackbar
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
-                MessageQueue="{Binding MyCustomMessageQueue}"
-                 />
+                MessageQueue="{Binding MyCustomMessageQueue}" />
         </Grid>
     </DockPanel>
 </Window>
