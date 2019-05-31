@@ -68,7 +68,6 @@ D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\Projekat.csprojAssemblyReference.cache
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\MainWindow.g.cs
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajEtiketuWindow.g.cs
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\OtherWindows\DodajTipWindow.g.cs

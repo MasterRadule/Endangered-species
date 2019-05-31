@@ -32,7 +32,7 @@ namespace Projekat
             InitializeComponent();
             //Loader.Test();
             GlavniKontejner = new GlavniKontejner();
-            Putanja = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "endangered_species.es");
+            Putanja = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -71,6 +71,7 @@ namespace Projekat
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Document"; // Default file name
             dlg.DefaultExt = ".es"; // Default file extension
+            dlg.Title = "Učitaj fajl";
             dlg.Filter = "Endangered species maps (.es)|*.es"; // Filter files by extension
             dlg.Multiselect = false;
 
@@ -126,8 +127,19 @@ namespace Projekat
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            if(Putanja != null)
-                Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
+            if(Putanja == null)
+            {
+                Microsoft.Win32.SaveFileDialog saveDlg = new Microsoft.Win32.SaveFileDialog();
+                saveDlg.Filter = "Endangered species maps (.es)|*.es";
+                saveDlg.Title = "Sačuvaj fajl";
+                Nullable<bool> result = saveDlg.ShowDialog();
+
+                if(result.HasValue && result.Value)
+                {
+                    Putanja = saveDlg.FileName;
+                }
+            }
+            Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
             // dodati snackbar Uspesno sacuvano
         }
     }
