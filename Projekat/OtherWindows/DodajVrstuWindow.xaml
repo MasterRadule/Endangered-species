@@ -17,6 +17,7 @@
     SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style
+            x:Key="ListBoxStil"
             TargetType="ListBoxItem"
             BasedOn="{StaticResource MaterialDesignListBoxItem}">
             <Style.Triggers>
@@ -28,7 +29,7 @@
                         Value="Bold" />
                     <Setter
                         Property="Background"
-                        Value="Transparent" />
+                        Value="{Binding Boja}" />
                     <Setter
                         Property="Foreground"
                         Value="White" />
@@ -276,13 +277,20 @@
                     </materialDesign:PopupBox.ToggleContent>
                     <ListBox
                         SelectionMode="Multiple"
-                        Width="100">
-                        <ListBoxItem
-                            Background="Red">Etiketa1</ListBoxItem>
-                        <ListBoxItem
-                            Background="Green">Etiketa2</ListBoxItem>
-                        <ListBoxItem
-                            Background="Blue">Etiketa3</ListBoxItem>
+                        Width="100"
+                        ItemsSource="{Binding GlavniKontejner.NekorisceneEtikete}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Oznaka}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxStil}">
+                                <Style.Setters>
+                                    <Setter Property="Background" Value="{Binding Boja}" />
+                                </Style.Setters>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                     </ListBox>
                 </materialDesign:PopupBox>
             </StackPanel>

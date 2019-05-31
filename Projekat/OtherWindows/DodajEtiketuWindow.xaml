@@ -56,12 +56,12 @@
                     Value="8,8,8,8" />
             </Style>
         </Grid.Resources>
-        <TextBox
+        <TextBox x:Name="oznakaBox"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2" />
-        <TextBox
+        <TextBox x:Name="opisBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
@@ -76,7 +76,7 @@
                 VerticalAlignment="Center">
                 Boja
             </TextBlock>
-            <wpfTool:ColorPicker
+            <wpfTool:ColorPicker x:Name="odabirBoje"
                 Margin="8 8 8 8"
                 VerticalAlignment="Center">
                 
@@ -90,7 +90,7 @@
             <Button
                 Style="{StaticResource MaterialDesignRaisedLightButton}"
                 Width="100"
-                Margin="8 8 8 8">
+                Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
             </Button>
         </StackPanel>
