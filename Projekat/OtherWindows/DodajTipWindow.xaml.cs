@@ -50,7 +50,7 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceniTipovi.Add(new Tip()
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Add(new Tip()
             {
                 Oznaka = oznakaBox.Text,
                 Ime = imeBox.Text,

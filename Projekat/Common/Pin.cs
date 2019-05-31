@@ -12,6 +12,6 @@ namespace Projekat.Common
     {
         public double X { get; set; }
         public double Y { get; set; }
-        public Vrsta Vrsta { get; set; }
+        public string OznakaVrste { get; set; }
     }
 }

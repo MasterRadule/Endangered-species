@@ -13,7 +13,7 @@
     MinHeight="519"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
     <Window.Resources>
         <Style
             x:Key="ListBoxStil"
@@ -98,76 +98,58 @@
                     Value="8,8,8,8" />
             </Style>
         </Grid.Resources>
-        <TextBox
+        <TextBox x:Name="oznakaBox"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka" />
-        <TextBox
+        <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
             ToolTip="Ljudski čitljiva oznaka" />
-        <TextBox
+        <TextBox x:Name="opisBox"
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka" />
-        <ComboBox
+        <ComboBox x:Name="tipBox"
             Grid.Column="0"
             Grid.Row="3"
             materialDesign:HintAssist.Hint="Tip"
-            Margin="8,8,8,9">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
+            Margin="8,8,8,9"
+            ItemsSource="{Binding GlavniKontejner.Tipovi}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Oznaka}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox
+        <ComboBox x:Name="statusUgrozenostiBox"
             Grid.Column="0"
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 3
-            </ComboBoxItem>
         </ComboBox>
-        <CheckBox
+        <CheckBox x:Name="opasnaCheck"
             Grid.Column="0"
             Grid.Row="5">
             Opasna po ljude
         </CheckBox>
-        <CheckBox
+        <CheckBox x:Name="iucnCheck"
             Grid.Column="0"
             Grid.Row="6"
             Grid.ColumnSpan="3">
             Na IUCN listi
         </CheckBox>
-        <CheckBox
+        <CheckBox x:Name="naseljenoCheck"
             Grid.Column="0"
             Grid.Row="7">
             Živi u naseljenom regionu
         </CheckBox>
-        <ComboBox
+        <ComboBox x:Name="turistickiStatusBox"
             Grid.Column="0"
             Grid.Row="8"
             materialDesign:HintAssist.Hint="Turistički status"
             Margin="8,9,8,8">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 3
-            </ComboBoxItem>
         </ComboBox>
         <Grid
             Grid.Row="9">
@@ -184,7 +166,7 @@
                 Grid.Column="0">
                 <TextBox
                     Grid.Column="0"
-                    Name="GodisnjiPrihod"
+                    x:Name="godisnjiPrihod"
                     ToolTip="Ljudski čitljiva oznaka">
                     <materialDesign:HintAssist.Hint>
                         <StackPanel
@@ -201,7 +183,7 @@
                     </materialDesign:HintAssist.Hint>
                 </TextBox>
             </StackPanel>
-            <DatePicker
+            <DatePicker x:Name="datum"
                 VerticalAlignment="Bottom"
                 Margin="8 8 8 8"
                 Grid.Column="1"
@@ -236,10 +218,10 @@
                         <materialDesign:PackIcon
                             Kind="FilterVariant" />
                     </materialDesign:PopupBox.ToggleContent>
-                    <ListBox
+                    <ListBox x:Name="etiketeBox"
                         SelectionMode="Multiple"
                         Width="100"
-                        ItemsSource="{Binding GlavniKontejner.NekorisceneEtikete}">
+                        ItemsSource="{Binding GlavniKontejner.Etikete}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Oznaka}"/>
@@ -263,7 +245,7 @@
                     VerticalAlignment="Center">
                 Ikonica
                 </TextBlock>
-                <Button
+                <Button x:Name="ikonicaDugme"
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
@@ -282,7 +264,7 @@
             <Button
                 Style="{StaticResource MaterialDesignRaisedLightButton}"
                 Width="100"
-                Margin="8 8 8 8">
+                Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
             </Button>
         </StackPanel>

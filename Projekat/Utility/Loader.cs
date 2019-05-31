@@ -34,7 +34,7 @@ namespace Projekat.Utility
             return kontejner;
         }
 
-        public static void Test()
+        /*public static void Test()
         {
             GlavniKontejner kontejner = new GlavniKontejner();
 
@@ -79,7 +79,7 @@ namespace Projekat.Utility
             e.Oznaka = "C";
 
             v.Etikete.Add(e);
-            kontejner.NekorisceneEtikete.Add(e1);
+            kontejner.Etikete.Add(e1);
 
             Tip t = new Tip();
             t.Ikonica.BeginInit();
@@ -97,20 +97,20 @@ namespace Projekat.Utility
             t1.Opis = "mjau";
             t1.Oznaka = "F";
 
-            kontejner.NekorisceniTipovi.Add(t1);
+            kontejner.Tipovi.Add(t1);
 
             v.Tip = t;
             v1.Tip = t;
-            kontejner.NeprikazaneVrste.Add(v1);
+            kontejner.Vrste.Add(v1);
 
             Pin p = new Pin();
-            p.Vrsta = v;
+            p.OznakaVrste = v.Oznaka;
             p.X = 40;
             p.Y = 30;
 
             kontejner.Mape[0].Pinovi.Add(p);
 
             Serijalizuj(kontejner, "kontejner.es");
-        }
+        }*/
     }
 }
