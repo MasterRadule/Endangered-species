@@ -79,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Etiketa.cs" />
+    <Compile Include="Model\StatusUgrozenosti.cs" />
+    <Compile Include="Model\TuristickiStatus.cs" />
+    <Compile Include="Model\Vrsta.cs" />
     <Compile Include="Utility\Loader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -120,12 +124,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Etiketa.cs" />
     <Compile Include="Common\Pin.cs" />
-    <Compile Include="Model\StatusUgrozenosti.cs" />
     <Compile Include="Model\Tip.cs" />
-    <Compile Include="Model\TuristickiStatus.cs" />
-    <Compile Include="Model\Vrsta.cs" />
     <Compile Include="OtherWindows\DodajEtiketuWindow.xaml.cs">
       <DependentUpon>DodajEtiketuWindow.xaml</DependentUpon>
     </Compile>
