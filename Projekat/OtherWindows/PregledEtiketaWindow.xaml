@@ -135,5 +135,9 @@
                 </Button>
             </StackPanel>
         </Grid>
+        <materialDesign:Snackbar
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            MessageQueue="{Binding MyCustomMessageQueue}" />
     </Grid>
 </Window>

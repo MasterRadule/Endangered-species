@@ -313,6 +313,11 @@
                         Stretch="None" />
                 </ScrollViewer>
             </Border>
+            <materialDesign:Snackbar
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                MessageQueue="{Binding MyCustomMessageQueue}"
+                 />
         </Grid>
     </DockPanel>
 </Window>

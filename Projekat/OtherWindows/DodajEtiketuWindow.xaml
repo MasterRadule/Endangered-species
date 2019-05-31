@@ -94,5 +94,9 @@
                 _DODAJ
             </Button>
         </StackPanel>
+        <materialDesign:Snackbar
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            MessageQueue="{Binding MyCustomMessageQueue}" />
     </Grid>
 </Window>

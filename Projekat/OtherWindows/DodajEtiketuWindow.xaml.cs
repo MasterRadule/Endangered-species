@@ -1,4 +1,5 @@
-﻿using Projekat.Model;
+﻿using MaterialDesignThemes.Wpf;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace Projekat.OtherWindows
     /// </summary>
     public partial class DodajEtiketuWindow : Window
     {
+        public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
         public DodajEtiketuWindow()
         {
             InitializeComponent();
+            MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
         private void Dodaj(object sender, RoutedEventArgs e)

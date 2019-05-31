@@ -325,5 +325,9 @@
                 _DODAJ
             </Button>
         </StackPanel>
+        <materialDesign:Snackbar
+            Grid.Row="11"
+            Grid.ColumnSpan="2"
+            MessageQueue="{Binding MyCustomMessageQueue}" />
     </Grid>
 </Window>

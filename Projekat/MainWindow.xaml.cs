@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Projekat.Common;
 using Projekat.Utility;
+using MaterialDesignThemes.Wpf;
 
 namespace Projekat
 {
@@ -27,6 +28,8 @@ namespace Projekat
         public int AktivnaMapa { get; set; }
         public string Putanja { get; set; }
 
+        public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +37,8 @@ namespace Projekat
             DataContext = this;
             GlavniKontejner = new GlavniKontejner();
             Putanja = null;
+            MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -141,7 +146,7 @@ namespace Projekat
                 }
             }
             Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
-            // dodati snackbar Uspesno sacuvano
+            MyCustomMessageQueue.Enqueue("Uspešno sačuvano");
         }
     }
 }

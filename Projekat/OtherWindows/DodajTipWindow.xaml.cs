@@ -1,4 +1,5 @@
-﻿using Projekat.Model;
+﻿using MaterialDesignThemes.Wpf;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,9 +24,12 @@ namespace Projekat.OtherWindows
     {
         private BitmapImage Bi { get; set; }
 
+        public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+
         public DodajTipWindow()
         {
             InitializeComponent();
+            MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

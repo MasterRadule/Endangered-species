@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace Projekat.OtherWindows
     /// </summary>
     public partial class PregledVrsteWindow : Window
     {
+        public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
         public PregledVrsteWindow()
         {
             InitializeComponent();
+            MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
