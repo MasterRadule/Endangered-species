@@ -347,3 +347,32 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+Projekat/bin/Debug/Projekat.exe
+Projekat/bin/Debug/Projekat.pdb
+Projekat/obj/Debug/App.g.cs
+Projekat/obj/Debug/App.g.i.cs
+Projekat/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Projekat/obj/Debug/MainWindow.baml
+Projekat/obj/Debug/MainWindow.g.cs
+Projekat/obj/Debug/MainWindow.g.i.cs
+Projekat/obj/Debug/OtherWindows/DodajEtiketuWindow.g.cs
+Projekat/obj/Debug/OtherWindows/DodajEtiketuWindow.g.i.cs
+Projekat/obj/Debug/OtherWindows/DodajTipWindow.baml
+Projekat/obj/Debug/OtherWindows/DodajTipWindow.g.cs
+Projekat/obj/Debug/OtherWindows/DodajTipWindow.g.i.cs
+Projekat/obj/Debug/OtherWindows/DodajVrstuWindow.g.cs
+Projekat/obj/Debug/OtherWindows/DodajVrstuWindow.g.i.cs
+Projekat/obj/Debug/OtherWindows/PregledEtiketaWindow.g.cs
+Projekat/obj/Debug/OtherWindows/PregledEtiketaWindow.g.i.cs
+Projekat/obj/Debug/OtherWindows/PregledTipovaWindow.g.cs
+Projekat/obj/Debug/OtherWindows/PregledTipovaWindow.g.i.cs
+Projekat/obj/Debug/OtherWindows/PregledVrsteWindow.g.cs
+Projekat/obj/Debug/Projekat.csproj.FileListAbsolute.txt
+Projekat/obj/Debug/OtherWindows/PregledVrsteWindow.g.i.cs
+Projekat/obj/Debug/Projekat.csproj.GenerateResource.cache
+Projekat/obj/Debug/Projekat.exe
+Projekat/obj/Debug/Projekat.g.resources
+Projekat/obj/Debug/Projekat.pdb
+Projekat/obj/Debug/Projekat_MarkupCompile.cache
+Projekat/obj/Debug/Projekat_MarkupCompile.i.cache
+Projekat/obj/Debug/Projekat_MarkupCompile.lref

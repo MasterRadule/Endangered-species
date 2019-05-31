@@ -31,6 +31,7 @@ namespace Projekat
         {
             InitializeComponent();
             //Loader.Test();
+            DataContext = this;
             GlavniKontejner = new GlavniKontejner();
             Putanja = null;
         }

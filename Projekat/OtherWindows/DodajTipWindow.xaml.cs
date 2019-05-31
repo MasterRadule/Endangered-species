@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Projekat.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,8 @@ namespace Projekat.OtherWindows
     /// </summary>
     public partial class DodajTipWindow : Window
     {
+        private BitmapImage Bi { get; set; }
+
         public DodajTipWindow()
         {
             InitializeComponent();
@@ -28,12 +32,35 @@ namespace Projekat.OtherWindows
         {
             // Configure open file dialog box
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = "Document"; // Default file name
-            dlg.DefaultExt = ".txt"; // Default file extension
-            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+            dlg.DefaultExt = ".jpg"; // Default file extension
+            dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png"; // Filter files by extension
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                string putanja = dlg.FileName;
+                Console.WriteLine(putanja);
+                Bi = new BitmapImage(new Uri(dlg.FileName));
+                var brush = new ImageBrush();
+                brush.ImageSource = Bi;
+                ikonicaDugme.Background = brush;
+            }
+        }
+
+        private void Dodaj(object sender, RoutedEventArgs e)
+        {
+            string oznaka = oznakaBox.Text;
+            string ime = imeBox.Text;
+            string opis = opisBox.Text;
+            Tip t = new Tip()
+            {
+                Oznaka = oznaka,
+                Ime = ime,
+                Opis = opis,
+                Ikonica = Bi
+            };
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceniTipovi.Add(t);
         }
     }
 }

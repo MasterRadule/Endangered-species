@@ -57,17 +57,17 @@
                     Value="8,8,8,8" />
             </Style>
         </Grid.Resources>
-        <TextBox
+        <TextBox x:Name="oznakaBox"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2" />
-        <TextBox
+        <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2" />
-        <TextBox
+        <TextBox x:Name="opisBox"
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
@@ -82,15 +82,12 @@
                 VerticalAlignment="Center">
                 Ikonica
             </TextBlock>
-            <Button
+            <Button x:Name="ikonicaDugme"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                ToolTip="MaterialDesignFloatingActionMiniLightButton"
+                ToolTip="Izaberite ikonicu tipa"
                 Click="Button_Click"
                 Margin="8 8 8 8">
-                <materialDesign:PackIcon
-                    Kind="Cat"
-                    Height="24"
-                    Width="24" />
+                
             </Button>
 
         </StackPanel>
@@ -101,7 +98,7 @@
             <Button
                 Style="{StaticResource MaterialDesignRaisedLightButton}"
                 Width="100"
-                Margin="8 8 8 8">
+                Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
             </Button>
         </StackPanel>
