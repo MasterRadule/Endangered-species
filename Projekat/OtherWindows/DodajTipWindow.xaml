@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Projekat.OtherWindows"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:val="clr-namespace:Projekat.Validation"
     mc:Ignorable="d"
     Title="Dodaj tip"
     Height="Auto"
@@ -25,9 +26,6 @@
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}" Value="0">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Background, ElementName=ikonicaDugme, UpdateSourceTrigger=PropertyChanged}" Value="{StaticResource dugmeBrush}">
@@ -83,18 +81,42 @@
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2">
+            <Binding
+                Path="Oznaka">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2">
+            <Binding
+                Path="Ime">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox x:Name="opisBox"
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2">
+            <Binding
+                Path="Opis">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <StackPanel
             Grid.Row="3"
             Orientation="Horizontal"

@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using Projekat.Utility;
 using System.Runtime.Serialization;
 using System.IO;
+using System.ComponentModel;
 
 namespace Projekat.Model
 {

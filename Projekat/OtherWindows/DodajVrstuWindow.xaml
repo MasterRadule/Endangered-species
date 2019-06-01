@@ -139,7 +139,7 @@
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <TextBox
+        <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
             ToolTip="Ljudski čitljiva oznaka">
@@ -151,7 +151,7 @@
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <TextBox
+        <TextBox x:Name="opisBox"
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
@@ -220,8 +220,7 @@
                 <TextBox
                     PreviewTextInput="NumberValidationTextBox"
                     Grid.Column="0"
-
-                    Name="GodisnjiPrihod"
+                    Name="godisnjiPrihod"
                     MaxLength="10"
                     ToolTip="Ljudski čitljiva oznaka"
                     KeyDown="GodisnjiPrihod_KeyDown">

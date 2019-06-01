@@ -27,7 +27,7 @@
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
             <ItemsControl
-                ItemsSource="{Binding TipoviSource}">
+                ItemsSource="{Binding GlavniKontejner.Etikete}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />

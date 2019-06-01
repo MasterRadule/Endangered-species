@@ -66,7 +66,7 @@ namespace Projekat.OtherWindows
             bool opasna = opasnaCheck.IsChecked.Value;
             bool iucn = iucnCheck.IsChecked.Value;
             bool naseljena = naseljenoCheck.IsChecked.Value;
-            double prihod = Convert.ToDouble(godisnjiPrihod.Text);
+            decimal prihod = Convert.ToDecimal(godisnjiPrihod.Text);
             DateTime d = datum.DisplayDate;
             List<Etiketa> etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
             if (Bi == null)
@@ -89,12 +89,16 @@ namespace Projekat.OtherWindows
                 Etikete = etikete,
                 Ikonica = Bi
             });
+
+            // POTREBNO DODATI SNEKBAR - USPESNO DODATA VRSTA I ZATVORITI PROZOR
+            //Close();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {

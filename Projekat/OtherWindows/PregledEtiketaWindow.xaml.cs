@@ -24,6 +24,7 @@ namespace Projekat.OtherWindows
         public PregledEtiketaWindow()
         {
             InitializeComponent();
+            DataContext = (MainWindow)Application.Current.MainWindow;
             MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
     }

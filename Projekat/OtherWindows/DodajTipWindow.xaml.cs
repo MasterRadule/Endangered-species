@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +21,38 @@ namespace Projekat.OtherWindows
     /// <summary>
     /// Interaction logic for DodajTipWindow.xaml
     /// </summary>
-    public partial class DodajTipWindow : Window
+    public partial class DodajTipWindow : Window, INotifyPropertyChanged
     {
-        private BitmapImage Bi { get; set; }
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private BitmapImage Bi { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+
+        private string _oznaka;
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
 
         public DodajTipWindow()
         {
             InitializeComponent();
+            DataContext = this;
             MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
@@ -54,6 +78,7 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(Oznaka);
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Add(new Tip()
             {
                 Oznaka = oznakaBox.Text,
@@ -61,7 +86,6 @@ namespace Projekat.OtherWindows
                 Opis = opisBox.Text,
                 Ikonica = Bi
             });
-
         }
     }
 }

@@ -13,6 +13,41 @@
     MinWidth="450"
     MaxWidth="450"
     SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <SolidColorBrush x:Key="dugmeBrush" Color="#FFB0BEC5"/>
+        <Style x:Key="dugmeObrisiStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Background, ElementName=ikonicaDugme, UpdateSourceTrigger=PropertyChanged}" Value="{StaticResource dugmeBrush}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Background, ElementName=ikonicaDugme, UpdateSourceTrigger=PropertyChanged}" Value="{StaticResource dugmeBrush}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.35*"/>
@@ -23,7 +58,7 @@
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
             <ItemsControl
-                ItemsSource="{Binding TipoviSource}">
+                ItemsSource="{Binding GlavniKontejner.Tipovi}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -33,7 +68,7 @@
                     <DataTemplate>
                         <materialDesign:Chip
                             Margin="3,3,3,3"
-                            Content="{Binding Oznaka}">
+                            Content="{Binding Oznaka}" Click="chip_Click">
                             <materialDesign:Chip.Icon>
                                 <Image
                                     Source="{Binding Ikonica}" />
@@ -87,17 +122,17 @@
                         Value="8,8,8,8" />
                 </Style>
             </Grid.Resources>
-            <TextBox
+            <TextBox x:Name="oznakaBox"
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
                 Grid.ColumnSpan="2" />
-            <TextBox
+            <TextBox x:Name="imeBox"
                 Grid.Row="1"
                 materialDesign:HintAssist.Hint="Ime"
                 ToolTip="Ljudski čitljiva oznaka"
                 Grid.ColumnSpan="2" />
-            <TextBox
+            <TextBox x:Name="opisBox"
                 Grid.Row="2"
                 materialDesign:HintAssist.Hint="Opis"
                 TextWrapping="Wrap"
@@ -112,15 +147,12 @@
                     VerticalAlignment="Center">
                 Ikonica
                 </TextBlock>
-                <Button
+                <Button x:Name="ikonicaDugme"
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
-                    Margin="8 8 8 8">
-                    <materialDesign:PackIcon
-                        Kind="Cat"
-                        Height="24"
-                        Width="24" />
+                    Margin="8 8 8 8"
+                    Background="{StaticResource dugmeBrush}">
                 </Button>
             </StackPanel>
             <StackPanel
@@ -128,16 +160,16 @@
                 Orientation="Vertical"
                 HorizontalAlignment="Right">
                 <Button
-                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Style="{StaticResource dugmeStil}"
                     Width="100"
-                    Margin="8 8 8 8">
+                    Margin="8 8 8 8" Click="Sacuvaj">
                     _SAČUVAJ
                 </Button>
                 <Button
-                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Style="{StaticResource dugmeObrisiStil}"
                     Width="100"
-                    Margin="8 8 8 8">
-                    _OBRIŠi
+                    Margin="8 8 8 8" Click="Obrisi">
+                    _OBRIŠI
                 </Button>
             </StackPanel>
 
