@@ -66,7 +66,7 @@ namespace Projekat.OtherWindows
             bool opasna = opasnaCheck.IsChecked.Value;
             bool iucn = iucnCheck.IsChecked.Value;
             bool naseljena = naseljenoCheck.IsChecked.Value;
-            double prihod = Convert.ToDouble(godisnjiPrihod.Text);
+            decimal prihod = Convert.ToDecimal(godisnjiPrihod.Text);
             DateTime d = datum.DisplayDate;
             List<Etiketa> etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
             if (Bi == null)

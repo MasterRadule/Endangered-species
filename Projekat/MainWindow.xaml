@@ -13,7 +13,23 @@
     MinHeight="500"
     MinWidth="1000">
     <Window.Resources>
-
+        <Style
+            TargetType="materialDesign:Chip">
+            <Style.Resources>
+                <Style
+                    TargetType="Border">
+                    <Setter
+                        Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect
+                                Color="Black"
+                                BlurRadius="8"
+                                ShadowDepth="7" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <Grid
@@ -241,26 +257,34 @@
                             IsChecked="True"
                             Content="Mapa 1"
                             Checked="RadioButton_Checked_3"
-                            Height="Auto" />
+                            Height="Auto"
+                            AllowDrop="True"
+                            DragEnter="RadioButton_DragEnter" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
                             IsChecked="False"
                             Content="Mapa 2"
                             Checked="RadioButton_Checked"
-                            Height="Auto" />
+                            Height="Auto"
+                            AllowDrop="True"
+                            DragEnter="RadioButton_DragEnter" />
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
                             IsChecked="False"
                             Content="Mapa 3"
                             Checked="RadioButton_Checked_1"
-                            Height="Auto" />
+                            Height="Auto"
+                            AllowDrop="True"
+                            DragEnter="RadioButton_DragEnter" />
 
                         <RadioButton
                             Style="{StaticResource MaterialDesignTabRadioButton}"
                             IsChecked="False"
                             Content="Mapa 4"
                             Checked="RadioButton_Checked_2"
-                            Height="Auto" />
+                            Height="Auto"
+                            AllowDrop="True"
+                            DragEnter="RadioButton_DragEnter" />
                     </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
@@ -273,46 +297,50 @@
                 Style="{StaticResource MaterialDesignTitleTextBlock}">
                 Pregled vrsta
             </TextBlock>
-            <ScrollViewer
+            <ListView
                 Grid.Row="1"
                 Grid.Column="0"
-                HorizontalScrollBarVisibility="Disabled"
-                VerticalScrollBarVisibility="Auto">
-                <ItemsControl
-                    ItemsSource="{Binding GlavniKontejner.Vrste}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                ItemsSource="{Binding GlavniKontejner.Vrste}">
+                <ListView.ItemContainerStyle>
+                    <Style
+                        TargetType="{x:Type ListViewItem}">
+                        <Setter
+                            Property="Background"
+                            Value="Transparent" />
+                        <Setter
+                            Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                                    TargetType="{x:Type ListViewItem}">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
                             <materialDesign:Chip
+                                PreviewMouseLeftButtonDown="Chip_PreviewMouseLeftButtonDown"
+                                PreviewMouseMove="Chip_PreviewMouseMove"
                                 Margin="3,3,3,3"
                                 Content="{Binding Oznaka}">
-                                <materialDesign:Chip.Resources>
-                                    <Style
-                                        TargetType="Border">
-                                        <Setter
-                                            Property="Effect">
-                                            <Setter.Value>
-                                                <DropShadowEffect
-                                                    Color="Black"
-                                                    BlurRadius="8"
-                                                    ShadowDepth="7" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </materialDesign:Chip.Resources>
                                 <materialDesign:Chip.Icon>
                                     <Image
                                         Source="{Binding Ikonica}" />
                                 </materialDesign:Chip.Icon>
                             </materialDesign:Chip>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Border
                 Grid.Row="1"
                 Grid.Column="1"
@@ -321,10 +349,16 @@
                 <ScrollViewer
                     HorizontalScrollBarVisibility="Auto"
                     VerticalScrollBarVisibility="Auto">
-                    <Image
-                        Name="mapImage"
-                        Source="Data/Maps/map_1.png"
-                        Stretch="None" />
+                    <Grid
+                        Name="MapGrid"
+                        AllowDrop="True"
+                        DragEnter="Grid_DragEnter"
+                        Drop="Grid_Drop">
+                        <Image
+                            Name="mapImage"
+                            Source="Data/Maps/map_1.png"
+                            Stretch="None" />
+                    </Grid>
                 </ScrollViewer>
             </Border>
             <materialDesign:Snackbar
