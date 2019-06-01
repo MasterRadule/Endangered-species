@@ -36,6 +36,7 @@ namespace Projekat.OtherWindows
         {
             // Configure open file dialog box
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = null;
             dlg.DefaultExt = ".jpg"; // Default file extension
             dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png"; // Filter files by extension
 
@@ -44,7 +45,6 @@ namespace Projekat.OtherWindows
             if (result.HasValue && result.Value)
             {
                 string putanja = dlg.FileName;
-                Console.WriteLine(putanja);
                 Bi = new BitmapImage(new Uri(dlg.FileName));
                 var brush = new ImageBrush();
                 brush.ImageSource = Bi;
@@ -54,13 +54,14 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceniTipovi.Add(new Tip()
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Add(new Tip()
             {
                 Oznaka = oznakaBox.Text,
                 Ime = imeBox.Text,
                 Opis = opisBox.Text,
                 Ikonica = Bi
             });
+
         }
     }
 }

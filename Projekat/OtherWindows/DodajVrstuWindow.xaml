@@ -14,7 +14,7 @@
     MinHeight="519"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
     <Window.Resources>
         <Style
             x:Key="ListBoxStil"
@@ -40,6 +40,31 @@
                     x:Key="{x:Static SystemColors.HighlightBrushKey}"
                     Color="Transparent" />
             </Style.Resources>
+        </Style>
+        <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=tipBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=statusUgrozenostiBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=turistickiStatusBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=godisnjiPrihod, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid
@@ -99,7 +124,7 @@
                     Value="8,8,8,8" />
             </Style>
         </Grid.Resources>
-        <TextBox
+        <TextBox x:Name="oznakaBox"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
@@ -139,63 +164,45 @@
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <ComboBox
+        <ComboBox x:Name="tipBox"
             Grid.Column="0"
             Grid.Row="3"
             materialDesign:HintAssist.Hint="Tip"
-            Margin="8,8,8,9">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
+            Margin="8,8,8,9"
+            ItemsSource="{Binding GlavniKontejner.Tipovi}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Oznaka}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox
+        <ComboBox x:Name="statusUgrozenostiBox"
             Grid.Column="0"
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 3
-            </ComboBoxItem>
         </ComboBox>
-        <CheckBox
+        <CheckBox x:Name="opasnaCheck"
             Grid.Column="0"
             Grid.Row="5">
             Opasna po ljude
         </CheckBox>
-        <CheckBox
+        <CheckBox x:Name="iucnCheck"
             Grid.Column="0"
             Grid.Row="6"
             Grid.ColumnSpan="3">
             Na IUCN listi
         </CheckBox>
-        <CheckBox
+        <CheckBox x:Name="naseljenoCheck"
             Grid.Column="0"
             Grid.Row="7">
             Živi u naseljenom regionu
         </CheckBox>
-        <ComboBox
+        <ComboBox x:Name="turistickiStatusBox"
             Grid.Column="0"
             Grid.Row="8"
             materialDesign:HintAssist.Hint="Turistički status"
             Margin="8,9,8,8">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 3
-            </ComboBoxItem>
         </ComboBox>
         <Grid
             Grid.Row="9">
@@ -213,6 +220,7 @@
                 <TextBox
                     PreviewTextInput="NumberValidationTextBox"
                     Grid.Column="0"
+
                     Name="GodisnjiPrihod"
                     MaxLength="10"
                     ToolTip="Ljudski čitljiva oznaka"
@@ -239,7 +247,7 @@
                     </materialDesign:HintAssist.Hint>
                 </TextBox>
             </StackPanel>
-            <DatePicker
+            <DatePicker x:Name="datum"
                 VerticalAlignment="Bottom"
                 Margin="8 8 8 8"
                 Grid.Column="1"
@@ -275,10 +283,10 @@
                         <materialDesign:PackIcon
                             Kind="FilterVariant" />
                     </materialDesign:PopupBox.ToggleContent>
-                    <ListBox
+                    <ListBox x:Name="etiketeBox"
                         SelectionMode="Multiple"
                         Width="100"
-                        ItemsSource="{Binding GlavniKontejner.NekorisceneEtikete}">
+                        ItemsSource="{Binding GlavniKontejner.Etikete}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Oznaka}"/>
@@ -302,15 +310,11 @@
                     VerticalAlignment="Center">
                 Ikonica
                 </TextBlock>
-                <Button
+                <Button x:Name="ikonicaDugme"
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
                     Margin="8 8 8 8">
-                    <materialDesign:PackIcon
-                        Kind="Cat"
-                        Height="24"
-                        Width="24" />
                 </Button>
             </StackPanel>
         </Grid>
@@ -319,9 +323,9 @@
             Orientation="Horizontal"
             HorizontalAlignment="Right">
             <Button
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Style="{StaticResource dugmeStil}"
                 Width="100"
-                Margin="8 8 8 8">
+                Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
             </Button>
         </StackPanel>

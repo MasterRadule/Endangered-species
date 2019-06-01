@@ -279,7 +279,7 @@
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
                 <ItemsControl
-                    ItemsSource="{Binding GlavniKontejner.NekorisceniTipovi}">
+                    ItemsSource="{Binding GlavniKontejner.Vrste}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />

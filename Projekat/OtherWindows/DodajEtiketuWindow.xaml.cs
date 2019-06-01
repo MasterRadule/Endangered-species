@@ -30,7 +30,7 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.NekorisceneEtikete.Add(new Etiketa()
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Etikete.Add(new Etiketa()
             {
                 Oznaka = oznakaBox.Text,
                 Opis = opisBox.Text,
