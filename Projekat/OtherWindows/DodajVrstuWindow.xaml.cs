@@ -56,15 +56,35 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            string tip = tipBox.SelectedValue.ToString();
-            string statusUgrozenosti = statusUgrozenostiBox.SelectedValue.ToString();
-            string turistickiStatus = turistickiStatusBox.SelectedValue.ToString();
+            Tip tip = (Tip)tipBox.SelectedValue;
+            StatusUgrozenosti statusUgrozenosti = (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), statusUgrozenostiBox.SelectedValue.ToString()); 
+            TuristickiStatus turistickiStatus = (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), turistickiStatusBox.SelectedValue.ToString());
             bool opasna = opasnaCheck.IsChecked.Value;
             bool iucn = iucnCheck.IsChecked.Value;
             bool naseljena = naseljenoCheck.IsChecked.Value;
             double prihod = Convert.ToDouble(godisnjiPrihod.Text);
             DateTime d = datum.DisplayDate;
-            IEnumerable<Etiketa> etikete = etiketeBox.SelectedItems.Cast<Etiketa>();
+            List<Etiketa> etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
+            if (Bi == null)
+            {
+                Bi = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == tip.Oznaka).Select(t => t.Ikonica).Single();
+            }
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Add(new Vrsta
+            {
+                Oznaka = oznakaBox.Text,
+                Ime = imeBox.Text,
+                Opis = opisBox.Text,
+                Tip = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == tip.Oznaka).Single(),
+                StatusUgrozenosti = statusUgrozenosti,
+                TuristickiStatus = turistickiStatus,
+                Opasna = opasna,
+                IUCN = iucn,
+                ZiviUNaseljenomRegionu = naseljena,
+                GodisnjiPrihod = prihod,
+                DatumOtkrivanja = d,
+                Etikete = etikete,
+                Ikonica = Bi
+            });
         }
     }
 }

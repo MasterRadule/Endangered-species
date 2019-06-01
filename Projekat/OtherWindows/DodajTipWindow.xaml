@@ -14,6 +14,28 @@
     MinWidth="450"
     MaxWidth="450"
     SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <SolidColorBrush x:Key="dugmeBrush" Color="#FFB0BEC5"/>
+        <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Background, ElementName=ikonicaDugme, UpdateSourceTrigger=PropertyChanged}" Value="{StaticResource dugmeBrush}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid
         Height="Auto">
         <Grid.RowDefinitions>
@@ -86,8 +108,8 @@
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="Izaberite ikonicu tipa"
                 Click="Button_Click"
-                Margin="8 8 8 8">
-                
+                Margin="8 8 8 8"
+                Background="{StaticResource dugmeBrush}">
             </Button>
 
         </StackPanel>
@@ -96,7 +118,7 @@
             Orientation="Horizontal"
             HorizontalAlignment="Right">
             <Button
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Style="{StaticResource dugmeStil}"
                 Width="100"
                 Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ

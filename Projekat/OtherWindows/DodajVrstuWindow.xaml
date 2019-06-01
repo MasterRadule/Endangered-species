@@ -40,6 +40,31 @@
                     Color="Transparent" />
             </Style.Resources>
         </Style>
+        <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=tipBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=statusUgrozenostiBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=turistickiStatusBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=godisnjiPrihod, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid
         Height="Auto">
@@ -250,10 +275,6 @@
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
                     Margin="8 8 8 8">
-                    <materialDesign:PackIcon
-                        Kind="Cat"
-                        Height="24"
-                        Width="24" />
                 </Button>
             </StackPanel>
         </Grid>
@@ -262,7 +283,7 @@
             Orientation="Horizontal"
             HorizontalAlignment="Right">
             <Button
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Style="{StaticResource dugmeStil}"
                 Width="100"
                 Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
