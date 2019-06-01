@@ -17,20 +17,36 @@ using Projekat.Common;
 using Projekat.Utility;
 using MaterialDesignThemes.Wpf;
 using Projekat.Model;
+using System.ComponentModel;
 
 namespace Projekat
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public GlavniKontejner GlavniKontejner { get; set; }
+        private GlavniKontejner _glavniKontejner;
+
+        public GlavniKontejner GlavniKontejner
+        {
+            get { return _glavniKontejner; }
+            set
+            {
+                if (value != _glavniKontejner)
+                {
+                    _glavniKontejner = value;
+                    OnPropertyChanged("GlavniKontejner");
+                }
+            }
+        }
         public int AktivnaMapa { get; set; }
         public string Putanja { get; set; }
 
         private Point startPoint = new Point();
         private bool dragging = false;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
 
@@ -91,7 +107,7 @@ namespace Projekat
             dlg.Multiselect = false;
 
             // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
+            bool? result = dlg.ShowDialog();
             if (result.HasValue && result.Value)
             {
                 string novaPutanja = dlg.FileName;
@@ -100,6 +116,7 @@ namespace Projekat
                 {
                     Putanja = novaPutanja;
                     GlavniKontejner = Loader.Deserijalizuj(Putanja);
+                    LoadMap(GlavniKontejner.Mape[AktivnaMapa]);
                 }
 
             }
@@ -166,6 +183,7 @@ namespace Projekat
         private void Chip_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(null);
+            dragging = false;
         }
 
         private void Chip_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -298,7 +316,7 @@ namespace Projekat
                 }
             }
 
-            mapa.Pinovi.ForEach(LoadChipFromPin);
+            mapa.Pinovi.ToList().ForEach(LoadChipFromPin);
         }
 
         private void RadioButton_DragEnter(object sender, DragEventArgs e)
@@ -427,6 +445,14 @@ namespace Projekat
         {
             PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow();
             pregledVrsteWindow.ShowDialog();
+        }
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

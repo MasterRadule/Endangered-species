@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Projekat.OtherWindows
         public DodajTipWindow()
         {
             InitializeComponent();
+            DataContext = this;
             MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
@@ -41,15 +43,22 @@ namespace Projekat.OtherWindows
             dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png"; // Filter files by extension
 
             // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
+            bool? result = dlg.ShowDialog();
             if (result.HasValue && result.Value)
             {
-                string putanja = dlg.FileName;
-                Bi = new BitmapImage(new Uri(dlg.FileName));
-                var brush = new ImageBrush();
-                brush.ImageSource = Bi;
-                ikonicaDugme.Background = brush;
-            }
+                try
+                {
+                    string putanja = dlg.FileName;
+                    Bi = new BitmapImage(new Uri(dlg.FileName));
+                    var brush = new ImageBrush();
+                    brush.ImageSource = Bi;
+                    ikonicaDugme.Background = brush;
+                }
+                catch
+                {
+                    MyCustomMessageQueue.Enqueue("Slika nije podržana");
+                }
+            } 
         }
 
         private void Dodaj(object sender, RoutedEventArgs e)

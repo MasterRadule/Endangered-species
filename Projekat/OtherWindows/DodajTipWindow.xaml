@@ -127,6 +127,7 @@
         <materialDesign:Snackbar
             Grid.Row="4"
             Grid.ColumnSpan="2"
+            Name="snek"
             MessageQueue="{Binding MyCustomMessageQueue}" />
     </Grid>
 </Window>

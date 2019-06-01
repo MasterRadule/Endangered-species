@@ -43,12 +43,18 @@ namespace Projekat.OtherWindows
             Nullable<bool> result = dlg.ShowDialog();
             if (result.HasValue && result.Value)
             {
-                string putanja = dlg.FileName;
-                Console.WriteLine(putanja);
-                Bi = new BitmapImage(new Uri(dlg.FileName));
-                var brush = new ImageBrush();
-                brush.ImageSource = Bi;
-                ikonicaDugme.Background = brush;
+                try
+                {
+                    string putanja = dlg.FileName;
+                    Bi = new BitmapImage(new Uri(dlg.FileName));
+                    var brush = new ImageBrush();
+                    brush.ImageSource = Bi;
+                    ikonicaDugme.Background = brush;
+                }
+                catch
+                {
+                    MyCustomMessageQueue.Enqueue("Slika nije podržana");
+                }
             }
         }
 
