@@ -49,6 +49,40 @@ namespace Projekat.OtherWindows
             }
         }
 
+        private string _ime;
+        public string Ime
+        {
+            get
+            {
+                return _ime;
+            }
+            set
+            {
+                if (value != _ime)
+                {
+                    _ime = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+
+        private string _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
+            }
+        }
+
         public DodajTipWindow()
         {
             InitializeComponent();
@@ -78,7 +112,6 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(Oznaka);
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Add(new Tip()
             {
                 Oznaka = oznakaBox.Text,

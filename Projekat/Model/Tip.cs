@@ -12,9 +12,30 @@ using System.ComponentModel;
 namespace Projekat.Model
 {
     [Serializable]
-    public class Tip : ISerializable
+    public class Tip : ISerializable, INotifyPropertyChanged
     {
-        public string Oznaka { get; set; }
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _oznaka { get; set; }
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
         public string Ime { get; set; }
         public BitmapImage Ikonica { get; set; }
         public string Opis { get; set; }
