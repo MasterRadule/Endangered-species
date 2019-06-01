@@ -41,12 +41,17 @@ namespace Projekat
             DataContext = this;
             GlavniKontejner = new GlavniKontejner();
             Putanja = null;
-            MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
+            MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(2000));
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (!GlavniKontejner.Tipovi.Any())
+            {
+                MyCustomMessageQueue.Enqueue("Potrebno je dodati bar jedan tip pre dodavanje vrste");
+                return;
+            }
             DodajVrstuWindow dodajVrstuWindow = new DodajVrstuWindow();
             dodajVrstuWindow.ShowDialog();
         }
@@ -134,7 +139,7 @@ namespace Projekat
             AktivnaMapa = 0;
             if (mapImage != null) // on window startup, this button is checked, but image is still not loaded
             {
-                
+
                 SetMapImage("Data/Maps/map_1.png");
                 LoadMap(GlavniKontejner.Mape[AktivnaMapa]);
             }
@@ -193,7 +198,7 @@ namespace Projekat
             Point mousePos = e.GetPosition(null);
             Vector diff = startPoint - mousePos;
 
-            if (!dragging && 
+            if (!dragging &&
                 e.LeftButton == MouseButtonState.Pressed &&
                 (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
@@ -302,5 +307,126 @@ namespace Projekat
             rb.IsChecked = true;
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            statusUgrozenostiBox.ItemsSource = Enum.GetValues(typeof(StatusUgrozenosti)).Cast<StatusUgrozenosti>();
+            turistickiStatusBox.ItemsSource = Enum.GetValues(typeof(TuristickiStatus)).Cast<TuristickiStatus>();
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
+            if (decimal.TryParse(newText, out decimal test))
+            {
+                if (test >= 0)
+                {
+                    return;
+                }
+            }
+            e.Handled = true;
+        }
+
+        private void GodisnjiPrihod_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+
+        private void GodisnjiPrihod_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string newText = (sender as TextBox).Text;
+            if (decimal.TryParse(newText, out decimal test))
+            {
+                if (test >= 0)
+                {
+                    return;
+                }
+            }
+            // this triggers if input was not direct (e.g. paste-ing)
+            (sender as TextBox).Text = "";
+            e.Handled = true;
+        }
+
+        private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                (sender as DatePicker).Text = "";
+                e.Handled = true;
+                return;
+            }
+            if (e.Key != Key.Tab && e.Key != Key.Escape)
+                e.Handled = true;
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            string imeOznakaTekst = pretragaImeOznakaTB.Text;
+            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Oznaka.Contains(imeOznakaTekst) || i.Ime.Contains(imeOznakaTekst));
+
+            Tip tip = (Tip)tipBox.SelectedValue;
+            if (tip != null)
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Tip == tip);
+
+            string statusUgrozenostiS = statusUgrozenostiBox.Text;
+            if (!string.IsNullOrEmpty(statusUgrozenostiS))
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.StatusUgrozenosti == (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), statusUgrozenostiS));
+
+            string turistickiStatusS = turistickiStatusBox.Text;
+            if (!string.IsNullOrEmpty(turistickiStatusS))
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.TuristickiStatus == (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), turistickiStatusS));
+
+            if (DaNeCheck.IsChecked == true)
+            {
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = (i.Opasna == opasnaCheck.IsChecked.Value &&
+                i.IUCN == iucnCheck.IsChecked.Value && i.ZiviUNaseljenomRegionu == naseljenoCheck.IsChecked.Value));
+            }
+
+            if (!string.IsNullOrEmpty(godisnjiPrihodDG.Text))
+            {
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.GodisnjiPrihod >= Convert.ToDecimal(godisnjiPrihodDG.Text));
+            }
+
+            if (!string.IsNullOrEmpty(godisnjiPrihodGG.Text))
+            {
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.GodisnjiPrihod <= Convert.ToDecimal(godisnjiPrihodGG.Text));
+            }
+
+            if (!string.IsNullOrEmpty(datumDG.Text))
+            {
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.DatumOtkrivanja >= datumDG.DisplayDate);
+            }
+
+            if (!string.IsNullOrEmpty(datumGG.Text))
+            {
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.DatumOtkrivanja <= datumGG.DisplayDate);
+            }
+
+            TurnOffSearchButton.IsEnabled = true;
+        }
+
+        private void TurnOffSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = true);
+            TurnOffSearchButton.IsEnabled = false;
+            pretragaImeOznakaTB.Text = "";
+            tipBox.SelectedIndex = -1;
+            statusUgrozenostiBox.SelectedIndex = -1;
+            turistickiStatusBox.SelectedIndex = -1;
+            DaNeCheck.IsChecked = false;
+            opasnaCheck.IsChecked = false;
+            iucnCheck.IsChecked = false;
+            naseljenoCheck.IsChecked = false;
+            godisnjiPrihodDG.Text = "";
+            godisnjiPrihodGG.Text = "";
+            datumDG.Text = "";
+            datumGG.Text = "";
+        }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow();
+            pregledVrsteWindow.ShowDialog();
+        }
     }
 }

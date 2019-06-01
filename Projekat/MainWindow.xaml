@@ -11,8 +11,34 @@
     Height="500"
     Width="1000"
     MinHeight="500"
-    MinWidth="1000">
+    MinWidth="1000"
+    Loaded="Window_Loaded">
     <Window.Resources>
+        <Style
+            x:Key="ListBoxStil"
+            TargetType="ListBoxItem"
+            BasedOn="{StaticResource MaterialDesignListBoxItem}">
+            <Style.Triggers>
+                <Trigger
+                    Property="IsSelected"
+                    Value="True">
+                    <Setter
+                        Property="FontWeight"
+                        Value="Bold" />
+                    <Setter
+                        Property="Background"
+                        Value="{Binding Boja}" />
+                    <Setter
+                        Property="Foreground"
+                        Value="White" />
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <SolidColorBrush
+                    x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                    Color="Transparent" />
+            </Style.Resources>
+        </Style>
         <Style
             TargetType="materialDesign:Chip">
             <Style.Resources>
@@ -29,6 +55,18 @@
                     </Setter>
                 </Style>
             </Style.Resources>
+            <Setter
+                Property="Visibility"
+                Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger
+                    Binding="{Binding Vrsta.Prikazana}"
+                    Value="True">
+                    <Setter
+                        Property="Visibility"
+                        Value="Visible"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
     <DockPanel>
@@ -112,12 +150,14 @@
                     Orientation="Horizontal"
                     Grid.Column="0">
                     <TextBox
+                        Name="pretragaImeOznakaTB"
                         materialDesign:HintAssist.Hint="Pretraga"
                         Width="150"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         ToolTip="Pretraga po imenu i oznaci"
                         Margin="8,8,8,8" />
                     <materialDesign:PopupBox
+                        Height="Auto"
                         StaysOpen="True"
                         Margin="10,2,2,2">
                         <materialDesign:PopupBox.ToggleContent>
@@ -125,7 +165,8 @@
                                 Kind="FilterVariant" />
                         </materialDesign:PopupBox.ToggleContent>
                         <Grid
-                            Width="300">
+                            Width="300"
+                            Height="Auto">
                             <Grid.Resources>
                                 <Style
                                     TargetType="CheckBox"
@@ -143,6 +184,16 @@
                                     <Setter
                                         Property="Margin"
                                         Value="8,8,8,8" />
+                                </Style>
+                                <Style
+                                    TargetType="TextBox"
+                                    BasedOn="{StaticResource MaterialDesignTextBox}">
+                                    <Setter
+                                        Property="materialDesign:HintAssist.IsFloating"
+                                        Value="True" />
+                                    <Setter
+                                        Property="Margin"
+                                        Value="8,0,8,8" />
                                 </Style>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
@@ -166,6 +217,12 @@
                                     Height="*" />
                                 <RowDefinition
                                     Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
                             </Grid.RowDefinitions>
                             <TextBlock
                                 Grid.Column="0"
@@ -175,75 +232,239 @@
                             FILTER
                             </TextBlock>
                             <ComboBox
+                                x:Name="tipBox"
                                 Grid.Column="0"
                                 Grid.Row="1"
-                                Grid.ColumnSpan="2"
-                                materialDesign:HintAssist.Hint="Tip">
-                                <ComboBoxItem>
-                                    item 1
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    item 2
-                                </ComboBoxItem>
+                                materialDesign:HintAssist.Hint="Tip"
+                                Margin="8,8,8,9"
+                                ItemsSource="{Binding GlavniKontejner.Tipovi}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Oznaka}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
                             <ComboBox
+                                x:Name="statusUgrozenostiBox"
                                 Grid.Column="0"
                                 Grid.Row="2"
-                                Grid.ColumnSpan="2"
-                                materialDesign:HintAssist.Hint="Status ugroženosti">
-                                <ComboBoxItem>
-                                    item 1
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    item 2
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    item 3
-                                </ComboBoxItem>
+                                materialDesign:HintAssist.Hint="Status ugroženosti"
+                                Margin="8,9,8,8">
                             </ComboBox>
-                            <CheckBox
+                            <ComboBox
+                                x:Name="turistickiStatusBox"
                                 Grid.Column="0"
                                 Grid.Row="3"
-                                Grid.ColumnSpan="2">
-                                Opasna po ljude
-                            </CheckBox>
-                            <CheckBox
-                                Grid.Column="0"
-                                Grid.Row="4"
-                                Grid.ColumnSpan="2">
-                                Na IUCN listi
-                            </CheckBox>
-                            <CheckBox
-                                Grid.Column="0"
-                                Grid.Row="5"
-                                Grid.ColumnSpan="2">
-                                Živi u naseljenom regionu
-                            </CheckBox>
-                            <ComboBox
-                                Grid.Column="0"
-                                Grid.Row="6"
-                                Grid.ColumnSpan="2"
-                                materialDesign:HintAssist.Hint="Turistički status">
-                                <ComboBoxItem>
-                                    item 1
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    item 2
-                                </ComboBoxItem>
-                                <ComboBoxItem>
-                                    item 3
-                                </ComboBoxItem>
+                                materialDesign:HintAssist.Hint="Turistički status"
+                                Margin="8,9,8,8">
                             </ComboBox>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Grid.Row="4"
+                                Margin="0 0 0 4">
+                                <TextBlock
+                                    Margin="8 8 8 8"
+                                    VerticalAlignment="Center">
+                                    Etikete
+                                </TextBlock>
+                                <materialDesign:PopupBox
+                                    StaysOpen="True"
+                                    Margin="8 8 8 8">
+                                    <materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PackIcon
+                                            Kind="FilterVariant" />
+                                    </materialDesign:PopupBox.ToggleContent>
+                                    <ListBox
+                                        x:Name="etiketeBox"
+                                        SelectionMode="Multiple"
+                                        Width="100"
+                                        ItemsSource="{Binding GlavniKontejner.Etikete}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    Text="{Binding Oznaka}" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        <ListBox.ItemContainerStyle>
+                                            <Style
+                                                TargetType="ListBoxItem"
+                                                BasedOn="{StaticResource ListBoxStil}">
+                                                <Style.Setters>
+                                                    <Setter
+                                                        Property="Background"
+                                                        Value="{Binding Boja}" />
+                                                </Style.Setters>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                    </ListBox>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                            <GroupBox
+                                BorderThickness="0"
+                                Grid.Row="5"
+                                Height="Auto">
+                                <GroupBox.Header>
+
+                                    Da / Ne vrednosti
+
+                                </GroupBox.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="Auto" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <ToggleButton
+                                        Grid.Row="0"
+                                        HorizontalAlignment="Left"
+                                        Name="DaNeCheck"
+                                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                        ToolTip="Default ToggleButton Style" />
+                                    <CheckBox
+                                        x:Name="opasnaCheck"
+                                        IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
+                                        Grid.Column="0"
+                                        Grid.Row="1">
+                                        Opasna po ljude
+                                    </CheckBox>
+                                    <CheckBox
+                                        x:Name="iucnCheck"
+                                        IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
+                                        Grid.Column="0"
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="3">
+                                        Na IUCN listi
+                                    </CheckBox>
+                                    <CheckBox
+                                        x:Name="naseljenoCheck"
+                                        IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
+                                        Grid.Column="0"
+                                        Grid.Row="3">
+                                        Živi u naseljenom regionu
+                                    </CheckBox>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox
+                                BorderThickness="0"
+                                Header="Godišnji prihod"
+                                Grid.Row="6"
+                                Height="Auto">
+                                <Grid>
+
+                                    <TextBox
+                                        HorizontalAlignment="Left"
+                                        PreviewTextInput="NumberValidationTextBox"
+                                        Name="godisnjiPrihodDG"
+                                        MaxLength="10"
+                                        ToolTip="Ljudski čitljiva oznaka"
+                                        KeyDown="GodisnjiPrihod_KeyDown"
+                                        TextChanged="GodisnjiPrihod_TextChanged">
+
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    VerticalAlignment="Center">
+                                Donja granica
+                                                </TextBlock>
+                                                <materialDesign:PackIcon
+                                                    VerticalAlignment="Bottom"
+                                                    Kind="Euro"
+                                                    Margin=" 4 0 0 0" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                    <TextBox
+                                        HorizontalAlignment="Right"
+                                        PreviewTextInput="NumberValidationTextBox"
+                                        Name="godisnjiPrihodGG"
+                                        MaxLength="10"
+                                        ToolTip="Ljudski čitljiva oznaka"
+                                        KeyDown="GodisnjiPrihod_KeyDown"
+                                        TextChanged="GodisnjiPrihod_TextChanged">
+
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    VerticalAlignment="Center">
+                                Gornja granica
+                                                </TextBlock>
+                                                <materialDesign:PackIcon
+                                                    VerticalAlignment="Bottom"
+                                                    Kind="Euro"
+                                                    Margin=" 4 0 0 0" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox
+                                BorderThickness="0"
+                                Header="Datum otkrivanja"
+                                Grid.Row="7"
+                                Height="Auto">
+                                <Grid>
+                                    <DatePicker
+                                        x:Name="datumDG"
+                                        VerticalAlignment="Bottom"
+                                        Margin="8 8 8 8"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        Width="Auto"
+                                        materialDesign:HintAssist.Hint="Donja granica"
+                                        PreviewKeyDown="DatePicker_PreviewKeyDown" />
+                                    <DatePicker
+                                        x:Name="datumGG"
+                                        VerticalAlignment="Bottom"
+                                        Margin="8 8 8 8"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Width="Auto"
+                                        materialDesign:HintAssist.Hint="Gornja granica"
+                                        PreviewKeyDown="DatePicker_PreviewKeyDown" />
+
+                                </Grid>
+                            </GroupBox>
+
+
                         </Grid>
                     </materialDesign:PopupBox>
                     <Button
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         ToolTip="Pretraži"
-                        Margin="8,8,8,8">
+                        Margin="8,8,8,8"
+                        Click="Button_Click_7">
                         <materialDesign:PackIcon
                             Kind="Search"
                             Height="24"
                             Width="24" />
+                    </Button>
+                    <Button
+                        Name="TurnOffSearchButton"
+                        IsEnabled="False"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        ToolTip="Pretraži"
+                        Margin="8,8,8,8"
+                        Click="TurnOffSearchButton_Click">
+                        <Grid>
+                            <materialDesign:PackIcon
+                                Grid.Row="0"
+                                Kind="Search"
+                                Height="24"
+                                Width="24" />
+                            <materialDesign:PackIcon
+                                Grid.Row="0"
+                                Kind="Close"
+                                Height="24"
+                                Width="24"
+                                Margin="-2.8 -2 0 0"/>
+
+                        </Grid>
                     </Button>
                 </StackPanel>
                 <materialDesign:ColorZone
@@ -330,8 +551,41 @@
                             <materialDesign:Chip
                                 PreviewMouseLeftButtonDown="Chip_PreviewMouseLeftButtonDown"
                                 PreviewMouseMove="Chip_PreviewMouseMove"
+                                
                                 Margin="3,3,3,3"
-                                Content="{Binding Oznaka}">
+                                Content="{Binding Oznaka}"
+                                Click="Chip_Click">
+                                <materialDesign:Chip.Style>
+                                    <Style
+                                        TargetType="materialDesign:Chip">
+                                        <Style.Resources>
+                                            <Style
+                                                TargetType="Border">
+                                                <Setter
+                                                    Property="Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect
+                                                            Color="Black"
+                                                            BlurRadius="8"
+                                                            ShadowDepth="7" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Style.Resources>
+                                        <Setter
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Prikazana}"
+                                                Value="True">
+                                                <Setter
+                                                    Property="Visibility"
+                                                    Value="Visible"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </materialDesign:Chip.Style>
                                 <materialDesign:Chip.Icon>
                                     <Image
                                         Source="{Binding Ikonica}" />

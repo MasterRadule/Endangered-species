@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
@@ -7,7 +8,7 @@ using System.Windows.Media.Imaging;
 namespace Projekat.Model
 {
     [Serializable]
-    public class Vrsta : ISerializable
+    public class Vrsta : ISerializable, INotifyPropertyChanged
     {
         public string Oznaka { get; set; }
         public string Ime { get; set; }
@@ -20,8 +21,24 @@ namespace Projekat.Model
         public bool ZiviUNaseljenomRegionu { get; set; }
         public TuristickiStatus TuristickiStatus { get; set; }
         public decimal GodisnjiPrihod { get; set; }
-        public DateTime DatumOtkrivanja;
+        public DateTime DatumOtkrivanja { get; set; }
+
+
         public List<Etiketa> Etikete { get; set; }
+
+        private bool _prikazana = true;
+        public bool Prikazana
+        {
+            get { return _prikazana; }
+            set
+            {
+                if (value != _prikazana)
+                {
+                    _prikazana = value;
+                    OnPropertyChanged("Prikazana");
+                }
+            }
+        }
 
         public Vrsta()
         {
@@ -54,6 +71,8 @@ namespace Projekat.Model
                 image.EndInit();
                 Ikonica = image;
             }
+
+            Prikazana = true;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -81,6 +100,14 @@ namespace Projekat.Model
             }
 
             info.AddValue("Ikonica", ikonica);
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

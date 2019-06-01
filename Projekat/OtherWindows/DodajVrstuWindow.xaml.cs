@@ -78,7 +78,7 @@ namespace Projekat.OtherWindows
                 Oznaka = oznakaBox.Text,
                 Ime = imeBox.Text,
                 Opis = opisBox.Text,
-                Tip = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == tip.Oznaka).Single(),
+                Tip = tip,
                 StatusUgrozenosti = statusUgrozenosti,
                 TuristickiStatus = turistickiStatus,
                 Opasna = opasna,
@@ -115,5 +115,19 @@ namespace Projekat.OtherWindows
                 e.Handled = true;
         }
 
+        private void GodisnjiPrihod_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string newText = (sender as TextBox).Text;
+            if (decimal.TryParse(newText, out decimal test))
+            {
+                if (test >= 0)
+                {
+                    return;
+                }
+            }
+            // this triggers if input was not direct (e.g. paste-ing)
+            (sender as TextBox).Text = ""; 
+            e.Handled = true;
+        }
     }
 }

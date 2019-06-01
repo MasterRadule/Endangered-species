@@ -226,7 +226,8 @@
                     Name="godisnjiPrihod"
                     MaxLength="10"
                     ToolTip="Ljudski čitljiva oznaka"
-                    KeyDown="GodisnjiPrihod_KeyDown">
+                    KeyDown="GodisnjiPrihod_KeyDown"
+                    TextChanged="GodisnjiPrihod_TextChanged">
                     <Binding
                         Path=".">
                         <Binding.ValidationRules>

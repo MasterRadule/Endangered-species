@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,51 @@ namespace Projekat.OtherWindows
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            statusUgrozenostiBox.ItemsSource = Enum.GetValues(typeof(StatusUgrozenosti)).Cast<StatusUgrozenosti>();
+            turistickiStatusBox.ItemsSource = Enum.GetValues(typeof(TuristickiStatus)).Cast<TuristickiStatus>();
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
+            if (decimal.TryParse(newText, out decimal test))
+            {
+                if (test >= 0)
+                {
+                    return;
+                }
+            }
+            e.Handled = true;
+        }
+
+        private void GodisnjiPrihod_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Tab && e.Key != Key.Escape)
+                e.Handled = true;
+        }
+
+        private void GodisnjiPrihod_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string newText = (sender as TextBox).Text;
+            if (decimal.TryParse(newText, out decimal test))
+            {
+                if (test >= 0)
+                {
+                    return;
+                }
+            }
+            // this triggers if input was not direct (e.g. paste-ing)
+            (sender as TextBox).Text = "";
+            e.Handled = true;
         }
     }
 }
