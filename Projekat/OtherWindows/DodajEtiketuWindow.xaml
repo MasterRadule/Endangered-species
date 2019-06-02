@@ -8,6 +8,7 @@
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:l="clr-namespace:HelpSistem"
     mc:Ignorable="d"
     Title="Dodaj etiketu"
     Height="Auto"
@@ -15,7 +16,11 @@
     MinHeight="222"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight"
+    l:HelpProvider.HelpKey="DodajEtiketuProzor">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed1"/>
+    </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
             <Style.Triggers>
@@ -32,7 +37,8 @@
         </Style>
     </Window.Resources>
     <Grid
-        Height="Auto">
+        Height="Auto"
+        >
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="Auto" />
@@ -76,7 +82,8 @@
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            l:HelpProvider.HelpKey="DodajEtiketuProzor#oznaka">
             <Binding
                 Path="Oznaka">
                 <Binding.ValidationRules>
@@ -92,7 +99,8 @@
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            l:HelpProvider.HelpKey="DodajEtiketuProzor#opis">
             <Binding
                 Path="Opis">
                 <Binding.ValidationRules>
@@ -113,7 +121,6 @@
             <wpfTool:ColorPicker x:Name="odabirBoje"
                 Margin="8 8 8 8"
                 VerticalAlignment="Center">
-                
             </wpfTool:ColorPicker>
 
         </StackPanel>

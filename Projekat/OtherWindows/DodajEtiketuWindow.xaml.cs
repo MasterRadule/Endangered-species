@@ -1,19 +1,11 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using HelpSistem;
+using MaterialDesignThemes.Wpf;
 using Projekat.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat.OtherWindows
 {
@@ -82,6 +74,17 @@ namespace Projekat.OtherWindows
             });
             Close();
             ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Etiketa je uspešno dodata");
+        }
+
+        private void CommandBinding_Executed1(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[1]);
+
+            if (focusedControl is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str, this);
+            }
         }
     }
 }

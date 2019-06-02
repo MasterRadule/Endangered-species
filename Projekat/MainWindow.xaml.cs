@@ -1,23 +1,17 @@
-﻿using Projekat.OtherWindows;
+﻿using HelpSistem;
+using MaterialDesignThemes.Wpf;
+using Projekat.Common;
+using Projekat.Model;
+using Projekat.OtherWindows;
+using Projekat.Utility;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Projekat.Common;
-using Projekat.Utility;
-using MaterialDesignThemes.Wpf;
-using Projekat.Model;
-using System.ComponentModel;
 
 namespace Projekat
 {
@@ -455,6 +449,16 @@ namespace Projekat
         {
             PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow((sender as Chip).DataContext as Vrsta);
             pregledVrsteWindow.ShowDialog();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str, this);
+            }
         }
 
     }
