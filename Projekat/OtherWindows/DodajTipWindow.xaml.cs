@@ -114,9 +114,9 @@ namespace Projekat.OtherWindows
         {
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Add(new Tip()
             {
-                Oznaka = oznakaBox.Text,
-                Ime = imeBox.Text,
-                Opis = opisBox.Text,
+                Oznaka = Oznaka,
+                Ime = Ime,
+                Opis = Opis,
                 Ikonica = Bi
             });
         }

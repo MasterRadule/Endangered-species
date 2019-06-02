@@ -76,8 +76,8 @@ namespace Projekat.OtherWindows
         {
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Etikete.Add(new Etiketa()
             {
-                Oznaka = oznakaBox.Text,
-                Opis = opisBox.Text,
+                Oznaka = Oznaka,
+                Opis = Opis,
                 Boja = odabirBoje.SelectedColorText
             });
         }

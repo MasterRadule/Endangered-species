@@ -2,6 +2,7 @@
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,15 +20,37 @@ namespace Projekat.OtherWindows
     /// <summary>
     /// Interaction logic for PregledTipovaWindow.xaml
     /// </summary>
-    public partial class PregledTipovaWindow : Window
+    public partial class PregledTipovaWindow : Window, INotifyPropertyChanged
     {
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private BitmapImage Bi { get; set; }
-        private Tip izabraniTip { get; set; }
+
+        private Tip _tip;
+        public Tip IzabraniTip
+        {
+            get
+            {
+                return _tip;
+            }
+            set
+            {
+                if (value != _tip)
+                {
+                    _tip = value;
+                    OnPropertyChanged("IzabraniTip");
+                }
+            }
+        }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
         public PregledTipovaWindow()
         {
             InitializeComponent();
-            DataContext = (MainWindow)Application.Current.MainWindow;
+            DataContext = this;
             MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
@@ -53,11 +76,11 @@ namespace Projekat.OtherWindows
 
         private void chip_Click(object sender, RoutedEventArgs e)
         {
-            izabraniTip = (sender as Chip).DataContext as Tip;
-            oznakaBox.Text = izabraniTip.Oznaka;
-            imeBox.Text = izabraniTip.Ime;
-            opisBox.Text = izabraniTip.Opis;
-            Bi = izabraniTip.Ikonica;
+            IzabraniTip = (sender as Chip).DataContext as Tip;
+            oznakaBox.Text = IzabraniTip.Oznaka;
+            imeBox.Text = IzabraniTip.Ime;
+            opisBox.Text = IzabraniTip.Opis;
+            Bi = IzabraniTip.Ikonica;
             var brush = new ImageBrush();
             brush.ImageSource = Bi;
             ikonicaDugme.Background = brush;
@@ -65,12 +88,12 @@ namespace Projekat.OtherWindows
 
         private void Sacuvaj(object sender, RoutedEventArgs e)
         {
-            if (izabraniTip == null)
+            if (IzabraniTip == null)
             {
                 // SNEKBAR NISTE ODABRALI TIP ZA PREGLED
                 return;
             }
-            Tip t = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(ti => ti.Oznaka == izabraniTip.Oznaka).FirstOrDefault();
+            Tip t = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(ti => ti.Oznaka == IzabraniTip.Oznaka).FirstOrDefault();
             t.Oznaka = oznakaBox.Text;
             t.Ime = imeBox.Text;
             t.Opis = opisBox.Text;
@@ -80,19 +103,19 @@ namespace Projekat.OtherWindows
 
         private void Obrisi(object sender, RoutedEventArgs e)
         {
-            if (izabraniTip == null)
+            if (IzabraniTip == null)
             {
                 // SNEKBAR NISTE ODABRALI TIP ZA BRISANJE
                 return;
             }
-            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Remove(izabraniTip);
+            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Remove(IzabraniTip);
             oznakaBox.Text = "";
             imeBox.Text = "";
             opisBox.Text = "";
             BrushConverter bc = new BrushConverter();
             Brush brush = (Brush)bc.ConvertFrom("#FFB0BEC5");
             ikonicaDugme.Background = brush;
-            izabraniTip = null;
+            IzabraniTip = null;
             // SNEKBAR USPESNO STE OBRISALI
         }
     }

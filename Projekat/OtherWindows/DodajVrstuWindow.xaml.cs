@@ -102,8 +102,8 @@ namespace Projekat.OtherWindows
             }
         }
 
-        private string _tip;
-        public string TipVrste
+        private Tip _tip;
+        public Tip TipVrste
         {
             get
             {
@@ -191,33 +191,24 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            Tip tip = (Tip)tipBox.SelectedValue;
-            StatusUgrozenosti statusUgrozenosti = (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), statusUgrozenostiBox.SelectedValue.ToString()); 
-            TuristickiStatus turistickiStatus = (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), turistickiStatusBox.SelectedValue.ToString());
-            bool opasna = opasnaCheck.IsChecked.Value;
-            bool iucn = iucnCheck.IsChecked.Value;
-            bool naseljena = naseljenoCheck.IsChecked.Value;
-            decimal prihod = Convert.ToDecimal(godisnjiPrihod.Text);
-            DateTime d = datum.DisplayDate;
-            List<Etiketa> etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
             if (Bi == null)
             {
-                Bi = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == tip.Oznaka).Select(t => t.Ikonica).Single();
+                Bi = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == TipVrste.Oznaka).Select(t => t.Ikonica).Single();
             }
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Add(new Vrsta
             {
                 Oznaka = Oznaka,
                 Ime = Ime,
                 Opis = Opis,
-                Tip = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == tip.Oznaka).Single(),
-                StatusUgrozenosti = statusUgrozenosti,
-                TuristickiStatus = turistickiStatus,
-                Opasna = opasna,
-                IUCN = iucn,
-                ZiviUNaseljenomRegionu = naseljena,
+                Tip = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == TipVrste.Oznaka).Single(),
+                StatusUgrozenosti = (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), StatusUgrozenosti),
+                TuristickiStatus = (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), TuristickiStatus),
+                Opasna = opasnaCheck.IsChecked.Value,
+                IUCN = iucnCheck.IsChecked.Value,
+                ZiviUNaseljenomRegionu = naseljenoCheck.IsChecked.Value,
                 GodisnjiPrihod = GodisnjiPrihod,
-                DatumOtkrivanja = d,
-                Etikete = etikete,
+                DatumOtkrivanja = datum.DisplayDate,
+                Etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList(),
                 Ikonica = Bi
             });
 

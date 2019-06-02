@@ -46,6 +46,16 @@
                 <DataTrigger Binding="{Binding Background, ElementName=ikonicaDugme, UpdateSourceTrigger=PropertyChanged}" Value="{StaticResource dugmeBrush}">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding IzabraniTip, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ikonicaDugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IzabraniTip, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
@@ -59,7 +69,8 @@
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
             <ItemsControl
-                ItemsSource="{Binding GlavniKontejner.Tipovi}">
+                ItemsSource = "{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Tipovi}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -115,12 +126,19 @@
                 <Style
                     TargetType="TextBox"
                     BasedOn="{StaticResource MaterialDesignTextBox}">
-                    <Setter
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IzabraniTip, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                            <Setter Property="IsReadOnly" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Style.Setters>
+                        <Setter
                         Property="materialDesign:HintAssist.IsFloating"
                         Value="True" />
-                    <Setter
+                        <Setter
                         Property="Margin"
                         Value="8,8,8,8" />
+                    </Style.Setters>
                 </Style>
             </Grid.Resources>
             <TextBox x:Name="oznakaBox"
@@ -149,7 +167,7 @@
                 Ikonica
                 </TextBlock>
                 <Button x:Name="ikonicaDugme"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    Style="{StaticResource ikonicaDugmeStil}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
                     Margin="8 8 8 8"
