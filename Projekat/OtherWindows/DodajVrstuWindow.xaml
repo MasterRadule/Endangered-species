@@ -133,6 +133,7 @@
             HorizontalAlignment="Left"
             DataContext="{Binding }">
             <Binding
+                UpdateSourceTrigger="PropertyChanged"
                 Path="Oznaka">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
@@ -147,6 +148,7 @@
             materialDesign:HintAssist.Hint="Ime"
             ToolTip="Ljudski čitljiva oznaka">
             <Binding
+                UpdateSourceTrigger="PropertyChanged"
                 Path="Ime">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
@@ -160,6 +162,7 @@
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka">
             <Binding
+                UpdateSourceTrigger="PropertyChanged"
                 Path="Opis">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
@@ -180,7 +183,9 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
             <ComboBox.SelectedItem>
-                <Binding Path="TipVrste">
+                <Binding
+                    Path="TipVrste"
+                    UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
@@ -193,7 +198,9 @@
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
             <ComboBox.SelectedItem>
-                <Binding Path="StatusUgrozenosti">
+                <Binding
+                    Path="StatusUgrozenosti"
+                    UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
@@ -223,7 +230,9 @@
             materialDesign:HintAssist.Hint="Turistički status"
             Margin="8,9,8,8">
             <ComboBox.SelectedItem>
-                <Binding Path="TuristickiStatus">
+                <Binding
+                    Path="TuristickiStatus"
+                    UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
@@ -252,6 +261,7 @@
                     KeyDown="GodisnjiPrihod_KeyDown"
                     TextChanged="GodisnjiPrihod_TextChanged">
                     <Binding
+                        UpdateSourceTrigger="PropertyChanged"
                         Path="GodisnjiPrihod">
                         <Binding.ValidationRules>
                             <val:NotEmptyValidationRule

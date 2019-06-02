@@ -78,6 +78,7 @@
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2">
             <Binding
+                UpdateSourceTrigger="PropertyChanged"
                 Path="Oznaka">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
@@ -94,6 +95,7 @@
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2">
             <Binding
+                UpdateSourceTrigger="PropertyChanged"
                 Path="Opis">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule

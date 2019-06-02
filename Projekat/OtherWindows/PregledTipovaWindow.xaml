@@ -147,6 +147,7 @@
                 ToolTip="Ljudski čitljiva oznaka"
                 Grid.ColumnSpan="2">
                 <Binding
+                    UpdateSourceTrigger="PropertyChanged"
                     Path="Oznaka">
                     <Binding.ValidationRules>
                         <val:OznakaTipaValidationRule
