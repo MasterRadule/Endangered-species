@@ -64,6 +64,10 @@ namespace Projekat.OtherWindows
             }
         }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+
+        private Style oldStyle = null;
+
+        private Chip selectedChip = null;
         public PregledTipovaWindow()
         {
             InitializeComponent();
@@ -93,7 +97,14 @@ namespace Projekat.OtherWindows
 
         private void chip_Click(object sender, RoutedEventArgs e)
         {
-            IzabraniTip = (sender as Chip).DataContext as Tip;
+            if(selectedChip != null)
+                selectedChip.Style = oldStyle;
+            Chip chip = sender as Chip;
+            selectedChip = chip;
+            oldStyle = chip.Style;
+            chip.Style = FindResource("selectedChipStyle") as Style;
+
+            IzabraniTip = chip.DataContext as Tip;
             ((MainWindow)Application.Current.MainWindow).OtvorenTipOznaka = IzabraniTip.Oznaka;
             Oznaka = IzabraniTip.Oznaka;
             imeBox.Text = IzabraniTip.Ime;

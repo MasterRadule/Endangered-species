@@ -40,6 +40,24 @@
             </Style.Resources>
         </Style>
         <Style
+            x:Key="selectedChipStyle"
+            TargetType="materialDesign:Chip">
+            <Style.Resources>
+                <Style
+                    TargetType="Border">
+                    <Setter
+                        Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect
+                                Color="#fc655a"
+                                BlurRadius="8"
+                                ShadowDepth="1" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style
             TargetType="materialDesign:Chip">
             <Style.Resources>
                 <Style

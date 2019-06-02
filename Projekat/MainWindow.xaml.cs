@@ -284,13 +284,9 @@ namespace Projekat
 
         private void LoadChipFromPin(Pin pin)
         {
-            Image image = new Image
-            {
-                Source = pin.Vrsta.Ikonica
-            };
+            Image image = new Image();
             Chip chip = new Chip
             {
-                Content = pin.Vrsta.Oznaka,
                 Margin = new Thickness(pin.X, pin.Y, 0, 0),
                 Icon = image,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -298,6 +294,8 @@ namespace Projekat
                 DataContext = pin,
                 IsDeletable = true
             };
+            BindingOperations.SetBinding(chip, Chip.ContentProperty, new Binding() { Path = new PropertyPath("Oznaka"), Source = pin.Vrsta });
+            BindingOperations.SetBinding(image, Image.SourceProperty, new Binding() { Path = new PropertyPath("Ikonica"), Source = pin.Vrsta });
             chip.PreviewMouseLeftButtonDown += Chip_PreviewMouseLeftButtonDown;
             chip.PreviewMouseMove += Pin_PreviewMouseMove;
             chip.DeleteClick += Chip_DeleteClick;
@@ -453,8 +451,13 @@ namespace Projekat
 
         private void Chip_Click(object sender, RoutedEventArgs e)
         {
+            Chip chip = sender as Chip;
+            Style oldStyle = chip.Style;
+            chip.Style = FindResource("selectedChipStyle") as Style;
+
             PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow((sender as Chip).DataContext as Vrsta);
             pregledVrsteWindow.ShowDialog();
+            chip.Style = oldStyle;
         }
 
     }

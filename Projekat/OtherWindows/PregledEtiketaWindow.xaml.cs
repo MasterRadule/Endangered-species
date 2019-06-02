@@ -64,6 +64,8 @@ namespace Projekat.OtherWindows
             }
         }
 
+        private Chip selectedChip = null;
+        private Style oldStyle = null;
         public PregledEtiketaWindow()
         {
             InitializeComponent();
@@ -73,6 +75,13 @@ namespace Projekat.OtherWindows
 
         private void Chip_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedChip != null)
+                selectedChip.Style = oldStyle;
+            Chip chip = sender as Chip;
+            selectedChip = chip;
+            oldStyle = chip.Style;
+            chip.Style = FindResource("selectedChipStyle") as Style;
+
             IzabranaEtiketa = (sender as Chip).DataContext as Etiketa;
             ((MainWindow)Application.Current.MainWindow).OtvorenaEtiketaOznaka = IzabranaEtiketa.Oznaka;
             OznakaEtikete = IzabranaEtiketa.Oznaka;

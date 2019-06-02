@@ -17,6 +17,41 @@
     MaxWidth="450"
     SizeToContent="WidthAndHeight">
     <Window.Resources>
+        <Style
+            TargetType="materialDesign:Chip">
+            <Style.Resources>
+                <Style
+                    TargetType="Border">
+                    <Setter
+                        Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect
+                                Color="Black"
+                                BlurRadius="8"
+                                ShadowDepth="7" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style
+            x:Key="selectedChipStyle"
+            TargetType="materialDesign:Chip">
+            <Style.Resources>
+                <Style
+                    TargetType="Border">
+                    <Setter
+                        Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect
+                                Color="#fc655a"
+                                BlurRadius="8"
+                                ShadowDepth="1" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
         <SolidColorBrush x:Key="dugmeBrush" Color="#FFB0BEC5"/>
         <Style x:Key="dugmeObrisiStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
             <Style.Triggers>
