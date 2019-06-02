@@ -15,6 +15,7 @@ namespace Projekat.Common
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
         public double X { get; set; }

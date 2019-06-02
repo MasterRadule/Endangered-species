@@ -14,6 +14,7 @@ namespace Projekat.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _oznaka;
