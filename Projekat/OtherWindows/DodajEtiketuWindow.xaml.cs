@@ -80,6 +80,8 @@ namespace Projekat.OtherWindows
                 Opis = Opis,
                 Boja = odabirBoje.SelectedColorText
             });
+            Close();
+            ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Etiketa je uspešno dodata");
         }
     }
 }

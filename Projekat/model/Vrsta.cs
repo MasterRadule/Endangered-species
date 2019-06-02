@@ -219,7 +219,22 @@ namespace Projekat.Model
             }
         }
 
-        public BitmapImage Ikonica { get; set; }
+        private BitmapImage _ikonica;
+        public BitmapImage Ikonica
+        {
+            get
+            {
+                return _ikonica;
+            }
+            set
+            {
+                if (value != _ikonica)
+                {
+                    _ikonica = value;
+                    OnPropertyChanged("Ikonica");
+                }
+            }
+        }
 
         private bool _prikazana = true;
         public bool Prikazana
@@ -295,14 +310,6 @@ namespace Projekat.Model
             }
 
             info.AddValue("Ikonica", ikonica);
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
         }
     }
 }

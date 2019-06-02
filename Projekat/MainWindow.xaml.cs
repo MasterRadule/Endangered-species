@@ -342,7 +342,8 @@ namespace Projekat
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {
@@ -361,7 +362,8 @@ namespace Projekat
         private void GodisnjiPrihod_TextChanged(object sender, TextChangedEventArgs e)
         {
             string newText = (sender as TextBox).Text;
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {

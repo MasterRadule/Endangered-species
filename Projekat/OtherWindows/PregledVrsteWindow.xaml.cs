@@ -13,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Projekat.Model;
 using System.ComponentModel;
 
 namespace Projekat.OtherWindows
@@ -307,12 +306,15 @@ namespace Projekat.OtherWindows
             v.DatumOtkrivanja = DatumOtkrivanja;
             v.Ikonica = Bi;
             v.Etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
-            // SNEKBAR USPESNO STE IZMENILI
+            Close();
+            ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Vrsta je uspešno sačuvana");
         }
 
         private void Obrisi(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Remove(IzabranaVrsta);
+            Close();
+            ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Vrsta je uspešno obrisana");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -324,7 +326,8 @@ namespace Projekat.OtherWindows
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {
@@ -348,7 +351,8 @@ namespace Projekat.OtherWindows
         private void GodisnjiPrihod_TextChanged(object sender, TextChangedEventArgs e)
         {
             string newText = (sender as TextBox).Text;
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {

@@ -214,9 +214,8 @@ namespace Projekat.OtherWindows
                 Ikonica = Bi
             });
 
-            
-            // POTREBNO DODATI SNEKBAR - USPESNO DODATA VRSTA I ZATVORITI PROZOR
-            //Close();
+            Close();
+            ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Vrsta je uspešno dodata");
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -247,7 +246,8 @@ namespace Projekat.OtherWindows
         private void GodisnjiPrihod_TextChanged(object sender, TextChangedEventArgs e)
         {
             string newText = (sender as TextBox).Text;
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {

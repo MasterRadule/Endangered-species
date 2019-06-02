@@ -126,6 +126,8 @@ namespace Projekat.OtherWindows
                 Opis = Opis,
                 Ikonica = Bi
             });
+            Close();
+            ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Tip je uspešno dodat");
         }
     }
 }

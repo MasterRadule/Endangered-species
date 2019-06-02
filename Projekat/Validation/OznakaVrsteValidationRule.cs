@@ -13,8 +13,6 @@ namespace Projekat.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            Console.WriteLine(value);
-            Console.WriteLine(((MainWindow)Application.Current.MainWindow).OtvorenaVrstaOznaka);
             if ((string)value == ((MainWindow)Application.Current.MainWindow).OtvorenaVrstaOznaka)
                 return ValidationResult.ValidResult;
             return ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Where(v => v.Oznaka == (string) value).Count() != 0

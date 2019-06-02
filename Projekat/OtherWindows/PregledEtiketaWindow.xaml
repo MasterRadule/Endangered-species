@@ -175,18 +175,17 @@
                 Grid.Row="3"
                 Orientation="Vertical"
                 HorizontalAlignment="Right">
-
-                <Button
-                    Style="{StaticResource dugmeObrisiStil}"
-                    Width="100"
-                    Margin="8 8 8 8" Click="Obrisi">
-                    _OBRIŠI
-                </Button>
                 <Button
                     Style="{StaticResource dugmeStil}"
                     Width="100"
                     Margin="8 8 8 8" Click="Sacuvaj">
                     _SAČUVAJ
+                </Button>
+                <Button
+                    Style="{StaticResource dugmeObrisiStil}"
+                    Width="100"
+                    Margin="8 8 8 8" Click="Obrisi">
+                    _OBRIŠI
                 </Button>
             </StackPanel>
         </Grid>

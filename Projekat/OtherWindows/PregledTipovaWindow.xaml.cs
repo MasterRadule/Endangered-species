@@ -108,7 +108,7 @@ namespace Projekat.OtherWindows
         {
             if (IzabraniTip == null)
             {
-                // SNEKBAR NISTE ODABRALI TIP ZA PREGLED
+                MyCustomMessageQueue.Enqueue("Niste odabrali tip za pregled");
                 return;
             }
             Tip t = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(ti => ti.Oznaka == IzabraniTip.Oznaka).FirstOrDefault();
@@ -116,14 +116,14 @@ namespace Projekat.OtherWindows
             t.Ime = imeBox.Text;
             t.Opis = opisBox.Text;
             t.Ikonica = Bi;
-            // SNEKBAR USPESNO STE IZMENILI
+            MyCustomMessageQueue.Enqueue("Tip je uspešno sačuvan");
         }
 
         private void Obrisi(object sender, RoutedEventArgs e)
         {
             if (IzabraniTip == null)
             {
-                // SNEKBAR NISTE ODABRALI TIP ZA BRISANJE
+                MyCustomMessageQueue.Enqueue("Niste odabrali tip za brisanje");
                 return;
             }
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Remove(IzabraniTip);
@@ -134,7 +134,7 @@ namespace Projekat.OtherWindows
             Brush brush = (Brush)bc.ConvertFrom("#FFB0BEC5");
             ikonicaDugme.Background = brush;
             IzabraniTip = null;
-            // SNEKBAR USPESNO STE OBRISALI
+            MyCustomMessageQueue.Enqueue("Tip je uspešno obrisan");
         }
     }
 }

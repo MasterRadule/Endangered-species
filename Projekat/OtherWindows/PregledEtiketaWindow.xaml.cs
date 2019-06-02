@@ -84,21 +84,21 @@ namespace Projekat.OtherWindows
         {
             if (IzabranaEtiketa == null)
             {
-                // SNEKBAR NISTE ODABRALI TIP ZA PREGLED
+                MyCustomMessageQueue.Enqueue("Niste odabrali etiketu za pregled");
                 return;
             }
             Etiketa etiketa = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Etikete.Where(et => et.Oznaka == IzabranaEtiketa.Oznaka).FirstOrDefault();
             etiketa.Oznaka = oznakaBox.Text;
             etiketa.Opis = opisBox.Text;
             etiketa.Boja = odabirBoje.SelectedColorText;
-            // SNEKBAR USPESNO STE IZMENILI
+            MyCustomMessageQueue.Enqueue("Etiketa je uspešno sačuvana");
         }
 
         private void Obrisi(object sender, RoutedEventArgs e)
         {
             if (IzabranaEtiketa == null)
             {
-                // SNEKBAR NISTE ODABRALI TIP ZA BRISANJE
+                MyCustomMessageQueue.Enqueue("Niste odabrali etiketu za brisanje");
                 return;
             }
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Etikete.Remove(IzabranaEtiketa);
@@ -106,7 +106,7 @@ namespace Projekat.OtherWindows
             opisBox.Text = "";
             odabirBoje.SelectedColor = null;
             IzabranaEtiketa = null;
-            // SNEKBAR USPESNO STE OBRISALI
+            MyCustomMessageQueue.Enqueue("Etiketa je uspešno obrisana");
         }
     }
 }

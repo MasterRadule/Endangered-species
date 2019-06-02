@@ -585,7 +585,7 @@
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
-                                </materialDesign:Chip.Style>
+                                </materialDesign:Chip.Resources>
                                 <materialDesign:Chip.Icon>
                                     <Image
                                         Source="{Binding Ikonica}" />
