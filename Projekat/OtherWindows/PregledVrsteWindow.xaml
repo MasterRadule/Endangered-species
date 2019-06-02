@@ -8,7 +8,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:val="clr-namespace:Projekat.Validation"
     mc:Ignorable="d"
-    Title="Dodaj vrstu"
+    Title="Pregled vrste"
     Height="Auto"
     Width="450"
     MinHeight="519"
@@ -17,6 +17,7 @@
     SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style
+            x:Key="ListBoxStil"
             TargetType="ListBoxItem"
             BasedOn="{StaticResource MaterialDesignListBoxItem}">
             <Style.Triggers>
@@ -28,7 +29,7 @@
                         Value="Bold" />
                     <Setter
                         Property="Background"
-                        Value="Transparent" />
+                        Value="{Binding Boja}" />
                     <Setter
                         Property="Foreground"
                         Value="White" />
@@ -39,6 +40,56 @@
                     x:Key="{x:Static SystemColors.HighlightBrushKey}"
                     Color="Transparent" />
             </Style.Resources>
+        </Style>
+        <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=tipBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=statusUgrozenostiBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=turistickiStatusBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=godisnjiPrihod, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="dugmeObrisiStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=imeBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=tipBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=statusUgrozenostiBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedValue, ElementName=turistickiStatusBox, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text.Length, ElementName=godisnjiPrihod, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid
@@ -99,75 +150,112 @@
             </Style>
         </Grid.Resources>
         <TextBox
+            Name="oznakaBox"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
-            ToolTip="Ljudski čitljiva oznaka" />
+            ToolTip="Ljudski čitljiva oznaka">
+            <Binding
+                Path="Oznaka">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox
+            Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
-            ToolTip="Ljudski čitljiva oznaka" />
+            ToolTip="Ljudski čitljiva oznaka">
+            <Binding
+                Path="Ime">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox
+            Name="opisBox"
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
-            ToolTip="Ljudski čitljiva oznaka" />
+            ToolTip="Ljudski čitljiva oznaka">
+            <Binding
+                Path="Opis">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <ComboBox
+            Name="tipBox"
             Grid.Column="0"
             Grid.Row="3"
             materialDesign:HintAssist.Hint="Tip"
-            Margin="8,8,8,9">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
+            Margin="8,8,8,9"
+            ItemsSource = "{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Tipovi}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Oznaka}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.SelectedItem>
+                <Binding Path="TipVrste">
+                    <Binding.ValidationRules>
+                        <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
         </ComboBox>
         <ComboBox
+            Name="statusUgrozenostiBox"
             Grid.Column="0"
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 3
-            </ComboBoxItem>
+            <ComboBox.SelectedItem>
+                <Binding Path="StatusUgrozenosti">
+                    <Binding.ValidationRules>
+                        <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
         </ComboBox>
         <CheckBox
             Grid.Column="0"
-            Grid.Row="5">
+            Grid.Row="5"
+            IsChecked="{Binding Opasna}">
             Opasna po ljude
         </CheckBox>
         <CheckBox
             Grid.Column="0"
             Grid.Row="6"
-            Grid.ColumnSpan="3">
+            Grid.ColumnSpan="3"
+            IsChecked="{Binding IUCN}">
             Na IUCN listi
         </CheckBox>
         <CheckBox
             Grid.Column="0"
-            Grid.Row="7">
+            Grid.Row="7"
+            IsChecked="{Binding ZiviUNaseljenomRegionu}">
             Živi u naseljenom regionu
         </CheckBox>
         <ComboBox
+            Name="turistickiStatusBox"
             Grid.Column="0"
             Grid.Row="8"
             materialDesign:HintAssist.Hint="Turistički status"
             Margin="8,9,8,8">
-            <ComboBoxItem>
-                item 1
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 2
-            </ComboBoxItem>
-            <ComboBoxItem>
-                item 3
-            </ComboBoxItem>
+            <ComboBox.SelectedItem>
+                <Binding Path="TuristickiStatus">
+                    <Binding.ValidationRules>
+                        <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
         </ComboBox>
         <Grid
             Grid.Row="9">
@@ -184,8 +272,15 @@
                 Grid.Column="0">
                 <TextBox
                     Grid.Column="0"
-                    Name="GodisnjiPrihod"
+                    Name="godisnjiPrihod"
                     ToolTip="Ljudski čitljiva oznaka">
+                    <Binding
+                        Path="GodisnjiPrihod">
+                        <Binding.ValidationRules>
+                            <val:NotEmptyValidationRule
+                                ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
                     <materialDesign:HintAssist.Hint>
                         <StackPanel
                             Orientation="Horizontal">
@@ -201,14 +296,14 @@
                     </materialDesign:HintAssist.Hint>
                 </TextBox>
             </StackPanel>
-            <DatePicker
+            <DatePicker x:Name="datum"
                 VerticalAlignment="Bottom"
                 Margin="8 8 8 8"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
+                SelectedDate="{Binding DatumOtkrivanja}"
                 Width="Auto"
-                FlowDirection="RightToLeft"
-                materialDesign:HintAssist.Hint="Datum otkrivanja" />
+                materialDesign:HintAssist.Hint="Datum otkrivanja"/>
         </Grid>
 
         <Grid
@@ -236,15 +331,23 @@
                         <materialDesign:PackIcon
                             Kind="FilterVariant" />
                     </materialDesign:PopupBox.ToggleContent>
-                    <ListBox
+                    <ListBox x:Name="etiketeBox"
                         SelectionMode="Multiple"
-                        Width="100">
-                        <ListBoxItem
-                            Background="Red">Etiketa1</ListBoxItem>
-                        <ListBoxItem
-                            Background="Green">Etiketa2</ListBoxItem>
-                        <ListBoxItem
-                            Background="Blue">Etiketa3</ListBoxItem>
+                        Width="100"
+                        ItemsSource = "{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Etikete}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Oznaka}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxStil}">
+                                <Style.Setters>
+                                    <Setter Property="Background" Value="{Binding Boja}" />
+                                </Style.Setters>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                     </ListBox>
                 </materialDesign:PopupBox>
             </StackPanel>
@@ -257,14 +360,11 @@
                 Ikonica
                 </TextBlock>
                 <Button
+                    Name="ikonicaDugme"
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
                     Margin="8 8 8 8">
-                    <materialDesign:PackIcon
-                        Kind="Cat"
-                        Height="24"
-                        Width="24" />
                 </Button>
             </StackPanel>
         </Grid>
@@ -277,16 +377,18 @@
                 Orientation="Vertical"
                 HorizontalAlignment="Right">
                 <Button
-                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Style="{StaticResource dugmeStil}"
                     Width="100"
-                    Margin="8 8 8 8">
+                    Margin="8 8 8 8"
+                    Click="Sacuvaj">
                     _SAČUVAJ
                 </Button>
                 <Button
-                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Style="{StaticResource dugmeObrisiStil}"
                     Width="100"
-                    Margin="8 8 8 8">
-                    _OBRIŠi
+                    Margin="8 8 8 8"
+                    Click="Obrisi">
+                    _OBRIŠI
                 </Button>
             </StackPanel>
         </StackPanel>

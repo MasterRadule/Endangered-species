@@ -82,6 +82,8 @@
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
                         ValidatesOnTargetUpdated="True" />
+                    <val:OznakaEtiketeValidationRule
+                        ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>

@@ -87,6 +87,8 @@
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
                         ValidatesOnTargetUpdated="True" />
+                    <val:OznakaTipaValidationRule
+                        ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>

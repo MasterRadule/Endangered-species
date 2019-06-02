@@ -30,6 +30,23 @@ namespace Projekat.OtherWindows
 
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
 
+        private string _oznaka;
+        public string OznakaEtikete
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("OznakaEtikete");
+                }
+            }
+        }
+
         private Etiketa _etiketa;
         public Etiketa IzabranaEtiketa
         {
@@ -57,7 +74,8 @@ namespace Projekat.OtherWindows
         private void Chip_Click(object sender, RoutedEventArgs e)
         {
             IzabranaEtiketa = (sender as Chip).DataContext as Etiketa;
-            oznakaBox.Text = IzabranaEtiketa.Oznaka;
+            ((MainWindow)Application.Current.MainWindow).OtvorenaEtiketaOznaka = IzabranaEtiketa.Oznaka;
+            OznakaEtikete = IzabranaEtiketa.Oznaka;
             opisBox.Text = IzabranaEtiketa.Opis;
             odabirBoje.SelectedColor = (Color)ColorConverter.ConvertFromString(IzabranaEtiketa.Boja);
         }

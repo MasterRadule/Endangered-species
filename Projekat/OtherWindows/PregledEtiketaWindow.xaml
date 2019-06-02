@@ -139,7 +139,15 @@
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="2">
+                <Binding
+                    Path="OznakaEtikete">
+                    <Binding.ValidationRules>
+                        <val:OznakaEtiketeValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
             <TextBox x:Name="opisBox"
                 Grid.Row="1"
                 materialDesign:HintAssist.Hint="Opis"

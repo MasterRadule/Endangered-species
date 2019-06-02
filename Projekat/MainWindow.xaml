@@ -289,7 +289,8 @@
                         <DataTemplate>
                             <materialDesign:Chip
                                 Margin="3,3,3,3"
-                                Content="{Binding Oznaka}">
+                                Content="{Binding Oznaka}"
+                                Click="Chip_Click">
                                 <materialDesign:Chip.Resources>
                                     <Style
                                         TargetType="Border">

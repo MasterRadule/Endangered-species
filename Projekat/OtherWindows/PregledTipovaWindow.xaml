@@ -46,14 +46,14 @@
                 <DataTrigger Binding="{Binding Background, ElementName=ikonicaDugme, UpdateSourceTrigger=PropertyChanged}" Value="{StaticResource dugmeBrush}">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding IzabraniTip, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                <DataTrigger Binding="{Binding Path=., UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="ikonicaDugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding IzabraniTip, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                <DataTrigger Binding="{Binding Path=., UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -127,7 +127,7 @@
                     TargetType="TextBox"
                     BasedOn="{StaticResource MaterialDesignTextBox}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IzabraniTip, UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding Path=., UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
                             <Setter Property="IsReadOnly" Value="True"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -145,7 +145,15 @@
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="2">
+                <Binding
+                    Path="Oznaka">
+                    <Binding.ValidationRules>
+                        <val:OznakaTipaValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
             <TextBox x:Name="imeBox"
                 Grid.Row="1"
                 materialDesign:HintAssist.Hint="Ime"

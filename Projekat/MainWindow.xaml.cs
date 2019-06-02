@@ -16,18 +16,43 @@ using System.Windows.Shapes;
 using Projekat.Common;
 using Projekat.Utility;
 using MaterialDesignThemes.Wpf;
+using Projekat.Model;
+using System.ComponentModel;
 
 namespace Projekat
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public GlavniKontejner GlavniKontejner { get; set; }
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private GlavniKontejner _glavniKontejner;
+        public GlavniKontejner GlavniKontejner
+        {
+            get
+            {
+                return _glavniKontejner;
+            }
+            set
+            {
+                if (value != _glavniKontejner)
+                {
+                    _glavniKontejner = value;
+                    OnPropertyChanged("GlavniKontejner");
+                }
+            }
+        }
         public int AktivnaMapa { get; set; }
         public string Putanja { get; set; }
-
+        public string OtvorenaVrstaOznaka { get; set; }
+        public string OtvorenTipOznaka { get; set; }
+        public string OtvorenaEtiketaOznaka { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
 
         public MainWindow()
@@ -147,6 +172,12 @@ namespace Projekat
             }
             Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
             MyCustomMessageQueue.Enqueue("Uspešno sačuvano");
+        }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow((sender as Chip).DataContext as Vrsta);
+            pregledVrsteWindow.ShowDialog();
         }
     }
 }

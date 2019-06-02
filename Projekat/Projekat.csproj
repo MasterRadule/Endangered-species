@@ -86,6 +86,9 @@
     <Compile Include="Model\Vrsta.cs" />
     <Compile Include="Utility\Loader.cs" />
     <Compile Include="Validation\NotEmptyValidationRule .cs" />
+    <Compile Include="Validation\OznakaEtiketeValidationRule.cs" />
+    <Compile Include="Validation\OznakaTipaValidationRule.cs" />
+    <Compile Include="Validation\OznakaVrsteValidationRule.cs" />
     <Compile Include="Validation\SelectionValidationRule.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

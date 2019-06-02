@@ -32,7 +32,6 @@ namespace Projekat.OtherWindows
 
         private BitmapImage Bi { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
-        public ObservableCollection<string> Proba {get; set;}
 
         private string _oznaka;
         public string Oznaka
@@ -155,9 +154,6 @@ namespace Projekat.OtherWindows
 
         public DodajVrstuWindow()
         {
-            Proba = new ObservableCollection<string>();
-            Proba.Add("asd");
-            Proba.Add("dos");
             InitializeComponent();
             DataContext = this;
             MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
@@ -207,11 +203,12 @@ namespace Projekat.OtherWindows
                 IUCN = iucnCheck.IsChecked.Value,
                 ZiviUNaseljenomRegionu = naseljenoCheck.IsChecked.Value,
                 GodisnjiPrihod = GodisnjiPrihod,
-                DatumOtkrivanja = datum.DisplayDate,
+                DatumOtkrivanja = datum.SelectedDate ?? DateTime.Now,
                 Etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList(),
                 Ikonica = Bi
             });
 
+            
             // POTREBNO DODATI SNEKBAR - USPESNO DODATA VRSTA I ZATVORITI PROZOR
             //Close();
         }
@@ -239,11 +236,6 @@ namespace Projekat.OtherWindows
         {
             if (e.Key != Key.Tab && e.Key != Key.Escape)
                 e.Handled = true;
-        }
-
-        private void tipBox_Error(object sender, ValidationErrorEventArgs e)
-        {
-
         }
     }
 }

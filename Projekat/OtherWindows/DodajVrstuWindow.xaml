@@ -137,6 +137,8 @@
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
                         ValidatesOnTargetUpdated="True" />
+                    <val:OznakaVrsteValidationRule
+                        ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
@@ -309,7 +311,8 @@
                     <ListBox x:Name="etiketeBox"
                         SelectionMode="Multiple"
                         Width="100"
-                        ItemsSource="{Binding GlavniKontejner.Etikete}">
+                        ItemsSource = "{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Etikete}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Oznaka}"/>

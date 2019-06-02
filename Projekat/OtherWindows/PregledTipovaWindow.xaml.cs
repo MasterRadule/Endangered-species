@@ -30,6 +30,23 @@ namespace Projekat.OtherWindows
 
         private BitmapImage Bi { get; set; }
 
+        private string _oznaka;
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
         private Tip _tip;
         public Tip IzabraniTip
         {
@@ -77,7 +94,8 @@ namespace Projekat.OtherWindows
         private void chip_Click(object sender, RoutedEventArgs e)
         {
             IzabraniTip = (sender as Chip).DataContext as Tip;
-            oznakaBox.Text = IzabraniTip.Oznaka;
+            ((MainWindow)Application.Current.MainWindow).OtvorenTipOznaka = IzabraniTip.Oznaka;
+            Oznaka = IzabraniTip.Oznaka;
             imeBox.Text = IzabraniTip.Ime;
             opisBox.Text = IzabraniTip.Opis;
             Bi = IzabraniTip.Ikonica;

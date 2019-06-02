@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
@@ -7,21 +8,218 @@ using System.Windows.Media.Imaging;
 namespace Projekat.Model
 {
     [Serializable]
-    public class Vrsta : ISerializable
+    public class Vrsta : ISerializable, INotifyPropertyChanged
     {
-        public string Oznaka { get; set; }
-        public string Ime { get; set; }
-        public string Opis { get; set; }
-        public Tip Tip { get; set; }
-        public StatusUgrozenosti StatusUgrozenosti { get; set; }
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _oznaka;
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
+        private string _ime;
+        public string Ime
+        {
+            get
+            {
+                return _ime;
+            }
+            set
+            {
+                if (value != _ime)
+                {
+                    _ime = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+
+        private string _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
+            }
+        }
+
+        private decimal _godisnjiPrihod;
+        public decimal GodisnjiPrihod
+        {
+            get
+            {
+                return _godisnjiPrihod;
+            }
+            set
+            {
+                if (value != _godisnjiPrihod)
+                {
+                    _godisnjiPrihod = value;
+                    OnPropertyChanged("GodisnjiPrihod");
+                }
+            }
+        }
+
+        private Tip _tip;
+        public Tip Tip
+        {
+            get
+            {
+                return _tip;
+            }
+            set
+            {
+                if (value != _tip)
+                {
+                    _tip = value;
+                    OnPropertyChanged("Tip");
+                }
+            }
+        }
+
+        private bool _opasna;
+        public bool Opasna
+        {
+            get
+            {
+                return _opasna;
+            }
+            set
+            {
+                if (value != _opasna)
+                {
+                    _opasna = value;
+                    OnPropertyChanged("Opasna");
+                }
+            }
+        }
+
+        private bool _iucn;
+        public bool IUCN
+        {
+            get
+            {
+                return _iucn;
+            }
+            set
+            {
+                if (value != _iucn)
+                {
+                    _iucn = value;
+                    OnPropertyChanged("IUCN");
+                }
+            }
+        }
+
+        private bool _naseljeno;
+        public bool ZiviUNaseljenomRegionu
+        {
+            get
+            {
+                return _naseljeno;
+            }
+            set
+            {
+                if (value != _naseljeno)
+                {
+                    _naseljeno = value;
+                    OnPropertyChanged("ZiviUNaseljenomRegionu");
+                }
+            }
+        }
+
+        private StatusUgrozenosti _statusUgrozenosti;
+        public StatusUgrozenosti StatusUgrozenosti
+        {
+            get
+            {
+                return _statusUgrozenosti;
+            }
+            set
+            {
+                if (value != _statusUgrozenosti)
+                {
+                    _statusUgrozenosti = value;
+                    OnPropertyChanged("StatusUgrozenosti");
+                }
+            }
+        }
+
+        private TuristickiStatus _turistickiStatus;
+        public TuristickiStatus TuristickiStatus
+        {
+            get
+            {
+                return _turistickiStatus;
+            }
+            set
+            {
+                if (value != _turistickiStatus)
+                {
+                    _turistickiStatus = value;
+                    OnPropertyChanged("TuristickiStatus");
+                }
+            }
+        }
+
+        private DateTime _datumOtkrivanja;
+        public DateTime DatumOtkrivanja
+        {
+            get
+            {
+                return _datumOtkrivanja;
+            }
+            set
+            {
+                if (value != _datumOtkrivanja)
+                {
+                    _datumOtkrivanja = value;
+                    OnPropertyChanged("DatumOtkrivanja");
+                }
+            }
+        }
+
+        private List<Etiketa> _etikete;
+        public List<Etiketa> Etikete {
+            get
+            {
+                return _etikete;
+            }
+            set
+            {
+                if (value != _etikete)
+                {
+                    _etikete = value;
+                    OnPropertyChanged("Etikete");
+                }
+            }
+        }
+
         public BitmapImage Ikonica { get; set; }
-        public bool Opasna { get; set; }
-        public bool IUCN { get; set; }
-        public bool ZiviUNaseljenomRegionu { get; set; }
-        public TuristickiStatus TuristickiStatus { get; set; }
-        public decimal GodisnjiPrihod { get; set; }
-        public DateTime DatumOtkrivanja;
-        public List<Etiketa> Etikete { get; set; }
 
         public Vrsta()
         {
