@@ -130,36 +130,37 @@
             ToolTip="Ljudski čitljiva oznaka"
             MaxLength="10"
             Width="120"
-            HorizontalAlignment="Left">
+            HorizontalAlignment="Left"
+            DataContext="{Binding }">
             <Binding
-                Path=".">
+                Path="Oznaka">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                    <val:OznakaVrsteValidationRule
                         ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <TextBox
-            x:Name="imeBox"
+        <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
             ToolTip="Ljudski čitljiva oznaka">
             <Binding
-                Path=".">
+                Path="Ime">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
                         ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <TextBox
-            x:Name="opisBox"
+        <TextBox x:Name="opisBox"
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka">
             <Binding
-                Path=".">
+                Path="Opis">
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
                         ValidatesOnTargetUpdated="True" />
@@ -171,18 +172,34 @@
             Grid.Row="3"
             materialDesign:HintAssist.Hint="Tip"
             Margin="8,8,8,9"
-            ItemsSource="{Binding GlavniKontejner.Tipovi}">
+            ItemsSource = "{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Tipovi}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Oznaka}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
+            <ComboBox.SelectedItem>
+                <Binding Path="TipVrste">
+                    <Binding.ValidationRules>
+                        <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
         </ComboBox>
         <ComboBox x:Name="statusUgrozenostiBox"
             Grid.Column="0"
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
+            <ComboBox.SelectedItem>
+                <Binding Path="StatusUgrozenosti">
+                    <Binding.ValidationRules>
+                        <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
+            
         </ComboBox>
         <CheckBox x:Name="opasnaCheck"
             Grid.Column="0"
@@ -205,6 +222,13 @@
             Grid.Row="8"
             materialDesign:HintAssist.Hint="Turistički status"
             Margin="8,9,8,8">
+            <ComboBox.SelectedItem>
+                <Binding Path="TuristickiStatus">
+                    <Binding.ValidationRules>
+                        <val:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
         </ComboBox>
         <Grid
             Grid.Row="9">
@@ -222,14 +246,13 @@
                 <TextBox
                     PreviewTextInput="NumberValidationTextBox"
                     Grid.Column="0"
-
                     Name="godisnjiPrihod"
                     MaxLength="10"
                     ToolTip="Ljudski čitljiva oznaka"
                     KeyDown="GodisnjiPrihod_KeyDown"
                     TextChanged="GodisnjiPrihod_TextChanged">
                     <Binding
-                        Path=".">
+                        Path="GodisnjiPrihod">
                         <Binding.ValidationRules>
                             <val:NotEmptyValidationRule
                                 ValidatesOnTargetUpdated="True" />
@@ -289,7 +312,8 @@
                     <ListBox x:Name="etiketeBox"
                         SelectionMode="Multiple"
                         Width="100"
-                        ItemsSource="{Binding GlavniKontejner.Etikete}">
+                        ItemsSource = "{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Etikete}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Oznaka}"/>

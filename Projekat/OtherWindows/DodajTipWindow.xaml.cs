@@ -21,11 +21,67 @@ namespace Projekat.OtherWindows
     /// <summary>
     /// Interaction logic for DodajTipWindow.xaml
     /// </summary>
-    public partial class DodajTipWindow : Window
+    public partial class DodajTipWindow : Window, INotifyPropertyChanged
     {
-        private BitmapImage Bi { get; set; }
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private BitmapImage Bi { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+
+        private string _oznaka;
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
+        private string _ime;
+        public string Ime
+        {
+            get
+            {
+                return _ime;
+            }
+            set
+            {
+                if (value != _ime)
+                {
+                    _ime = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+
+        private string _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
+            }
+        }
 
         public DodajTipWindow()
         {
@@ -65,12 +121,11 @@ namespace Projekat.OtherWindows
         {
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Add(new Tip()
             {
-                Oznaka = oznakaBox.Text,
-                Ime = imeBox.Text,
-                Opis = opisBox.Text,
+                Oznaka = Oznaka,
+                Ime = Ime,
+                Opis = Opis,
                 Ikonica = Bi
             });
-
         }
     }
 }

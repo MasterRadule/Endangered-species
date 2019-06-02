@@ -26,11 +26,19 @@ namespace Projekat
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private GlavniKontejner _glavniKontejner;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private GlavniKontejner _glavniKontejner;
         public GlavniKontejner GlavniKontejner
         {
-            get { return _glavniKontejner; }
+            get
+            {
+                return _glavniKontejner;
+            }
             set
             {
                 if (value != _glavniKontejner)
@@ -45,9 +53,9 @@ namespace Projekat
 
         private Point startPoint = new Point();
         private bool dragging = false;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public string OtvorenaVrstaOznaka { get; set; }
+        public string OtvorenTipOznaka { get; set; }
+        public string OtvorenaEtiketaOznaka { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
 
         public MainWindow()
@@ -443,16 +451,9 @@ namespace Projekat
 
         private void Chip_Click(object sender, RoutedEventArgs e)
         {
-            PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow();
+            PregledVrsteWindow pregledVrsteWindow = new PregledVrsteWindow((sender as Chip).DataContext as Vrsta);
             pregledVrsteWindow.ShowDialog();
         }
 
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
     }
 }

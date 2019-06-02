@@ -555,7 +555,7 @@
                                 Margin="3,3,3,3"
                                 Content="{Binding Oznaka}"
                                 Click="Chip_Click">
-                                <materialDesign:Chip.Style>
+                                <materialDesign:Chip.Resources>
                                     <Style
                                         TargetType="materialDesign:Chip">
                                         <Style.Resources>

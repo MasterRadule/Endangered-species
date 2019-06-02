@@ -14,21 +14,148 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Projekat.Model;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Projekat.OtherWindows
 {
     /// <summary>
     /// Interaction logic for DodajVrstuWindow.xaml
     /// </summary>
-    public partial class DodajVrstuWindow : Window
+    public partial class DodajVrstuWindow : Window, INotifyPropertyChanged
     {
-        public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private BitmapImage Bi { get; set; }
-        
+        public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
+
+        private string _oznaka;
+        public string Oznaka
+        {
+            get
+            {
+                return _oznaka;
+            }
+            set
+            {
+                if (value != _oznaka)
+                {
+                    _oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
+        private string _ime;
+        public string Ime
+        {
+            get
+            {
+                return _ime;
+            }
+            set
+            {
+                if (value != _ime)
+                {
+                    _ime = value;
+                    OnPropertyChanged("Ime");
+                }
+            }
+        }
+
+        private string _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
+            }
+        }
+
+        private decimal _godisnjiPrihod;
+        public decimal GodisnjiPrihod
+        {
+            get
+            {
+                return _godisnjiPrihod;
+            }
+            set
+            {
+                if (value != _godisnjiPrihod)
+                {
+                    _godisnjiPrihod = value;
+                    OnPropertyChanged("GodisnjiPrihod");
+                }
+            }
+        }
+
+        private Tip _tip;
+        public Tip TipVrste
+        {
+            get
+            {
+                return _tip;
+            }
+            set
+            {
+                if (value != _tip)
+                {
+                    _tip = value;
+                    OnPropertyChanged("TipVrste");
+                }
+            }
+        }
+
+        private string _turistickiStatus;
+        public string TuristickiStatus
+        {
+            get
+            {
+                return _turistickiStatus;
+            }
+            set
+            {
+                if (value != _turistickiStatus)
+                {
+                    _turistickiStatus = value;
+                    OnPropertyChanged("TuristickiStatus");
+                }
+            }
+        }
+
+        private string _statusUgrozenosti;
+        public string StatusUgrozenosti
+        {
+            get
+            {
+                return _statusUgrozenosti;
+            }
+            set
+            {
+                if (value != _statusUgrozenosti)
+                {
+                    _statusUgrozenosti = value;
+                    OnPropertyChanged("StatusUgrozenosti");
+                }
+            }
+        }
+
         public DodajVrstuWindow()
         {
             InitializeComponent();
-            DataContext = (MainWindow)Application.Current.MainWindow;
+            DataContext = this;
             MyCustomMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(1000));
         }
 
@@ -66,41 +193,37 @@ namespace Projekat.OtherWindows
 
         private void Dodaj(object sender, RoutedEventArgs e)
         {
-            Tip tip = (Tip)tipBox.SelectedValue;
-            StatusUgrozenosti statusUgrozenosti = (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), statusUgrozenostiBox.SelectedValue.ToString()); 
-            TuristickiStatus turistickiStatus = (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), turistickiStatusBox.SelectedValue.ToString());
-            bool opasna = opasnaCheck.IsChecked.Value;
-            bool iucn = iucnCheck.IsChecked.Value;
-            bool naseljena = naseljenoCheck.IsChecked.Value;
-            decimal prihod = Convert.ToDecimal(godisnjiPrihod.Text);
-            DateTime d = datum.DisplayDate;
-            List<Etiketa> etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
             if (Bi == null)
             {
-                Bi = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == tip.Oznaka).Select(t => t.Ikonica).Single();
+                Bi = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == TipVrste.Oznaka).Select(t => t.Ikonica).Single();
             }
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Add(new Vrsta
             {
-                Oznaka = oznakaBox.Text,
-                Ime = imeBox.Text,
-                Opis = opisBox.Text,
-                Tip = tip,
-                StatusUgrozenosti = statusUgrozenosti,
-                TuristickiStatus = turistickiStatus,
-                Opasna = opasna,
-                IUCN = iucn,
-                ZiviUNaseljenomRegionu = naseljena,
-                GodisnjiPrihod = prihod,
-                DatumOtkrivanja = d,
-                Etikete = etikete,
+                Oznaka = Oznaka,
+                Ime = Ime,
+                Opis = Opis,
+                Tip = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Where(t => t.Oznaka == TipVrste.Oznaka).Single(),
+                StatusUgrozenosti = (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), StatusUgrozenosti),
+                TuristickiStatus = (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), TuristickiStatus),
+                Opasna = opasnaCheck.IsChecked.Value,
+                IUCN = iucnCheck.IsChecked.Value,
+                ZiviUNaseljenomRegionu = naseljenoCheck.IsChecked.Value,
+                GodisnjiPrihod = GodisnjiPrihod,
+                DatumOtkrivanja = datum.SelectedDate ?? DateTime.Now,
+                Etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList(),
                 Ikonica = Bi
             });
+
+            
+            // POTREBNO DODATI SNEKBAR - USPESNO DODATA VRSTA I ZATVORITI PROZOR
+            //Close();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             string newText = (sender as TextBox).Text.Insert((sender as TextBox).CaretIndex, e.Text);
-            if (decimal.TryParse(newText, out decimal test))
+            decimal test;
+            if (decimal.TryParse(newText, out test))
             {
                 if (test >= 0)
                 {

@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:Projekat.OtherWindows"
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:val="clr-namespace:Projekat.Validation"
     mc:Ignorable="d"
     Title="Dodaj etiketu"
     Height="Auto"
@@ -75,13 +76,31 @@
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2">
+            <Binding
+                Path="Oznaka">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                    <val:OznakaEtiketeValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <TextBox x:Name="opisBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2">
+            <Binding
+                Path="Opis">
+                <Binding.ValidationRules>
+                    <val:NotEmptyValidationRule
+                        ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
         <StackPanel
             Grid.Row="2"
             Orientation="Horizontal"
