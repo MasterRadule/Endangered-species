@@ -100,6 +100,7 @@ namespace Projekat.OtherWindows
             etiketa.Oznaka = oznakaBox.Text;
             etiketa.Opis = opisBox.Text;
             etiketa.Boja = odabirBoje.SelectedColorText;
+            ((MainWindow)Application.Current.MainWindow).OtvorenaEtiketaOznaka = "";
             MyCustomMessageQueue.Enqueue("Etiketa je uspešno sačuvana");
         }
 
@@ -115,7 +116,13 @@ namespace Projekat.OtherWindows
             opisBox.Text = "";
             odabirBoje.SelectedColor = null;
             IzabranaEtiketa = null;
+            ((MainWindow)Application.Current.MainWindow).OtvorenaEtiketaOznaka = "";
             MyCustomMessageQueue.Enqueue("Etiketa je uspešno obrisana");
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).OtvorenaEtiketaOznaka = "";
         }
     }
 }

@@ -51,6 +51,7 @@
       <HintPath>packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -89,6 +90,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\StatusUgrozenostiConverter.cs" />
+    <Compile Include="Converters\TuristickiStatusConverter.cs" />
     <Compile Include="Model\Etiketa.cs" />
     <Compile Include="Model\StatusUgrozenosti.cs" />
     <Compile Include="Model\TuristickiStatus.cs" />

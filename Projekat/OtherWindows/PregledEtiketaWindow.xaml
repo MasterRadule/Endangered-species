@@ -15,7 +15,8 @@
     MinHeight="222"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight"
+    Closing="Window_Closing">
     <Window.Resources>
         <Style
             TargetType="TextBlock"
@@ -140,6 +141,12 @@
                         Property="IsEnabled"
                         Value="False" />
                 </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="False"/>
+                </MultiDataTrigger>
             </Style.Triggers>
         </Style>
         <Style

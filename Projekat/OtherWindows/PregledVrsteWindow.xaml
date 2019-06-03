@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:Projekat.OtherWindows"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:conv="clr-namespace:Projekat.Converters"
     mc:Ignorable="d"
     Title="Pregled vrste"
     Height="Auto"
@@ -15,7 +16,8 @@
     MinWidth="450"
     MaxWidth="450"
     SizeToContent="WidthAndHeight"
-    Loaded="Window_Loaded">
+    Loaded="Window_Loaded"
+    Closing="Window_Closing">
     <Window.Resources>
         <Style
             x:Key="ListBoxStil"
@@ -68,6 +70,12 @@
                 <DataTrigger Binding="{Binding Text.Length, ElementName=godisnjiPrihod, UpdateSourceTrigger=PropertyChanged}" Value="0">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="False"/>
+                </MultiDataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="dugmeObrisiStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
@@ -164,6 +172,8 @@
                 <Binding.ValidationRules>
                     <val:NotEmptyValidationRule
                         ValidatesOnTargetUpdated="True" />
+                    <val:OznakaVrsteValidationRule
+                        ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
@@ -226,6 +236,14 @@
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
+            <ComboBox.Resources>
+                <conv:StatusUgrozenostiConverter x:Key="StatusUgrozenostiConverter" />
+            </ComboBox.Resources>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource StatusUgrozenostiConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
             <ComboBox.SelectedItem>
                 <Binding
                     Path="StatusUgrozenosti"
@@ -264,6 +282,14 @@
             Grid.Row="8"
             materialDesign:HintAssist.Hint="Turistički status"
             Margin="8,9,8,8">
+            <ComboBox.Resources>
+                <conv:TuristickiStatusConverter x:Key="TuristickiStatusConverter" />
+            </ComboBox.Resources>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource TuristickiStatusConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
             <ComboBox.SelectedItem>
                 <Binding
                     Path="TuristickiStatus"

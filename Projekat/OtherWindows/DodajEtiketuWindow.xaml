@@ -28,6 +28,12 @@
                 <DataTrigger Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}" Value="0">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="False"/>
+                </MultiDataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>

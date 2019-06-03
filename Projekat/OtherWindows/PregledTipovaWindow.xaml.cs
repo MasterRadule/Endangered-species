@@ -134,6 +134,7 @@ namespace Projekat.OtherWindows
             t.Ime = imeBox.Text;
             t.Opis = opisBox.Text;
             t.Ikonica = Bi;
+            ((MainWindow)Application.Current.MainWindow).OtvorenTipOznaka = "";
             MyCustomMessageQueue.Enqueue("Tip je uspešno sačuvan");
         }
 
@@ -193,7 +194,13 @@ namespace Projekat.OtherWindows
             Brush brush = (Brush)bc.ConvertFrom("#FFB0BEC5");
             ikonicaDugme.Background = brush;
             IzabraniTip = null;
+            ((MainWindow)Application.Current.MainWindow).OtvorenTipOznaka = "";
             MyCustomMessageQueue.Enqueue("Tip je uspešno obrisan");
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).OtvorenTipOznaka = "";
         }
     }
 }
