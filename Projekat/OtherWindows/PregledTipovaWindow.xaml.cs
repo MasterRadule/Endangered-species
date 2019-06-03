@@ -152,11 +152,10 @@ namespace Projekat.OtherWindows
             var msg = new CustomMaterialMessageBox
             {
                 TxtMessage = { Text = "Da li ste sigurni da želite da obrišete izabrani tip? Njegovim brisanjem će se ukloniti sve vrste koje njemu pripadaju.", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
-                TxtTitle = { Text = "Potvrda Brisanja tipa", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TxtTitle = { Text = "Potvrda Brisanja tipa" },
                 BtnOk = { Content = "Da" },
                 BtnCancel = { Content = "Ne" },
                 MainContentControl = { Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
-                TitleBackgroundPanel = { Background = FindResource("PrimaryHueMidBrush") as Brush },
             };
 
             bool imaVrste = false;

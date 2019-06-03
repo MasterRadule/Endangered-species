@@ -110,11 +110,10 @@ namespace Projekat
             var msg = new CustomMaterialMessageBox
             {
                 TxtMessage = { Text = "Da li ste sigurni da želite da učitate novu datoteku? Sve nesnimnjene promene će biti izgubljene.", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
-                TxtTitle = { Text = "Potvrda učitavanja nove datoteke", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TxtTitle = { Text = "Potvrda učitavanja nove datoteke" },
                 BtnOk = { Content = "Da" },
                 BtnCancel = { Content = "Ne" },
                 MainContentControl = { Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
-                TitleBackgroundPanel = { Background = FindResource("PrimaryHueMidBrush") as Brush },
             };
 
             msg.Show();
@@ -506,11 +505,10 @@ namespace Projekat
             var msg = new CustomMaterialMessageBox
             {
                 TxtMessage = { Text = "Da li ste sigurni da želite da napravite novu datoteku? Sve nesnimnjene promene će biti izgubljene.", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
-                TxtTitle = { Text = "Potvrda kreiranja nove datoteke", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TxtTitle = { Text = "Potvrda kreiranja nove datoteke" },
                 BtnOk = { Content = "Da" },
                 BtnCancel = { Content = "Ne" },
                 MainContentControl = { Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
-                TitleBackgroundPanel = { Background = FindResource("PrimaryHueMidBrush") as Brush },
             };
 
             msg.Show();

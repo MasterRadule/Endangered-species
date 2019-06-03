@@ -260,8 +260,8 @@
             </Grid.Resources>
             <TextBox
                 x:Name="oznakaBox"
-                MaxLength="10"
-            Width="120"
+                MaxLength="20"
+            Width="240"
             HorizontalAlignment="Left"
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
