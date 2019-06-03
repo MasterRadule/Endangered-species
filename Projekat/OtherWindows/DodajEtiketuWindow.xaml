@@ -79,6 +79,9 @@
             </Style>
         </Grid.Resources>
         <TextBox x:Name="oznakaBox"
+            MaxLength="10"
+            Width="120"
+            HorizontalAlignment="Left"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
@@ -121,7 +124,7 @@
             <wpfTool:ColorPicker x:Name="odabirBoje"
                 Margin="8 8 8 8"
                 VerticalAlignment="Center">
-                
+
             </wpfTool:ColorPicker>
 
         </StackPanel>

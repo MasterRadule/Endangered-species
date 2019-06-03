@@ -282,6 +282,9 @@
             </Grid.Resources>
             <TextBox
                 x:Name="oznakaBox"
+                MaxLength="10"
+            Width="120"
+            HorizontalAlignment="Left"
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
@@ -313,7 +316,7 @@
                 Orientation="Horizontal"
                 HorizontalAlignment="Left">
                 <TextBlock
-                    Margin="8 8 8 8"
+                    Margin="8 20 8 8"
                     VerticalAlignment="Center">
                 Ikonica
                 </TextBlock>
@@ -322,7 +325,7 @@
                     Style="{StaticResource ikonicaDugmeStil}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
-                    Margin="8 8 8 8"
+                    Margin="8 20 8 8"
                     Background="{StaticResource dugmeBrush}">
                 </Button>
             </StackPanel>

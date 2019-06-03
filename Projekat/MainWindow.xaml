@@ -471,6 +471,7 @@
                                         Grid.Column="1"
                                         HorizontalAlignment="Left"
                                         Width="Auto"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                         materialDesign:HintAssist.Hint="Donja granica"
                                         PreviewKeyDown="DatePicker_PreviewKeyDown" />
                                     <DatePicker
@@ -479,6 +480,7 @@
                                         Margin="8 8 8 8"
                                         Grid.Column="1"
                                         HorizontalAlignment="Right"
+                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                         Width="Auto"
                                         materialDesign:HintAssist.Hint="Gornja granica"
                                         PreviewKeyDown="DatePicker_PreviewKeyDown" />

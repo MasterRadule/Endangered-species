@@ -164,6 +164,9 @@
         <TextBox
             Name="oznakaBox"
             Grid.Row="0"
+            MaxLength="10"
+            Width="120"
+            HorizontalAlignment="Left"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka">
             <Binding
@@ -317,7 +320,10 @@
                     PreviewTextInput="NumberValidationTextBox"
                     Grid.Column="0"
                     Name="godisnjiPrihod"
-                    ToolTip="Ljudski čitljiva oznaka">
+                    ToolTip="Ljudski čitljiva oznaka"
+                    MaxLength="10"
+                    KeyDown="GodisnjiPrihod_KeyDown"
+                    TextChanged="GodisnjiPrihod_TextChanged">
                     <Binding
                         Path="GodisnjiPrihod"
                         UpdateSourceTrigger="PropertyChanged">
@@ -342,11 +348,13 @@
                 </TextBox>
             </StackPanel>
             <DatePicker x:Name="datum"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                 VerticalAlignment="Bottom"
                 Margin="8 8 8 8"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
                 SelectedDate="{Binding DatumOtkrivanja}"
+                        PreviewKeyDown="DatePicker_PreviewKeyDown"
                 Width="Auto"
                 materialDesign:HintAssist.Hint="Datum otkrivanja"/>
         </Grid>

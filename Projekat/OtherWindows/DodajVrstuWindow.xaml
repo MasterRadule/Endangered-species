@@ -224,7 +224,7 @@
                     </Binding.ValidationRules>
                 </Binding>
             </ComboBox.SelectedItem>
-            
+
         </ComboBox>
         <CheckBox x:Name="opasnaCheck"
             Grid.Column="0"
@@ -310,11 +310,12 @@
                 </TextBox>
             </StackPanel>
             <DatePicker x:Name="datum"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                        SelectedDate="1.1.2000."
                 VerticalAlignment="Bottom"
                 Margin="8 8 8 8"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
-                SelectedDate="1.1.2000."
                 Width="Auto"
                 materialDesign:HintAssist.Hint="Datum otkrivanja"
                 PreviewKeyDown="DatePicker_PreviewKeyDown" />

@@ -260,6 +260,9 @@
             </Grid.Resources>
             <TextBox
                 x:Name="oznakaBox"
+                MaxLength="10"
+            Width="120"
+            HorizontalAlignment="Left"
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
