@@ -426,8 +426,10 @@ namespace Projekat
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = true);
+
             string imeOznakaTekst = pretragaImeOznakaTB.Text;
-            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Oznaka.Contains(imeOznakaTekst) || i.Ime.Contains(imeOznakaTekst));
+            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.Oznaka.Contains(imeOznakaTekst) || i.Ime.Contains(imeOznakaTekst)));
 
             Tip tip = (Tip)tipBox.SelectedValue;
             if (tip != null)
@@ -435,36 +437,36 @@ namespace Projekat
 
             string statusUgrozenostiS = statusUgrozenostiBox.Text;
             if (!string.IsNullOrEmpty(statusUgrozenostiS))
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.StatusUgrozenosti == (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), statusUgrozenostiS));
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.StatusUgrozenosti == (StatusUgrozenosti)Enum.Parse(typeof(StatusUgrozenosti), statusUgrozenostiS)));
 
             string turistickiStatusS = turistickiStatusBox.Text;
             if (!string.IsNullOrEmpty(turistickiStatusS))
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.TuristickiStatus == (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), turistickiStatusS));
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.TuristickiStatus == (TuristickiStatus)Enum.Parse(typeof(TuristickiStatus), turistickiStatusS)));
 
             if (DaNeCheck.IsChecked == true)
             {
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = (i.Opasna == opasnaCheck.IsChecked.Value &&
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.Opasna == opasnaCheck.IsChecked.Value &&
                 i.IUCN == iucnCheck.IsChecked.Value && i.ZiviUNaseljenomRegionu == naseljenoCheck.IsChecked.Value));
             }
 
             if (!string.IsNullOrEmpty(godisnjiPrihodDG.Text))
             {
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.GodisnjiPrihod >= Convert.ToDecimal(godisnjiPrihodDG.Text));
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.GodisnjiPrihod >= Convert.ToDecimal(godisnjiPrihodDG.Text)));
             }
 
             if (!string.IsNullOrEmpty(godisnjiPrihodGG.Text))
             {
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.GodisnjiPrihod <= Convert.ToDecimal(godisnjiPrihodGG.Text));
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.GodisnjiPrihod <= Convert.ToDecimal(godisnjiPrihodGG.Text)));
             }
 
             if (!string.IsNullOrEmpty(datumDG.Text))
             {
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.DatumOtkrivanja >= datumDG.DisplayDate);
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.DatumOtkrivanja >= datumDG.DisplayDate));
             }
 
             if (!string.IsNullOrEmpty(datumGG.Text))
             {
-                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.DatumOtkrivanja <= datumGG.DisplayDate);
+                GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.DatumOtkrivanja <= datumGG.DisplayDate));
             }
 
             TurnOffSearchButton.IsEnabled = true;
