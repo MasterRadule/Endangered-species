@@ -17,7 +17,7 @@
     MinWidth="450"
     MaxWidth="450"
     SizeToContent="WidthAndHeight"
-    help:Help.Filename="Help/Doc.chm">
+    help:Help.Filename="Help/DodajEtiketu.chm">
     <Window.Resources>
         <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
             <Style.Triggers>
@@ -79,7 +79,7 @@
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2"
-            help:Help.Keyword="DodajEtiketuProzor">
+            help:Help.Keyword="oznaka">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Oznaka">
@@ -97,7 +97,7 @@
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka"
             Grid.ColumnSpan="2"
-                 help:Help.Keyword="muda">
+            help:Help.Keyword="opis">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Opis">

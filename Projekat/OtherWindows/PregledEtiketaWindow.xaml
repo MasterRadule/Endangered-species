@@ -8,6 +8,7 @@
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
     mc:Ignorable="d"
     Title="Pregled etiketa"
     Height="Auto"
@@ -15,7 +16,8 @@
     MinHeight="222"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight"
+    help:Help.Filename="Help/PregledEtiketa.chm">
     <Window.Resources>
         <Style
             TargetType="materialDesign:Chip">
@@ -174,7 +176,8 @@
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2">
+                Grid.ColumnSpan="2"
+                help:Help.Keyword="oznaka">
                 <Binding
                     UpdateSourceTrigger="PropertyChanged"
                     Path="OznakaEtikete">
@@ -189,7 +192,8 @@
                 materialDesign:HintAssist.Hint="Opis"
                 TextWrapping="Wrap"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="2"
+                help:Help.Keyword="opis"/>
             <StackPanel
                 Grid.Row="2"
                 Orientation="Horizontal"

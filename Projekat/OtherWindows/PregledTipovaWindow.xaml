@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:Projekat.OtherWindows"
     xmlns:val="clr-namespace:Projekat.Validation"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
     mc:Ignorable="d"
     Title="Pregled tipova"
     Height="Auto"
@@ -14,7 +15,8 @@
     MinHeight="246"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight"
+    help:Help.Filename="Help/PregledTipova.chm">
     <Window.Resources>
         <Style
             TargetType="materialDesign:Chip">
@@ -239,7 +241,8 @@
                 Grid.Row="0"
                 materialDesign:HintAssist.Hint="Oznaka"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2">
+                Grid.ColumnSpan="2"
+                help:Help.Keyword="oznaka">
                 <Binding
                     UpdateSourceTrigger="PropertyChanged"
                     Path="Oznaka">
@@ -254,14 +257,16 @@
                 Grid.Row="1"
                 materialDesign:HintAssist.Hint="Ime"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="2"
+                help:Help.Keyword="ime"/>
             <TextBox
                 x:Name="opisBox"
                 Grid.Row="2"
                 materialDesign:HintAssist.Hint="Opis"
                 TextWrapping="Wrap"
                 ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="2"
+                help:Help.Keyword="opis"/>
             <StackPanel
                 Grid.Row="3"
                 Orientation="Horizontal"
