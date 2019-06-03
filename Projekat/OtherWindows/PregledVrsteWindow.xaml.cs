@@ -306,6 +306,7 @@ namespace Projekat.OtherWindows
             v.DatumOtkrivanja = DatumOtkrivanja;
             v.Ikonica = Bi;
             v.Etikete = etiketeBox.SelectedItems.Cast<Etiketa>().ToList();
+            ((MainWindow)Application.Current.MainWindow).OtvorenaVrstaOznaka = "";
             Close();
             ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Vrsta je uspešno sačuvana");
         }
@@ -313,6 +314,7 @@ namespace Projekat.OtherWindows
         private void Obrisi(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Remove(IzabranaVrsta);
+            ((MainWindow)Application.Current.MainWindow).OtvorenaVrstaOznaka = "";
             Close();
             ((MainWindow)Application.Current.MainWindow).MyCustomMessageQueue.Enqueue("Vrsta je uspešno obrisana");
         }
@@ -362,6 +364,11 @@ namespace Projekat.OtherWindows
             // this triggers if input was not direct (e.g. paste-ing)
             (sender as TextBox).Text = "";
             e.Handled = true;
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).OtvorenaVrstaOznaka = "";
         }
     }
 }
