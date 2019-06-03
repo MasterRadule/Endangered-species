@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/maps/map_1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/dodajetiketuprozor.htm")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/glavniprozor.htm")]
 
 

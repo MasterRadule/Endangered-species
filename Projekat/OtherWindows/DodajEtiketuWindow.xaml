@@ -8,6 +8,7 @@
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
     mc:Ignorable="d"
     Title="Dodaj etiketu"
     Height="Auto"
@@ -15,7 +16,8 @@
     MinHeight="222"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight">
+    SizeToContent="WidthAndHeight"
+    help:Help.Filename="Help/Doc.chm">
     <Window.Resources>
         <Style x:Key="dugmeStil" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
             <Style.Triggers>
@@ -76,7 +78,8 @@
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            help:Help.Keyword="DodajEtiketuProzor">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Oznaka">
@@ -93,7 +96,8 @@
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
             ToolTip="Ljudski čitljiva oznaka"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+                 help:Help.Keyword="muda">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Opis">
@@ -115,9 +119,7 @@
             <wpfTool:ColorPicker x:Name="odabirBoje"
                 Margin="8 8 8 8"
                 VerticalAlignment="Center">
-                
             </wpfTool:ColorPicker>
-
         </StackPanel>
         <StackPanel
             Grid.Row="3"
