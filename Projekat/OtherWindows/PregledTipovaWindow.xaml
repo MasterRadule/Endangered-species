@@ -17,6 +17,37 @@
     SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style
+            TargetType="TextBlock"
+            x:Key="EmptyText">
+            <Setter
+                Property="TextAlignment"
+                Value="Center" />
+            <Setter
+                Property="Margin"
+                Value="8 8 8 8" />
+            <Setter
+                Property="TextWrapping"
+                Value="Wrap" />
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center" />
+            <Setter
+                Property="VerticalAlignment"
+                Value="Center" />
+            <Setter
+                Property="Visibility"
+                Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger
+                    Binding="{Binding Path=Count}"
+                    Value="0">
+                    <Setter
+                        Property="Visibility"
+                        Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style
             TargetType="materialDesign:Chip">
             <Style.Resources>
                 <Style
@@ -33,7 +64,8 @@
                 </Style>
             </Style.Resources>
         </Style>
-        <Style x:Key="selectedChipStyle"
+        <Style
+            x:Key="selectedChipStyle"
             TargetType="materialDesign:Chip">
             <Style.Resources>
                 <Style
@@ -152,33 +184,40 @@
             <ColumnDefinition
                 Width="0.65*" />
         </Grid.ColumnDefinitions>
-        <ScrollViewer
-            Grid.Column="0"
-            HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Auto">
-            <ItemsControl
-                ItemsSource="{Binding Source={x:Static Application.Current},
+        <Grid
+            Grid.Column="0">
+            <TextBlock
+                Style="{StaticResource EmptyText}"
+                DataContext="{Binding Source={x:Static Application.Current},
+                        Path=MainWindow.GlavniKontejner.Tipovi}"
+                Text="Trenutno nije nijedan tip dodat.&#x0a;Dodajte novi tip koristeći dugme &quot;Dodaj tip&quot;." />
+            <ScrollViewer
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    ItemsSource="{Binding Source={x:Static Application.Current},
                         Path=MainWindow.GlavniKontejner.Tipovi}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <materialDesign:Chip
-                            Margin="3,3,3,3"
-                            Content="{Binding Oznaka}"
-                            Click="chip_Click">
-                            <materialDesign:Chip.Icon>
-                                <Image
-                                    Source="{Binding Ikonica}" />
-                            </materialDesign:Chip.Icon>
-                        </materialDesign:Chip>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Chip
+                                Margin="3,3,3,3"
+                                Content="{Binding Oznaka}"
+                                Click="chip_Click">
+                                <materialDesign:Chip.Icon>
+                                    <Image
+                                        Source="{Binding Ikonica}" />
+                                </materialDesign:Chip.Icon>
+                            </materialDesign:Chip>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
         <Grid
             Grid.Column="1"
             Height="Auto">

@@ -18,6 +18,7 @@ using Projekat.Utility;
 using MaterialDesignThemes.Wpf;
 using Projekat.Model;
 using System.ComponentModel;
+using BespokeFusion;
 
 namespace Projekat
 {
@@ -106,28 +107,53 @@ namespace Projekat
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            // Configure open file dialog box
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = "Document"; // Default file name
-            dlg.DefaultExt = ".es"; // Default file extension
-            dlg.Title = "Učitaj fajl";
-            dlg.Filter = "Endangered species maps (.es)|*.es"; // Filter files by extension
-            dlg.Multiselect = false;
-
-            // Show open file dialog box
-            bool? result = dlg.ShowDialog();
-            if (result.HasValue && result.Value)
+            var msg = new CustomMaterialMessageBox
             {
-                string novaPutanja = dlg.FileName;
+                TxtMessage = { Text = "Da li ste sigurni da želite da učitate novu datoteku? Sve nesnimnjene promene će biti izgubljene.", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TxtTitle = { Text = "Potvrda učitavanja nove datoteke", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                BtnOk = { Content = "Da" },
+                BtnCancel = { Content = "Ne" },
+                MainContentControl = { Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TitleBackgroundPanel = { Background = FindResource("PrimaryHueMidBrush") as Brush },
+            };
 
-                if (!novaPutanja.Equals(Putanja))
+            msg.Show();
+
+            if (msg.Result == MessageBoxResult.OK)
+            {
+                // Configure open file dialog box
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.FileName = "Document"; // Default file name
+                dlg.DefaultExt = ".es"; // Default file extension
+                dlg.Title = "Učitaj fajl";
+                dlg.Filter = "Endangered species maps (.es)|*.es"; // Filter files by extension
+                dlg.Multiselect = false;
+
+                // Show open file dialog box
+                bool? result = dlg.ShowDialog();
+                if (result.HasValue && result.Value)
                 {
-                    Putanja = novaPutanja;
-                    GlavniKontejner = Loader.Deserijalizuj(Putanja);
-                    LoadMap(GlavniKontejner.Mape[AktivnaMapa]);
-                }
+                    string novaPutanja = dlg.FileName;
 
+                    if (!novaPutanja.Equals(Putanja))
+                    {
+                        try
+                        {
+                            Putanja = novaPutanja;
+                            GlavniKontejner = Loader.Deserijalizuj(Putanja);
+                            LoadMap(GlavniKontejner.Mape[AktivnaMapa]);
+                            MyCustomMessageQueue.Enqueue("Izabrana datoteka je uspešno učitana");
+                        }
+                        catch
+                        {
+                            MyCustomMessageQueue.Enqueue("Izabrana datoteka nije podržana");
+                        }
+
+                    }
+
+                }
             }
+
 
         }
 
@@ -184,8 +210,16 @@ namespace Projekat
                     Putanja = saveDlg.FileName;
                 }
             }
-            Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
-            MyCustomMessageQueue.Enqueue("Uspešno sačuvano");
+            try
+            {
+                Loader.Serijalizuj(GlavniKontejner, Putanja); // klik na dugme Sacuvaj
+                MyCustomMessageQueue.Enqueue("Uspešno sačuvano");
+            }
+            catch
+            {
+                MyCustomMessageQueue.Enqueue("Neuspešno sačuvano. Možda nemate pravo pristupa izabranoj lokaciji.");
+            }
+
         }
 
         private void Chip_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -460,5 +494,27 @@ namespace Projekat
             chip.Style = oldStyle;
         }
 
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            var msg = new CustomMaterialMessageBox
+            {
+                TxtMessage = { Text = "Da li ste sigurni da želite da napravite novu datoteku? Sve nesnimnjene promene će biti izgubljene.", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TxtTitle = { Text = "Potvrda kreiranja nove datoteke", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                BtnOk = { Content = "Da" },
+                BtnCancel = { Content = "Ne" },
+                MainContentControl = { Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TitleBackgroundPanel = { Background = FindResource("PrimaryHueMidBrush") as Brush },
+            };
+
+            msg.Show();
+
+            if (msg.Result == MessageBoxResult.OK)
+            {
+                Putanja = null;
+                GlavniKontejner = new GlavniKontejner();
+                LoadMap(GlavniKontejner.Mape[AktivnaMapa]);
+                MyCustomMessageQueue.Enqueue("Nova datoteka uspešno kreirana");
+            }
+        }
     }
 }

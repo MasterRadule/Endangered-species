@@ -15,6 +15,37 @@
     Loaded="Window_Loaded">
     <Window.Resources>
         <Style
+            TargetType="TextBlock"
+            x:Key="EmptyText">
+            <Setter
+                Property="TextAlignment"
+                Value="Center" />
+            <Setter
+                Property="Margin"
+                Value="8 8 8 8" />
+            <Setter
+                Property="TextWrapping"
+                Value="Wrap" />
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center" />
+            <Setter
+                Property="VerticalAlignment"
+                Value="Center" />
+            <Setter
+                Property="Visibility"
+                Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger
+                    Binding="{Binding Path=Count}"
+                    Value="0">
+                    <Setter
+                        Property="Visibility"
+                        Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style
             x:Key="ListBoxStil"
             TargetType="ListBoxItem"
             BasedOn="{StaticResource MaterialDesignListBoxItem}">
@@ -107,6 +138,8 @@
                     Width="Auto" />
                 <ColumnDefinition
                     Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button
                 Grid.Column="0"
@@ -134,9 +167,13 @@
             <Button
                 Grid.Column="6"
                 Style="{StaticResource MaterialDesignFlatButton}"
-                Click="Button_Click_6">Sačuvaj</Button>
+                Click="Button_Click_8">Nova datoteka</Button>
             <Button
                 Grid.Column="7"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Click="Button_Click_6">Sačuvaj</Button>
+            <Button
+                Grid.Column="8"
                 Style="{StaticResource MaterialDesignFlatButton}"
                 Click="Button_Click_5">Učitaj</Button>
         </Grid>
@@ -480,7 +517,7 @@
                                 Kind="Close"
                                 Height="24"
                                 Width="24"
-                                Margin="-2.8 -2 0 0"/>
+                                Margin="-2.8 -2 0 0" />
 
                         </Grid>
                     </Button>
@@ -536,83 +573,89 @@
                 Style="{StaticResource MaterialDesignTitleTextBlock}">
                 Pregled vrsta
             </TextBlock>
-            <ListView
+            <Grid
                 Grid.Row="1"
-                Grid.Column="0"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                ItemsSource="{Binding GlavniKontejner.Vrste}">
-                <ListView.ItemContainerStyle>
-                    <Style
-                        TargetType="{x:Type ListViewItem}">
-                        <Setter
-                            Property="Background"
-                            Value="Transparent" />
-                        <Setter
-                            Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate
-                                    TargetType="{x:Type ListViewItem}">
-                                    <ContentPresenter />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <materialDesign:Chip
-                                PreviewMouseLeftButtonDown="Chip_PreviewMouseLeftButtonDown"
-                                PreviewMouseMove="Chip_PreviewMouseMove"
-                                
-                                Margin="3,3,3,3"
-                                Content="{Binding Oznaka}"
-                                Click="Chip_Click">
-                                <materialDesign:Chip.Resources>
-                                    <Style
-                                        TargetType="materialDesign:Chip">
-                                        <Style.Resources>
-                                            <Style
-                                                TargetType="Border">
-                                                <Setter
-                                                    Property="Effect">
-                                                    <Setter.Value>
-                                                        <DropShadowEffect
-                                                            Color="Black"
-                                                            BlurRadius="8"
-                                                            ShadowDepth="7" />
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </Style.Resources>
-                                        <Setter
-                                            Property="Visibility"
-                                            Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding Prikazana}"
-                                                Value="True">
-                                                <Setter
-                                                    Property="Visibility"
-                                                    Value="Visible"></Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </materialDesign:Chip.Resources>
-                                <materialDesign:Chip.Icon>
-                                    <Image
-                                        Source="{Binding Ikonica}" />
-                                </materialDesign:Chip.Icon>
-                            </materialDesign:Chip>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                Grid.Column="0">
+                <TextBlock
+                    Style="{StaticResource EmptyText}"
+                    DataContext="{Binding GlavniKontejner.Vrste}"
+                    Text="Trenutno nije nijedna vrsta dodata.&#x0a;Dodajte novu vrstu koristeći dugme &quot;Dodaj vrstu&quot;." />
+                <ListView
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ItemsSource="{Binding GlavniKontejner.Vrste}">
+                    <ListView.ItemContainerStyle>
+                        <Style
+                            TargetType="{x:Type ListViewItem}">
+                            <Setter
+                                Property="Background"
+                                Value="Transparent" />
+                            <Setter
+                                Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate
+                                        TargetType="{x:Type ListViewItem}">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <materialDesign:Chip
+                                    PreviewMouseLeftButtonDown="Chip_PreviewMouseLeftButtonDown"
+                                    PreviewMouseMove="Chip_PreviewMouseMove"
+                                    Margin="3,3,3,3"
+                                    Content="{Binding Oznaka}"
+                                    Click="Chip_Click">
+                                    <materialDesign:Chip.Resources>
+                                        <Style
+                                            TargetType="materialDesign:Chip">
+                                            <Style.Resources>
+                                                <Style
+                                                    TargetType="Border">
+                                                    <Setter
+                                                        Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect
+                                                                Color="Black"
+                                                                BlurRadius="8"
+                                                                ShadowDepth="7" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Style.Resources>
+                                            <Setter
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding Prikazana}"
+                                                    Value="True">
+                                                    <Setter
+                                                        Property="Visibility"
+                                                        Value="Visible"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:Chip.Resources>
+                                    <materialDesign:Chip.Icon>
+                                        <Image
+                                            Source="{Binding Ikonica}" />
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
             <Border
                 Grid.Row="1"
                 Grid.Column="1"

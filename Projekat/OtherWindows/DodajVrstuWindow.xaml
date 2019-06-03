@@ -31,8 +31,11 @@
                         Property="Background"
                         Value="{Binding Boja}" />
                     <Setter
-                        Property="Foreground"
+                        Property="BorderBrush"
                         Value="White" />
+                    <Setter
+                        Property="BorderThickness"
+                        Value="10 0 10 0" />
                 </Trigger>
             </Style.Triggers>
             <Style.Resources>

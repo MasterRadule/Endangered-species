@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using BespokeFusion;
+using MaterialDesignThemes.Wpf;
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
@@ -86,18 +87,24 @@ namespace Projekat.OtherWindows
             Nullable<bool> result = dlg.ShowDialog();
             if (result.HasValue && result.Value)
             {
-                string putanja = dlg.FileName;
-                Bi = new BitmapImage(new Uri(dlg.FileName));
-                Console.WriteLine(ikonicaDugme.Background);
-                var brush = new ImageBrush();
-                brush.ImageSource = Bi;
-                ikonicaDugme.Background = brush;
+                try
+                {
+                    string putanja = dlg.FileName;
+                    Bi = new BitmapImage(new Uri(dlg.FileName));
+                    var brush = new ImageBrush();
+                    brush.ImageSource = Bi;
+                    ikonicaDugme.Background = brush;
+                }
+                catch
+                {
+                    MyCustomMessageQueue.Enqueue("Slika nije podržana");
+                }
             }
         }
 
         private void chip_Click(object sender, RoutedEventArgs e)
         {
-            if(selectedChip != null)
+            if (selectedChip != null)
                 selectedChip.Style = oldStyle;
             Chip chip = sender as Chip;
             selectedChip = chip;
@@ -137,6 +144,47 @@ namespace Projekat.OtherWindows
                 MyCustomMessageQueue.Enqueue("Niste odabrali tip za brisanje");
                 return;
             }
+
+            var vrste = ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste;
+            
+            var msg = new CustomMaterialMessageBox
+            {
+                TxtMessage = { Text = "Da li ste sigurni da želite da obrišete izabrani tip? Njegovim brisanjem će se ukloniti sve vrste koje njemu pripadaju.", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TxtTitle = { Text = "Potvrda Brisanja tipa", Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                BtnOk = { Content = "Da" },
+                BtnCancel = { Content = "Ne" },
+                MainContentControl = { Background = FindResource("PrimaryHueMidForegroundBrush") as Brush },
+                TitleBackgroundPanel = { Background = FindResource("PrimaryHueMidBrush") as Brush },
+            };
+
+            bool imaVrste = false;
+
+            for (int i = vrste.Count - 1; i >= 0; i--)
+            {
+                if (vrste[i].Tip == IzabraniTip)
+                {
+                    imaVrste = true;
+                    break;
+                }
+            }
+
+            if (imaVrste)
+            {
+                msg.Show();
+                if (msg.Result != MessageBoxResult.OK)
+                {
+                    return;
+                }
+                for (int i = vrste.Count - 1; i >= 0; i--)
+                {
+                    if (vrste[i].Tip == IzabraniTip)
+                    {
+                        vrste.RemoveAt(i);
+                    }
+                }
+
+            }
+            
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Tipovi.Remove(IzabraniTip);
             oznakaBox.Text = "";
             imeBox.Text = "";

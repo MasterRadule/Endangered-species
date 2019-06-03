@@ -143,3 +143,8 @@ E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\Projekat.csprojAssemblyReference.cache
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\BespokeFusion.dll
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\MahApps.Metro.dll
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\System.Windows.Interactivity.dll
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\MahApps.Metro.pdb
+E:\Mi\Alex\Faks\Moji predmeti\Sesti semestar\Interakcija covek racunar\Projekat 2\Endangered-species\Projekat\bin\Debug\MahApps.Metro.xml
