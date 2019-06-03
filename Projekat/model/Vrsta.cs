@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -16,6 +17,9 @@ namespace Projekat.Model
         }
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
+
+        [field: NonSerialized]
+        public List<Pin> pinovi = new List<Pin>();
 
         private string _oznaka;
         public string Oznaka

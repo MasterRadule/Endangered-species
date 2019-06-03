@@ -310,6 +310,7 @@ namespace Projekat
                 Vrsta vrsta = e.Data.GetData("vrsta") as Vrsta;
                 Point locationOnImage = e.GetPosition(MapGrid);
                 Pin pin = new Pin() { Vrsta = vrsta, X = locationOnImage.X, Y = locationOnImage.Y };
+                vrsta.pinovi.Add(pin);
                 GlavniKontejner.Mape[AktivnaMapa].Pinovi.Add(pin);
                 LoadChipFromPin(pin);
             }
@@ -328,6 +329,8 @@ namespace Projekat
                 DataContext = pin,
                 IsDeletable = true
             };
+            pin.chip = chip;
+
             BindingOperations.SetBinding(chip, Chip.ContentProperty, new Binding() { Path = new PropertyPath("Oznaka"), Source = pin.Vrsta });
             BindingOperations.SetBinding(image, Image.SourceProperty, new Binding() { Path = new PropertyPath("Ikonica"), Source = pin.Vrsta });
             chip.PreviewMouseLeftButtonDown += Chip_PreviewMouseLeftButtonDown;
@@ -340,7 +343,9 @@ namespace Projekat
         {
             Chip chip = sender as Chip;
             MapGrid.Children.Remove(chip);
-            GlavniKontejner.Mape[AktivnaMapa].Pinovi.Remove(chip.DataContext as Pin);
+            Pin pin = chip.DataContext as Pin;
+            GlavniKontejner.Mape[AktivnaMapa].Pinovi.Remove(pin);
+            pin.Vrsta.pinovi.Remove(pin);
         }
 
         private void LoadMap(Mapa mapa)

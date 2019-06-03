@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using Projekat.Common;
 
 namespace Projekat.OtherWindows
 {
@@ -319,6 +320,15 @@ namespace Projekat.OtherWindows
 
         private void Obrisi(object sender, RoutedEventArgs e)
         {
+            foreach(Pin pin in IzabranaVrsta.pinovi)
+            {
+                ((MainWindow)Application.Current.MainWindow).MapGrid.Children.Remove(pin.chip);
+                ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[0].Pinovi.Remove(pin);
+                ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[1].Pinovi.Remove(pin);
+                ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[2].Pinovi.Remove(pin);
+                ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[3].Pinovi.Remove(pin);
+            }
+            
             ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Vrste.Remove(IzabranaVrsta);
             ((MainWindow)Application.Current.MainWindow).OtvorenaVrstaOznaka = "";
             Close();

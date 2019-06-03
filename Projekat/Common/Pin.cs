@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Projekat.Model;
 using System.ComponentModel;
+using MaterialDesignThemes.Wpf;
 
 namespace Projekat.Common
 {
@@ -17,6 +18,8 @@ namespace Projekat.Common
         }
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
+        [field: NonSerialized]
+        public Chip chip;
 
         public double X { get; set; }
         public double Y { get; set; }

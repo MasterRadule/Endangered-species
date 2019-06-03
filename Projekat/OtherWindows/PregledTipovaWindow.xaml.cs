@@ -1,5 +1,6 @@
 ﻿using BespokeFusion;
 using MaterialDesignThemes.Wpf;
+using Projekat.Common;
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
@@ -180,6 +181,14 @@ namespace Projekat.OtherWindows
                 {
                     if (vrste[i].Tip == IzabraniTip)
                     {
+                        foreach (Pin pin in vrste[i].pinovi)
+                        {
+                            ((MainWindow)Application.Current.MainWindow).MapGrid.Children.Remove(pin.chip);
+                            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[0].Pinovi.Remove(pin);
+                            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[1].Pinovi.Remove(pin);
+                            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[2].Pinovi.Remove(pin);
+                            ((MainWindow)Application.Current.MainWindow).GlavniKontejner.Mape[3].Pinovi.Remove(pin);
+                        }
                         vrste.RemoveAt(i);
                     }
                 }
