@@ -240,7 +240,6 @@
                             Grid.Column="0">
                     <TextBox Name="pretragaImeOznakaTB"
                     		 materialDesign:HintAssist.Hint="Pretraga"
-                             materialDesign:HintAssist.Hint="Pretraga"
                              Width="150"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              ToolTip="Pretraga po imenu i oznaci"
@@ -439,7 +438,7 @@
 
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center
+                                                <TextBlock VerticalAlignment="Center"
                                                 help:Help.Keyword="prihodGornja">
                                 Gornja granica
                                                 </TextBlock>
