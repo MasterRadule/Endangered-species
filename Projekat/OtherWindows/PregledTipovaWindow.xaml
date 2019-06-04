@@ -216,8 +216,8 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=IzabraniTip, UpdateSourceTrigger=PropertyChanged}"
                                      Value="{x:Null}">
-                            <Setter Property="IsReadOnly"
-                                    Value="True" />
+                            <Setter Property="IsEnabled"
+                                    Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
                     <Style.Setters>

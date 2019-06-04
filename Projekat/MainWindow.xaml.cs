@@ -59,8 +59,6 @@ namespace Projekat
         public string OtvorenaEtiketaOznaka { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
 
-        private bool QuestionMarkPopupOpen = false;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -526,15 +524,10 @@ namespace Projekat
 
         private void Button_QuestionMark_Click(object sender, RoutedEventArgs e)
         {
-            if (QuestionMarkPopupOpen) {
+            if (QuestionMarkPopup.IsPopupOpen)
                 QuestionMarkPopup.IsPopupOpen = false;
-                QuestionMarkPopupOpen = false;
-            }
             else
-            {
                 QuestionMarkPopup.IsPopupOpen = true;
-                QuestionMarkPopupOpen = true;
-            }
 
         }
 

@@ -38,7 +38,22 @@ namespace Projekat.Model
             }
         }
         public string Ime { get; set; }
-        public BitmapImage Ikonica { get; set; }
+        private BitmapImage _ikonica;
+        public BitmapImage Ikonica
+        {
+            get
+            {
+                return _ikonica;
+            }
+            set
+            {
+                if (value != _ikonica)
+                {
+                    _ikonica = value;
+                    OnPropertyChanged("Ikonica");
+                }
+            }
+        }
         public string Opis { get; set; }
 
         public Tip()

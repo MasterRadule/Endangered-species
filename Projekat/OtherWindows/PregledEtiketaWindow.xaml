@@ -198,8 +198,8 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IzabranaEtiketa, UpdateSourceTrigger=PropertyChanged}"
                                      Value="{x:Null}">
-                            <Setter Property="IsReadOnly"
-                                    Value="True" />
+                            <Setter Property="IsEnabled"
+                                    Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
                     <Style.Setters>
@@ -237,14 +237,14 @@
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
                         HorizontalAlignment="Left">
-                <TextBlock Margin="8 8 8 8"
+                <TextBlock Margin="8 20 8 8"
                            VerticalAlignment="Center">
 
                 Boja
                 </TextBlock>
                 <wpfTool:ColorPicker ToolTip="Boja kojom je označena izabrana etiketa"
                                      x:Name="odabirBoje"
-                                     Margin="8 8 8 8"
+                                     Margin="8 20 8 8"
                                      VerticalAlignment="Center"
                                      Style="{StaticResource odabirBojeStil}">
 

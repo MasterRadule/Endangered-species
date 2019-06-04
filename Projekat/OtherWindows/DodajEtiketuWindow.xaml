@@ -121,13 +121,13 @@
             Orientation="Horizontal"
             HorizontalAlignment="Left">
             <TextBlock
-                Margin="8 8 8 8"
+                Margin="8 20 8 8"
                 VerticalAlignment="Center">
                 Boja
             </TextBlock>
             <wpfTool:ColorPicker x:Name="odabirBoje"
                                  ToolTip="Boja kojom je označena etiketa"
-                Margin="8 8 8 8"
+                Margin="8 20 8 8"
                 VerticalAlignment="Center">
             </wpfTool:ColorPicker>
         </StackPanel>

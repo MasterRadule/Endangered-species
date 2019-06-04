@@ -116,7 +116,7 @@
             <Button Grid.Column="1"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     ToolTip="Otvara prozor u kom se dodaje tip životinja"
-    
+                    Click="Button_Click_1"
                     help:Help.Keyword="dodajTip">Dodaj tip</Button>
             <Button Grid.Column="2"
                     ToolTip="Otvara prozor u kom se mogu videti svi tipovi, kao i vršiti njihova izmena i brisanje"
