@@ -425,10 +425,8 @@ namespace Projekat
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = true);
-
             string imeOznakaTekst = pretragaImeOznakaTB.Text;
-            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.Oznaka.Contains(imeOznakaTekst) || i.Ime.Contains(imeOznakaTekst)));
+            GlavniKontejner.Vrste.ToList().ForEach(i => i.Prikazana = i.Prikazana && (i.Oznaka.ToLower().Contains(imeOznakaTekst.ToLower()) || i.Ime.ToLower().Contains(imeOznakaTekst.ToLower())));
 
             Tip tip = (Tip)tipBox.SelectedValue;
             if (tip != null)
