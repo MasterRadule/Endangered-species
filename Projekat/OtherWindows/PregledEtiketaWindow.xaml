@@ -1,187 +1,147 @@
-﻿<Window
-    x:Class="Projekat.OtherWindows.PregledEtiketaWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:Projekat.OtherWindows"
-    xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:val="clr-namespace:Projekat.Validation"
-    mc:Ignorable="d"
-    Title="Pregled etiketa"
-    Height="Auto"
-    Width="450"
-    MinHeight="222"
-    MinWidth="450"
-    MaxWidth="450"
-    SizeToContent="WidthAndHeight"
-    Closing="Window_Closing">
+﻿<Window x:Class="Projekat.OtherWindows.PregledEtiketaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat.OtherWindows"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:val="clr-namespace:Projekat.Validation"
+        mc:Ignorable="d"
+        Title="Pregled etiketa"
+        Height="Auto"
+        Width="450"
+        MinHeight="222"
+        MinWidth="450"
+        MaxWidth="450"
+        SizeToContent="WidthAndHeight"
+        Closing="Window_Closing">
     <Window.Resources>
-        <Style
-            TargetType="TextBlock"
-            x:Key="EmptyText">
-            <Setter
-                Property="TextAlignment"
-                Value="Center" />
-            <Setter
-                Property="Margin"
-                Value="8 8 8 8" />
-            <Setter
-                Property="TextWrapping"
-                Value="Wrap" />
-            <Setter
-                Property="HorizontalAlignment"
-                Value="Center" />
-            <Setter
-                Property="VerticalAlignment"
-                Value="Center" />
-            <Setter
-                Property="Visibility"
-                Value="Hidden" />
+        <Style TargetType="TextBlock"
+               x:Key="EmptyText">
+            <Setter Property="TextAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="8 8 8 8" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Visibility"
+                    Value="Hidden" />
             <Style.Triggers>
-                <DataTrigger
-                    Binding="{Binding Path=Count}"
-                    Value="0">
-                    <Setter
-                        Property="Visibility"
-                        Value="Visible" />
+                <DataTrigger Binding="{Binding Path=Count}"
+                             Value="0">
+                    <Setter Property="Visibility"
+                            Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style
-            TargetType="materialDesign:Chip">
+        <Style TargetType="materialDesign:Chip">
             <Style.Resources>
-                <Style
-                    TargetType="Border">
-                    <Setter
-                        Property="Effect">
+                <Style TargetType="Border">
+                    <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect
-                                Color="Black"
-                                BlurRadius="8"
-                                ShadowDepth="7" />
+                            <DropShadowEffect Color="Black"
+                                              BlurRadius="8"
+                                              ShadowDepth="7" />
                         </Setter.Value>
                     </Setter>
                 </Style>
             </Style.Resources>
         </Style>
-        <Style
-            x:Key="selectedChipStyle"
-            TargetType="materialDesign:Chip">
+        <Style x:Key="selectedChipStyle"
+               TargetType="materialDesign:Chip">
             <Style.Resources>
-                <Style
-                    TargetType="Border">
-                    <Setter
-                        Property="Effect">
+                <Style TargetType="Border">
+                    <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect
-                                Color="#fc655a"
-                                BlurRadius="8"
-                                ShadowDepth="1" />
+                            <DropShadowEffect Color="#fc655a"
+                                              BlurRadius="8"
+                                              ShadowDepth="1" />
                         </Setter.Value>
                     </Setter>
                 </Style>
             </Style.Resources>
         </Style>
-        <SolidColorBrush
-            x:Key="dugmeBrush"
-            Color="#FFB0BEC5" />
-        <Style
-            x:Key="dugmeObrisiStil"
-            TargetType="{x:Type Button}"
-            BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+        <SolidColorBrush x:Key="dugmeBrush"
+                         Color="#FFB0BEC5" />
+        <Style x:Key="dugmeObrisiStil"
+               TargetType="{x:Type Button}"
+               BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
             <Style.Triggers>
-                <DataTrigger
-                    Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}"
-                    Value="0">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}"
+                             Value="0">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
-                <DataTrigger
-                    Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}"
-                    Value="0">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}"
+                             Value="0">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
-                <DataTrigger
-                    Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}"
-                    Value="0">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}"
+                             Value="0">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style
-            x:Key="dugmeStil"
-            TargetType="{x:Type Button}"
-            BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+        <Style x:Key="dugmeStil"
+               TargetType="{x:Type Button}"
+               BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
             <Style.Triggers>
-                <DataTrigger
-                    Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}"
-                    Value="0">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding Text.Length, ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}"
+                             Value="0">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
-                <DataTrigger
-                    Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}"
-                    Value="0">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding Text.Length, ElementName=opisBox, UpdateSourceTrigger=PropertyChanged}"
+                             Value="0">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
-                <DataTrigger
-                    Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}"
-                    Value="0">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding SelectedColorText.Length, ElementName=odabirBoje, UpdateSourceTrigger=PropertyChanged}"
+                             Value="0">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}" Value="True"/>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=oznakaBox, UpdateSourceTrigger=PropertyChanged}"
+                                   Value="True" />
                     </MultiDataTrigger.Conditions>
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </MultiDataTrigger>
             </Style.Triggers>
         </Style>
-        <Style
-            x:Key="odabirBojeStil"
-            TargetType="{x:Type wpfTool:ColorPicker}">
+        <Style x:Key="odabirBojeStil"
+               TargetType="{x:Type wpfTool:ColorPicker}">
             <Style.Triggers>
-                <DataTrigger
-                    Binding="{Binding IzabranaEtiketa, UpdateSourceTrigger=PropertyChanged}"
-                    Value="{x:Null}">
-                    <Setter
-                        Property="IsEnabled"
-                        Value="False" />
+                <DataTrigger Binding="{Binding IzabranaEtiketa, UpdateSourceTrigger=PropertyChanged}"
+                             Value="{x:Null}">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="0.35*" />
-            <ColumnDefinition
-                Width="0.65*" />
+            <ColumnDefinition Width="0.35*" />
+            <ColumnDefinition Width="0.65*" />
         </Grid.ColumnDefinitions>
-        <Grid
-            Grid.Column="0">
-            <TextBlock
-                Style="{StaticResource EmptyText}"
-                DataContext="{Binding Source={x:Static Application.Current},
+        <Grid Grid.Column="0">
+            <TextBlock Style="{StaticResource EmptyText}"
+                       DataContext="{Binding Source={x:Static Application.Current},
                         Path=MainWindow.GlavniKontejner.Etikete}"
-                Text="Trenutno nije nijedna etiketa dodata.&#x0a;Dodajte novu etiketu koristeći dugme &quot;Dodaj etiketu&quot;." />
-            <ScrollViewer
-                HorizontalScrollBarVisibility="Disabled"
-                VerticalScrollBarVisibility="Auto">
-                <ItemsControl
-                    ItemsSource="{Binding Source={x:Static Application.Current},
+                       Text="Trenutno nije nijedna etiketa dodata.&#x0a;Dodajte novu etiketu koristeći dugme &quot;Dodaj etiketu&quot;." />
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Source={x:Static Application.Current},
                         Path=MainWindow.GlavniKontejner.Etikete}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -190,14 +150,18 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <materialDesign:Chip
-                                Margin="3,3,3,3"
-                                Content="{Binding Oznaka}"
-                                IconBackground="{Binding Boja}"
-                                Click="Chip_Click">
+                            <materialDesign:Chip Margin="3,3,3,3"
+                                                 Content="{Binding Oznaka}"
+                                                 IconBackground="{Binding Boja}"
+                                                 Click="Chip_Click">
+                                <materialDesign:Chip.ToolTip>
+                                    <TextBlock>
+                                            <Run Text="Opis: " />
+                                            <Run Text="{Binding Opis}" />
+                                    </TextBlock>
+                                </materialDesign:Chip.ToolTip>
                                 <materialDesign:Chip.Icon>
-                                    <Image
-                                        Source="{Binding Ikonica}" />
+                                    <Image Source="{Binding Ikonica}" />
                                 </materialDesign:Chip.Icon>
                             </materialDesign:Chip>
                         </DataTemplate>
@@ -205,125 +169,102 @@
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
-        <Grid
-            Grid.Column="1"
-            Height="Auto">
+        <Grid Grid.Column="1"
+              Height="Auto">
             <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="Auto" />
-                <RowDefinition
-                    Height="Auto" />
-                <RowDefinition
-                    Height="Auto" />
-                <RowDefinition
-                    Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.Resources>
-                <Style
-                    TargetType="CheckBox"
-                    BasedOn="{StaticResource MaterialDesignCheckBox}">
-                    <Setter
-                        Property="Margin"
-                        Value="8,8,8,8" />
+                <Style TargetType="CheckBox"
+                       BasedOn="{StaticResource MaterialDesignCheckBox}">
+                    <Setter Property="Margin"
+                            Value="8,8,8,8" />
                 </Style>
-                <Style
-                    TargetType="ComboBox"
-                    BasedOn="{StaticResource MaterialDesignComboBox}">
-                    <Setter
-                        Property="materialDesign:HintAssist.IsFloating"
-                        Value="True" />
-                    <Setter
-                        Property="Margin"
-                        Value="8,8,8,8" />
+                <Style TargetType="ComboBox"
+                       BasedOn="{StaticResource MaterialDesignComboBox}">
+                    <Setter Property="materialDesign:HintAssist.IsFloating"
+                            Value="True" />
+                    <Setter Property="Margin"
+                            Value="8,8,8,8" />
                 </Style>
-                <Style
-                    TargetType="TextBox"
-                    BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Style TargetType="TextBox"
+                       BasedOn="{StaticResource MaterialDesignTextBox}">
                     <Style.Triggers>
-                        <DataTrigger
-                            Binding="{Binding IzabranaEtiketa, UpdateSourceTrigger=PropertyChanged}"
-                            Value="{x:Null}">
-                            <Setter
-                                Property="IsReadOnly"
-                                Value="True" />
+                        <DataTrigger Binding="{Binding IzabranaEtiketa, UpdateSourceTrigger=PropertyChanged}"
+                                     Value="{x:Null}">
+                            <Setter Property="IsReadOnly"
+                                    Value="True" />
                         </DataTrigger>
                     </Style.Triggers>
                     <Style.Setters>
-                        <Setter
-                            Property="materialDesign:HintAssist.IsFloating"
-                            Value="True" />
-                        <Setter
-                            Property="Margin"
-                            Value="8,8,8,8" />
+                        <Setter Property="materialDesign:HintAssist.IsFloating"
+                                Value="True" />
+                        <Setter Property="Margin"
+                                Value="8,8,8,8" />
                     </Style.Setters>
                 </Style>
             </Grid.Resources>
-            <TextBox
-                x:Name="oznakaBox"
-                MaxLength="20"
-            Width="240"
-            HorizontalAlignment="Left"
-                Grid.Row="0"
-                materialDesign:HintAssist.Hint="Oznaka"
-                ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2">
-                <Binding
-                    UpdateSourceTrigger="PropertyChanged"
-                    Path="OznakaEtikete">
+            <TextBox ToolTip="Jedinstvena oznaka izabrane etikete"
+                     x:Name="oznakaBox"
+                     MaxLength="20"
+                     Width="240"
+                     HorizontalAlignment="Left"
+                     Grid.Row="0"
+                     materialDesign:HintAssist.Hint="Oznaka"
+                     Grid.ColumnSpan="2">
+                <Binding UpdateSourceTrigger="PropertyChanged"
+                         Path="OznakaEtikete">
                     <Binding.ValidationRules>
-                        <val:OznakaEtiketeValidationRule
-                            ValidatesOnTargetUpdated="True" />
+                        <val:OznakaEtiketeValidationRule ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
-            <TextBox
-                x:Name="opisBox"
-                Grid.Row="1"
-                materialDesign:HintAssist.Hint="Opis"
-                TextWrapping="Wrap"
-                ToolTip="Ljudski čitljiva oznaka"
-                Grid.ColumnSpan="2" />
-            <StackPanel
-                Grid.Row="2"
-                Orientation="Horizontal"
-                HorizontalAlignment="Left">
-                <TextBlock
-                    Margin="8 8 8 8"
-                    VerticalAlignment="Center">
+            <TextBox x:Name="opisBox"
+                     Grid.Row="1"
+                     materialDesign:HintAssist.Hint="Opis"
+                     TextWrapping="Wrap"
+                     ToolTip="Opis izabrane etikete"
+                     Grid.ColumnSpan="2" />
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="8 8 8 8"
+                           VerticalAlignment="Center">
                 Boja
                 </TextBlock>
-                <wpfTool:ColorPicker
-                    x:Name="odabirBoje"
-                    Margin="8 8 8 8"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource odabirBojeStil}">
+                <wpfTool:ColorPicker ToolTip="Boja kojom je označena izabrana etiketa"
+                                     x:Name="odabirBoje"
+                                     Margin="8 8 8 8"
+                                     VerticalAlignment="Center"
+                                     Style="{StaticResource odabirBojeStil}">
 
                 </wpfTool:ColorPicker>
 
             </StackPanel>
-            <StackPanel
-                Grid.Row="3"
-                Orientation="Vertical"
-                HorizontalAlignment="Right">
-                <Button
-                    Style="{StaticResource dugmeStil}"
-                    Width="100"
-                    Margin="8 8 8 8"
-                    Click="Sacuvaj">
+            <StackPanel Grid.Row="3"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Right">
+                <Button Style="{StaticResource dugmeStil}"
+                        ToolTip="Čuva izmene na izabranoj etiketi"
+                        Width="100"
+                        Margin="8 8 8 8"
+                        Click="Sacuvaj">
                     _SAČUVAJ
                 </Button>
-                <Button
-                    Style="{StaticResource dugmeObrisiStil}"
-                    Width="100"
-                    Margin="8 8 8 8"
-                    Click="Obrisi">
+                <Button Style="{StaticResource dugmeObrisiStil}"
+                        ToolTip="Briše izabranu etiketu"
+                        Width="100"
+                        Margin="8 8 8 8"
+                        Click="Obrisi">
                     _OBRIŠI
                 </Button>
             </StackPanel>
         </Grid>
-        <materialDesign:Snackbar
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            MessageQueue="{Binding MyCustomMessageQueue}" />
+        <materialDesign:Snackbar Grid.Row="0"
+                                 Grid.ColumnSpan="2"
+                                 MessageQueue="{Binding MyCustomMessageQueue}" />
     </Grid>
 </Window>

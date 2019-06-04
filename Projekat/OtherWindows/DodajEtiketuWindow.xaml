@@ -84,7 +84,7 @@
             HorizontalAlignment="Left"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
-            ToolTip="Ljudski čitljiva oznaka"
+            ToolTip="Jedinstvena oznaka etikete"
             Grid.ColumnSpan="2">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
@@ -101,7 +101,7 @@
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
-            ToolTip="Ljudski čitljiva oznaka"
+            ToolTip="Opis etikete"
             Grid.ColumnSpan="2">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
@@ -122,6 +122,7 @@
                 Boja
             </TextBlock>
             <wpfTool:ColorPicker x:Name="odabirBoje"
+                                 ToolTip="Boja kojom je označena etiketa"
                 Margin="8 8 8 8"
                 VerticalAlignment="Center">
 
@@ -135,6 +136,7 @@
             <Button
                 Style="{StaticResource dugmeStil}"
                 Width="100"
+                ToolTip="Kreiranje etikete na osnovu unetih podataka"
                 Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
             </Button>

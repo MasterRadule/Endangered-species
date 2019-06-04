@@ -89,7 +89,7 @@
             HorizontalAlignment="Left"
             Grid.Row="0"
             materialDesign:HintAssist.Hint="Oznaka"
-            ToolTip="Ljudski čitljiva oznaka"
+            ToolTip="Jedinstvena ljudski čitljiva oznaka tipa"
             Grid.ColumnSpan="2">
             <Binding
                 Path="Oznaka"
@@ -105,7 +105,7 @@
         <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
-            ToolTip="Ljudski čitljiva oznaka"
+            ToolTip="Ime tipa"
             Grid.ColumnSpan="2">
             <Binding
                 Path="Ime"
@@ -120,7 +120,7 @@
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
-            ToolTip="Ljudski čitljiva oznaka"
+            ToolTip="Opis tipa"
             Grid.ColumnSpan="2">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
@@ -142,7 +142,7 @@
             </TextBlock>
             <Button x:Name="ikonicaDugme"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                ToolTip="Izaberite ikonicu tipa"
+                ToolTip="Biranje slike tipa sa diska"
                 Click="Button_Click"
                 Margin="8 20 8 8"
                 Background="{StaticResource dugmeBrush}">
@@ -156,7 +156,8 @@
             <Button
                 Style="{StaticResource dugmeStil}"
                 Width="100"
-                Margin="8 8 8 8" Click="Dodaj">
+                    ToolTip="Kreiranje tipa na osnovu unetih podataka"
+                    Margin="8 8 8 8" Click="Dodaj">
                 _DODAJ
             </Button>
         </StackPanel>

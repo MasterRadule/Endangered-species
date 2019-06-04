@@ -106,33 +106,38 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
-                    ToolTip="Otvara prozor u kom se dodaje nova vrsta životinja"
+                    ToolTip="Otvara prozor u kom se dodaje vrsta životinja"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     Click="Button_Click">Dodaj vrstu</Button>
             <Button Grid.Column="1"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    ToolTip="Otvara prozor u kom se dodaje nov tip životinja"
+                    ToolTip="Otvara prozor u kom se dodaje tip životinja"
                     Click="Button_Click_1">Dodaj tip</Button>
             <Button Grid.Column="2"
                     ToolTip="Otvara prozor u kom se mogu videti svi tipovi, kao i vršiti njihova izmena i brisanje"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     Click="Button_Click_2">Pregled tipova</Button>
             <Button Grid.Column="3"
+                    ToolTip="Otvara prozor u kom se dodaje etiketa"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     Click="Button_Click_3">Dodaj etiketu</Button>
             <Button Grid.Column="4"
+                    ToolTip="Otvara prozor u kom se mogu videti sve etikete, kao i vršiti njihova izmena i brisanje"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     Click="Button_Click_4">Pregled etiketa</Button>
             <Separator Grid.Column="5"
                        Background="Transparent"></Separator>
             <Button Grid.Column="6"
                     Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="Кreira novu, praznu dadoteku"
                     Click="Button_Click_8">Nova datoteka</Button>
             <Button Grid.Column="7"
                     Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="Čuva trenutno otvorenu datoteku"
                     Click="Button_Click_6">Sačuvaj</Button>
             <Button Grid.Column="8"
                     Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="Učitava datoteku sa diska"
                     Click="Button_Click_5">Učitaj</Button>
             <materialDesign:PopupBox Grid.Column="9"
                                      Height="Auto"
@@ -290,6 +295,7 @@
                             <ComboBox x:Name="tipBox"
                                       Grid.Column="0"
                                       Grid.Row="1"
+                                      ToolTip="Filter po tipu"
                                       materialDesign:HintAssist.Hint="Tip"
                                       Margin="8,8,8,9"
                                       ItemsSource="{Binding GlavniKontejner.Tipovi}">
@@ -302,12 +308,14 @@
                             <ComboBox x:Name="statusUgrozenostiBox"
                                       Grid.Column="0"
                                       Grid.Row="2"
+                                      ToolTip="Filter po statusu ugroženosti"
                                       materialDesign:HintAssist.Hint="Status ugroženosti"
                                       Margin="8,9,8,8">
                             </ComboBox>
                             <ComboBox x:Name="turistickiStatusBox"
                                       Grid.Column="0"
                                       Grid.Row="3"
+                                      ToolTip="Filter po turističkom statusu"
                                       materialDesign:HintAssist.Hint="Turistički status"
                                       Margin="8,9,8,8">
                             </ComboBox>
@@ -319,6 +327,7 @@
                                     Etikete
                                 </TextBlock>
                                 <materialDesign:PopupBox StaysOpen="True"
+                                                         ToolTip="Filter po etiketama"
                                                          Margin="8 8 8 8">
                                     <materialDesign:PopupBox.ToggleContent>
                                         <materialDesign:PackIcon Kind="FilterVariant" />
@@ -363,14 +372,16 @@
                                                   HorizontalAlignment="Left"
                                                   Name="DaNeCheck"
                                                   Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                                                  ToolTip="Default ToggleButton Style" />
+                                                  ToolTip="Aktivacija filtriranje po Da / Ne vrednostima" />
                                     <CheckBox x:Name="opasnaCheck"
+                                              ToolTip="Da li su opasne po ljude"
                                               IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
                                               Grid.Column="0"
                                               Grid.Row="1">
                                         Opasna po ljude
                                     </CheckBox>
                                     <CheckBox x:Name="iucnCheck"
+                                              ToolTip="Da li su na IUCN crvenoj listi"
                                               IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
                                               Grid.Column="0"
                                               Grid.Row="2"
@@ -378,6 +389,7 @@
                                         Na IUCN listi
                                     </CheckBox>
                                     <CheckBox x:Name="naseljenoCheck"
+                                              ToolTip="Da li žive u naseljenom regionu"
                                               IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
                                               Grid.Column="0"
                                               Grid.Row="3">
@@ -396,7 +408,7 @@
                                              PreviewTextInput="NumberValidationTextBox"
                                              Name="godisnjiPrihodDG"
                                              MaxLength="10"
-                                             ToolTip="Ljudski čitljiva oznaka"
+                                             ToolTip="Filter po najnižem godišnjem prihodu"
                                              KeyDown="GodisnjiPrihod_KeyDown"
                                              TextChanged="GodisnjiPrihod_TextChanged">
 
@@ -415,7 +427,7 @@
                                              PreviewTextInput="NumberValidationTextBox"
                                              Name="godisnjiPrihodGG"
                                              MaxLength="10"
-                                             ToolTip="Ljudski čitljiva oznaka"
+                                             ToolTip="Filter po najvišem godišnjem prihodu"
                                              KeyDown="GodisnjiPrihod_KeyDown"
                                              TextChanged="GodisnjiPrihod_TextChanged">
 
@@ -438,6 +450,7 @@
                                       Height="Auto">
                                 <Grid>
                                     <DatePicker x:Name="datumDG"
+                                                ToolTip="Filter po najranijem datumu otkrivanja"
                                                 VerticalAlignment="Bottom"
                                                 Margin="8 8 8 8"
                                                 Grid.Column="1"
@@ -448,6 +461,7 @@
                                                 PreviewKeyDown="DatePicker_PreviewKeyDown" />
                                     <DatePicker x:Name="datumGG"
                                                 VerticalAlignment="Bottom"
+                                                ToolTip="Filter po najkasnijem datumu otkrivanja"
                                                 Margin="8 8 8 8"
                                                 Grid.Column="1"
                                                 HorizontalAlignment="Right"
