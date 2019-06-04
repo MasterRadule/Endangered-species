@@ -540,8 +540,7 @@ namespace Projekat
 
         private void Tutorial_Button_Click(object sender, RoutedEventArgs e)
         {
-            //TutorialWindow tutorialWindow = new TutorialWindow((sender as Button).Name);
-            TutorialWindow tutorialWindow = new TutorialWindow("DodajVrstu");
+            TutorialWindow tutorialWindow = new TutorialWindow((sender as Button).Name);
             tutorialWindow.ShowDialog();
         }
     }
