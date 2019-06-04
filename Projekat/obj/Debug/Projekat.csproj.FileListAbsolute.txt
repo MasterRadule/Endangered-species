@@ -147,3 +147,6 @@ D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\Projekat.exe
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\obj\Debug\Projekat.pdb
 D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\Help\PregledTipova.chm
+D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\Help\DodajVrstu.chm
+D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\Help\PregledVrsta.chm
+D:\Fakultet\III godina\II semestar\Interakcija covek racunar\Endangered-species\Projekat\bin\Debug\Help\GlavniProzor.chm
