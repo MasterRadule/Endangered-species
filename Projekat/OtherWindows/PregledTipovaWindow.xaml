@@ -1,20 +1,23 @@
-﻿<Window x:Class="Projekat.OtherWindows.PregledTipovaWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat.OtherWindows"
-        xmlns:val="clr-namespace:Projekat.Validation"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Title="Pregled tipova"
-        Height="Auto"
-        Width="450"
-        MinHeight="246"
-        MinWidth="450"
-        MaxWidth="450"
-        SizeToContent="WidthAndHeight"
-        Closing="Window_Closing">
+<Window
+    x:Class="Projekat.OtherWindows.PregledTipovaWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Projekat.OtherWindows"
+    xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
+    mc:Ignorable="d"
+    Title="Pregled tipova"
+    Height="Auto"
+    Width="450"
+    MinHeight="246"
+    MinWidth="450"
+    MaxWidth="450"
+    SizeToContent="WidthAndHeight"
+    Closing="Window_Closing"
+    help:Help.Filename="Help/PregledTipova.chm">
     <Window.Resources>
         <Style TargetType="TextBlock"
                x:Key="EmptyText">
@@ -232,6 +235,7 @@
                      Grid.Row="0"
                      materialDesign:HintAssist.Hint="Oznaka"
                      ToolTip="Jedinstvena ljudski čitljiva oznaka izabranog tipa"
+					 help:Help.Keyword="oznaka"
                      Grid.ColumnSpan="2">
                 <Binding UpdateSourceTrigger="PropertyChanged"
                          Path="Oznaka">
@@ -244,11 +248,12 @@
                      Grid.Row="1"
                      materialDesign:HintAssist.Hint="Ime"
                      ToolTip="Ime izabranog tipa"
-                     Grid.ColumnSpan="2" />
+                     Grid.ColumnSpan="2" help:Help.Keyword="ime"/>
             <TextBox x:Name="opisBox"
                      Grid.Row="2"
                      materialDesign:HintAssist.Hint="Opis"
                      TextWrapping="Wrap"
+					 help:Help.Keyword="opis"
                      ToolTip="Opis izabranog tipa"
                      Grid.ColumnSpan="2" />
             <StackPanel Grid.Row="3"

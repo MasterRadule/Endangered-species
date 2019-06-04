@@ -1,21 +1,23 @@
-﻿<Window x:Class="Projekat.OtherWindows.DodajVrstuWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat.OtherWindows"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:val="clr-namespace:Projekat.Validation"
-        xmlns:conv="clr-namespace:Projekat.Converters"
-        mc:Ignorable="d"
-        Title="Dodaj vrstu"
-        Height="Auto"
-        Width="450"
-        MinHeight="519"
-        MinWidth="450"
-        MaxWidth="450"
-        SizeToContent="WidthAndHeight"
-        Loaded="Window_Loaded">
+<Window
+    x:Class="Projekat.OtherWindows.DodajVrstuWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Projekat.OtherWindows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:conv="clr-namespace:Projekat.Converters"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
+    mc:Ignorable="d"
+    Title="Dodaj vrstu"
+    Height="Auto"
+    Width="450"
+    MinHeight="519"
+    MinWidth="450"
+    MaxWidth="450"
+    SizeToContent="WidthAndHeight" Loaded="Window_Loaded"
+    help:Help.Filename="Help/DodajVrstu.chm">
     <Window.Resources>
         <Style x:Key="ListBoxStil"
                TargetType="ListBoxItem"
@@ -131,7 +133,8 @@
                  MaxLength="10"
                  Width="120"
                  HorizontalAlignment="Left"
-                 DataContext="{Binding }">
+                 DataContext="{Binding }"
+				 help:Help.Keyword="oznaka">
             <Binding UpdateSourceTrigger="PropertyChanged"
                      Path="Oznaka">
                 <Binding.ValidationRules>
@@ -143,6 +146,7 @@
         <TextBox x:Name="imeBox"
                  Grid.Row="1"
                  materialDesign:HintAssist.Hint="Ime"
+				 help:Help.Keyword="ime"
                  ToolTip="Ime vrste">
             <Binding UpdateSourceTrigger="PropertyChanged"
                      Path="Ime">
@@ -155,6 +159,7 @@
                  Grid.Row="2"
                  materialDesign:HintAssist.Hint="Opis"
                  TextWrapping="Wrap"
+				 help:Help.Keyword="opis"
                  ToolTip="Opis vrste">
             <Binding UpdateSourceTrigger="PropertyChanged"
                      Path="Opis">
@@ -164,11 +169,12 @@
             </Binding>
         </TextBox>
         <ComboBox x:Name="tipBox"
-                  Grid.Column="0"
+                 Grid.Column="0"
                   Grid.Row="3"
                   ToolTip="Tip vrste"
                   materialDesign:HintAssist.Hint="Tip"
                   Margin="8,8,8,9"
+				  help:Help.Keyword="tip"
                   ItemsSource="{Binding Source={x:Static Application.Current},
                         Path=MainWindow.GlavniKontejner.Tipovi}">
             <ComboBox.ItemTemplate>
@@ -188,9 +194,11 @@
         <ComboBox x:Name="statusUgrozenostiBox"
                   Grid.Column="0"
                   ToolTip="Status ugroženosti vrste"
+				  help:Help.Keyword="ugrozenost"
                   Grid.Row="4"
                   materialDesign:HintAssist.Hint="Status ugroženosti"
                   Margin="8,9,8,8">
+
             <ComboBox.Resources>
                 <conv:StatusUgrozenostiConverter x:Key="StatusUgrozenostiConverter" />
             </ComboBox.Resources>
@@ -212,6 +220,7 @@
         <CheckBox x:Name="opasnaCheck"
                   Grid.Column="0"
                   ToolTip="Da li je vrsta opasna po ljude"
+				  help:Help.Keyword="iucn"
                   Grid.Row="5">
             Opasna po ljude
         </CheckBox>
@@ -224,6 +233,7 @@
         </CheckBox>
         <CheckBox x:Name="naseljenoCheck"
                   Grid.Column="0"
+				  help:Help.Keyword="naseljeno"
                   ToolTip="Da li vrsta živi u naseljenom regionu"
                   Grid.Row="7">
             Živi u naseljenom regionu
@@ -233,7 +243,9 @@
                   Grid.Row="8"
                   ToolTip="Turistički status vrste"
                   materialDesign:HintAssist.Hint="Turistički status"
+				  help:Help.Keyword="turizam"
                   Margin="8,9,8,8">
+
             <ComboBox.Resources>
                 <conv:TuristickiStatusConverter x:Key="TuristickiStatusConverter" />
             </ComboBox.Resources>
@@ -262,12 +274,14 @@
                 <TextBox PreviewTextInput="NumberValidationTextBox"
                          Grid.Column="0"
                          Name="godisnjiPrihod"
+						  help:Help.Keyword="prihod"
                          MaxLength="10"
                          ToolTip="Godišnji prihod od turizma vrste"
                          KeyDown="GodisnjiPrihod_KeyDown"
                          TextChanged="GodisnjiPrihod_TextChanged">
                     <Binding UpdateSourceTrigger="PropertyChanged"
                              Path="GodisnjiPrihod">
+
                         <Binding.ValidationRules>
                             <val:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                         </Binding.ValidationRules>
@@ -292,9 +306,11 @@
                         ToolTip="Datum otkrivanja vrste"
                         Grid.Column="1"
                         HorizontalAlignment="Left"
+						help:Help.Keyword="datum"
                         Width="Auto"
                         materialDesign:HintAssist.Hint="Datum otkrivanja"
                         PreviewKeyDown="DatePicker_PreviewKeyDown" />
+
         </Grid>
 
         <Grid Grid.Row="10">
@@ -317,8 +333,10 @@
                     </materialDesign:PopupBox.ToggleContent>
                     <ListBox x:Name="etiketeBox"
                              SelectionMode="Multiple"
+							 help:Help.Keyword="etiketa"
                              Width="100"
                              ItemsSource="{Binding Source={x:Static Application.Current},
+
                         Path=MainWindow.GlavniKontejner.Etikete}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -346,8 +364,10 @@
                 <Button x:Name="ikonicaDugme"
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         ToolTip="Biranje slike vrste sa diska"
+						help:Help.Keyword="ikonica"
                         Click="Button_Click"
                         Margin="8 8 8 8">
+
                 </Button>
             </StackPanel>
         </Grid>

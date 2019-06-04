@@ -23,7 +23,9 @@ namespace Projekat.OtherWindows
         public TutorialWindow(string tutorijal)
         {
             InitializeComponent();
-            TutorialVideo.Source = new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, @"Tutorials\", tutorijal + ".mp4"), UriKind.Relative);
+            string projectFolder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string file = System.IO.Path.Combine(projectFolder, @"Tutorials\" + tutorijal + ".mp4");
+            TutorialVideo.Source = new Uri(file);
         }
     }
 }

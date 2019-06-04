@@ -1,17 +1,20 @@
-﻿<Window x:Class="Projekat.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Title="Ugrožene vrste"
-        Height="500"
-        Width="1000"
-        MinHeight="500"
-        MinWidth="1000"
-        Loaded="Window_Loaded">
+<Window
+    x:Class="Projekat.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Projekat"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
+    mc:Ignorable="d"
+    Title="Ugrožene vrste"
+    Height="500"
+    Width="1000"
+    MinHeight="500"
+    MinWidth="1000"
+    Loaded="Window_Loaded"
+    help:Help.Filename="Help/GlavniProzor.chm">
     <Window.Resources>
         <Style TargetType="TextBlock"
                x:Key="EmptyText">
@@ -108,23 +111,28 @@
             <Button Grid.Column="0"
                     ToolTip="Otvara prozor u kom se dodaje vrsta životinja"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Click="Button_Click">Dodaj vrstu</Button>
+                    Click="Button_Click"
+                    help:Help.Keyword="dodajVrstu">Dodaj vrstu</Button>
             <Button Grid.Column="1"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     ToolTip="Otvara prozor u kom se dodaje tip životinja"
-                    Click="Button_Click_1">Dodaj tip</Button>
+    
+                    help:Help.Keyword="dodajTip">Dodaj tip</Button>
             <Button Grid.Column="2"
                     ToolTip="Otvara prozor u kom se mogu videti svi tipovi, kao i vršiti njihova izmena i brisanje"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Click="Button_Click_2">Pregled tipova</Button>
+                    Click="Button_Click_2"
+                    help:Help.Keyword="pregledTipova">Pregled tipova</Button>
             <Button Grid.Column="3"
                     ToolTip="Otvara prozor u kom se dodaje etiketa"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Click="Button_Click_3">Dodaj etiketu</Button>
+                    Click="Button_Click_3"
+                    help:Help.Keyword="dodajEtiketu">Dodaj etiketu</Button>
             <Button Grid.Column="4"
                     ToolTip="Otvara prozor u kom se mogu videti sve etikete, kao i vršiti njihova izmena i brisanje"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Click="Button_Click_4">Pregled etiketa</Button>
+                    Click="Button_Click_4"
+                    help:Help.Keyword="pregledEtiketa">Pregled etiketa</Button>
             <Separator Grid.Column="5"
                        Background="Transparent"></Separator>
             <Button Grid.Column="6"
@@ -134,11 +142,14 @@
             <Button Grid.Column="7"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     ToolTip="Čuva trenutno otvorenu datoteku"
+					help:Help.Keyword="sacuvaj"
                     Click="Button_Click_6">Sačuvaj</Button>
             <Button Grid.Column="8"
                     Style="{StaticResource MaterialDesignFlatButton}"
                     ToolTip="Učitava datoteku sa diska"
+					help:Help.Keyword="ucitaj"
                     Click="Button_Click_5">Učitaj</Button>
+
             <materialDesign:PopupBox Grid.Column="9"
                                      Height="Auto"
                                      StaysOpen="True"
@@ -214,7 +225,6 @@
                             Name="SnimanjeUcitavanje">Snimanje i učitavanje</Button>
                 </Grid>
             </materialDesign:PopupBox>
-
         </Grid>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
@@ -235,7 +245,7 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="0">
                     <TextBox Name="pretragaImeOznakaTB"
-                             materialDesign:HintAssist.Hint="Pretraga"
+                    		 materialDesign:HintAssist.Hint="Pretraga"
                              Width="150"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              ToolTip="Pretraga po imenu i oznaci"
@@ -297,6 +307,7 @@
                                       Grid.Row="1"
                                       ToolTip="Filter po tipu"
                                       materialDesign:HintAssist.Hint="Tip"
+                                      help:Help.Keyword="tip"
                                       Margin="8,8,8,9"
                                       ItemsSource="{Binding GlavniKontejner.Tipovi}">
                                 <ComboBox.ItemTemplate>
@@ -309,6 +320,7 @@
                                       Grid.Column="0"
                                       Grid.Row="2"
                                       ToolTip="Filter po statusu ugroženosti"
+                                      help:Help.Keyword="ugrozenost"
                                       materialDesign:HintAssist.Hint="Status ugroženosti"
                                       Margin="8,9,8,8">
                             </ComboBox>
@@ -316,6 +328,7 @@
                                       Grid.Column="0"
                                       Grid.Row="3"
                                       ToolTip="Filter po turističkom statusu"
+                                      help:Help.Keyword="turizam"
                                       materialDesign:HintAssist.Hint="Turistički status"
                                       Margin="8,9,8,8">
                             </ComboBox>
@@ -335,6 +348,7 @@
                                     <ListBox x:Name="etiketeBox"
                                              SelectionMode="Multiple"
                                              Width="100"
+                                             help:Help.Keyword="etiketa"
                                              ItemsSource="{Binding GlavniKontejner.Etikete}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
@@ -377,11 +391,14 @@
                                               ToolTip="Da li su opasne po ljude"
                                               IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
                                               Grid.Column="0"
+                                              help:Help.Keyword="opasna"
                                               Grid.Row="1">
                                         Opasna po ljude
                                     </CheckBox>
                                     <CheckBox x:Name="iucnCheck"
                                               ToolTip="Da li su na IUCN crvenoj listi"
+
+                                    		  help:Help.Keyword="iucn"
                                               IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
                                               Grid.Column="0"
                                               Grid.Row="2"
@@ -390,6 +407,7 @@
                                     </CheckBox>
                                     <CheckBox x:Name="naseljenoCheck"
                                               ToolTip="Da li žive u naseljenom regionu"
+                                    		  help:Help.Keyword="naseljeno"
                                               IsEnabled="{Binding IsChecked, ElementName=DaNeCheck}"
                                               Grid.Column="0"
                                               Grid.Row="3">
@@ -414,7 +432,8 @@
 
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center">
+                                                <TextBlock VerticalAlignment="Center"
+                                                help:Help.Keyword="prihodDonja">
                                 Donja granica
                                                 </TextBlock>
                                                 <materialDesign:PackIcon VerticalAlignment="Bottom"
@@ -433,7 +452,8 @@
 
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center">
+                                                <TextBlock VerticalAlignment="Center"
+                                                help:Help.Keyword="prihodGornja">
                                 Gornja granica
                                                 </TextBlock>
                                                 <materialDesign:PackIcon VerticalAlignment="Bottom"
@@ -458,7 +478,8 @@
                                                 Width="Auto"
                                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                                 materialDesign:HintAssist.Hint="Donja granica"
-                                                PreviewKeyDown="DatePicker_PreviewKeyDown" />
+                                                PreviewKeyDown="DatePicker_PreviewKeyDown"
+                                                help:Help.Keyword="datumDonja" />
                                     <DatePicker x:Name="datumGG"
                                                 VerticalAlignment="Bottom"
                                                 ToolTip="Filter po najkasnijem datumu otkrivanja"
@@ -468,8 +489,8 @@
                                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                                 Width="Auto"
                                                 materialDesign:HintAssist.Hint="Gornja granica"
-                                                PreviewKeyDown="DatePicker_PreviewKeyDown" />
-
+                                                PreviewKeyDown="DatePicker_PreviewKeyDown"
+                                                help:Help.Keyword="datumGornja" />
                                 </Grid>
                             </GroupBox>
 
@@ -479,6 +500,7 @@
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                             ToolTip="Pretraži"
                             Margin="8,8,8,8"
+                            help:Help.Keyword="pretrazi"
                             Click="Button_Click_7">
                         <materialDesign:PackIcon Kind="Search"
                                                  Height="24"
@@ -487,6 +509,7 @@
                     <Button Name="TurnOffSearchButton"
                             IsEnabled="False"
                             ToolTip="Resetuj uključenu pretragu"
+                            help:Help.Keyword="iskljuci"
                             Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                             Margin="8,8,8,8"
                             Click="TurnOffSearchButton_Click">
@@ -515,7 +538,8 @@
                                      Height="Auto"
                                      AllowDrop="True"
                                      ToolTip="Prebaci na Mapu 1"
-                                     DragEnter="RadioButton_DragEnter" />
+                                     DragEnter="RadioButton_DragEnter"
+                                     help:Help.Keyword="tab" />
                         <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                                      IsChecked="False"
                                      Content="Mapa 2"
@@ -523,7 +547,8 @@
                                      Height="Auto"
                                      AllowDrop="True"
                                      ToolTip="Prebaci na Mapu 2"
-                                     DragEnter="RadioButton_DragEnter" />
+                                     DragEnter="RadioButton_DragEnter"
+                                     help:Help.Keyword="tab" />
                         <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                                      IsChecked="False"
                                      Content="Mapa 3"
@@ -531,7 +556,8 @@
                                      Height="Auto"
                                      AllowDrop="True"
                                      ToolTip="Prebaci na Mapu 3"
-                                     DragEnter="RadioButton_DragEnter" />
+                                     DragEnter="RadioButton_DragEnter"
+                                     help:Help.Keyword="tab" />
 
                         <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                                      IsChecked="False"
@@ -540,7 +566,8 @@
                                      Height="Auto"
                                      AllowDrop="True"
                                      ToolTip="Prebaci na Mapu 4"
-                                     DragEnter="RadioButton_DragEnter" />
+                                     DragEnter="RadioButton_DragEnter"
+                                     help:Help.Keyword="tab" />
                     </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
@@ -549,7 +576,8 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
                        Margin="0 0 0 8"
-                       Style="{StaticResource MaterialDesignTitleTextBlock}">
+                       Style="{StaticResource MaterialDesignTitleTextBlock}"
+                       help:Help.Keyword="pregledVrsta">
                 Pregled vrsta
             </TextBlock>
             <Grid Grid.Row="1"

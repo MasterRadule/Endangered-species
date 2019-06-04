@@ -1,22 +1,25 @@
-﻿<Window x:Class="Projekat.OtherWindows.PregledVrsteWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat.OtherWindows"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:val="clr-namespace:Projekat.Validation"
-        xmlns:conv="clr-namespace:Projekat.Converters"
-        mc:Ignorable="d"
-        Title="Pregled vrste"
-        Height="Auto"
-        Width="450"
-        MinHeight="519"
-        MinWidth="450"
-        MaxWidth="450"
-        SizeToContent="WidthAndHeight"
-        Loaded="Window_Loaded"
-        Closing="Window_Closing">
+<Window
+    x:Class="Projekat.OtherWindows.PregledVrsteWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Projekat.OtherWindows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:val="clr-namespace:Projekat.Validation"
+    xmlns:conv="clr-namespace:Projekat.Converters"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
+    mc:Ignorable="d"
+    Title="Pregled vrste"
+    Height="Auto"
+    Width="450"
+    MinHeight="519"
+    MinWidth="450"
+    MaxWidth="450"
+    SizeToContent="WidthAndHeight"
+    Loaded="Window_Loaded"
+    Closing="Window_Closing"
+    help:Help.Filename="Help/PregledVrsta.chm">
     <Window.Resources>
         <Style x:Key="ListBoxStil"
                TargetType="ListBoxItem"
@@ -172,6 +175,7 @@
                  Width="120"
                  HorizontalAlignment="Left"
                  materialDesign:HintAssist.Hint="Oznaka"
+				 help:Help.Keyword="oznaka"
                  ToolTip="Jedinstvena ljudski čitljiva oznaka izabrane vrste">
             <Binding UpdateSourceTrigger="PropertyChanged"
                      Path="Oznaka">
@@ -183,6 +187,7 @@
         </TextBox>
         <TextBox Name="imeBox"
                  Grid.Row="1"
+				 help:Help.Keyword="ime"
                  materialDesign:HintAssist.Hint="Ime"
                  ToolTip="Ime izbrane vrste">
             <Binding UpdateSourceTrigger="PropertyChanged"
@@ -196,6 +201,7 @@
                  Grid.Row="2"
                  materialDesign:HintAssist.Hint="Opis"
                  TextWrapping="Wrap"
+				 help:Help.Keyword="opis"
                  ToolTip="Opis izbrane vrste">
             <Binding UpdateSourceTrigger="PropertyChanged"
                      Path="Opis">
@@ -207,6 +213,7 @@
         <ComboBox Name="tipBox"
                   Grid.Column="0"
                   Grid.Row="3"
+				  help:Help.Keyword="tip"
                   ToolTip="Tip izabrane vrste"
                   materialDesign:HintAssist.Hint="Tip"
                   Margin="8,8,8,9"
@@ -228,6 +235,7 @@
         </ComboBox>
         <ComboBox Name="statusUgrozenostiBox"
                   Grid.Column="0"
+				  help:Help.Keyword="ugrozenost"
                   Grid.Row="4"
                   ToolTip="Status ugroženosti izbrane vrste"
                   materialDesign:HintAssist.Hint="Status ugroženosti"
@@ -253,6 +261,7 @@
                   ToolTip="Da li je izbrana vrsta opasna po ljude"
                   Grid.Column="0"
                   Grid.Row="5"
+				  help:Help.Keyword="opasna"
                   IsChecked="{Binding Opasna}">
             Opasna po ljude
         </CheckBox>
@@ -260,6 +269,7 @@
                   Grid.Column="0"
                   ToolTip="Da li je izabrana vrsta na IUCN crvenoj listi"
                   Grid.Row="6"
+				  help:Help.Keyword="iucn"
                   Grid.ColumnSpan="3"
                   IsChecked="{Binding IUCN}">
             Na IUCN listi
@@ -268,6 +278,7 @@
                   Grid.Column="0"
                   ToolTip="Da li izabrana vrsta živi u naseljenom regionu"
                   Grid.Row="7"
+				  help:Help.Keyword="naseljeno"
                   IsChecked="{Binding ZiviUNaseljenomRegionu}">
             Živi u naseljenom regionu
         </CheckBox>
@@ -275,8 +286,10 @@
                   Grid.Column="0"
                   Grid.Row="8"
                   ToolTip="Turistički status izabrane vrste"
+				  help:Help.Keyword="turizam"
                   materialDesign:HintAssist.Hint="Turistički status"
                   Margin="8,9,8,8">
+
             <ComboBox.Resources>
                 <conv:TuristickiStatusConverter x:Key="TuristickiStatusConverter" />
             </ComboBox.Resources>
@@ -308,9 +321,11 @@
                          ToolTip="Godišnji prihod od turizma izabrane vrste"
                          MaxLength="10"
                          KeyDown="GodisnjiPrihod_KeyDown"
+						 help:Help.Keyword="prihod"
                          TextChanged="GodisnjiPrihod_TextChanged">
                     <Binding Path="GodisnjiPrihod"
                              UpdateSourceTrigger="PropertyChanged">
+
                         <Binding.ValidationRules>
                             <val:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                         </Binding.ValidationRules>
@@ -332,9 +347,11 @@
                         VerticalAlignment="Bottom"
                         Margin="8 8 8 8"
                         Grid.Column="1"
+						help:Help.Keyword="datum"
                         HorizontalAlignment="Left"
                         ToolTip="Datum otkrivanja izabrane vrste"
                         SelectedDate="{Binding DatumOtkrivanja}"
+
                         PreviewKeyDown="DatePicker_PreviewKeyDown"
                         Width="Auto"
                         materialDesign:HintAssist.Hint="Datum otkrivanja" />
@@ -361,6 +378,7 @@
                     <ListBox x:Name="etiketeBox"
                              SelectionMode="Multiple"
                              Width="100"
+							 help:Help.Keyword="etiketa"
                              ItemsSource="{Binding Source={x:Static Application.Current},
                         Path=MainWindow.GlavniKontejner.Etikete}">
                         <ListBox.ItemTemplate>
@@ -387,6 +405,7 @@
                 Ikonica
                 </TextBlock>
                 <Button Name="ikonicaDugme"
+				help:Help.Keyword="ikonica"
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         ToolTip="Biranje slike izabrane vrste sa diska"
                         Click="Button_Click"
