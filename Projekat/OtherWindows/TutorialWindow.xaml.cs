@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Projekat.OtherWindows
 {
@@ -22,7 +23,7 @@ namespace Projekat.OtherWindows
         public TutorialWindow(string tutorijal)
         {
             InitializeComponent();
-            TutorialVideo.Source = new Uri(@"C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\Tutorials\" + tutorijal + ".mp4", UriKind.Relative);
+            TutorialVideo.Source = new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, @"Tutorials\", tutorijal + ".mp4"), UriKind.Relative);
         }
     }
 }
