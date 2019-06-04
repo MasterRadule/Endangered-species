@@ -229,6 +229,7 @@
     <Resource Include="Data\Maps\map_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\panda.jpg" />
     <Content Include="Tutorials\DodajEtiketu.mp4" />
     <Content Include="Tutorials\DodajTip.mp4" />
     <Content Include="Tutorials\DodajVrstu.mp4" />

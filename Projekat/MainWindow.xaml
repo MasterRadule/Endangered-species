@@ -14,6 +14,7 @@
     MinHeight="500"
     MinWidth="1000"
     Loaded="Window_Loaded"
+    Icon="Data/panda.jpg"
     help:Help.Filename="Help/GlavniProzor.chm">
     <Window.Resources>
         <Style TargetType="TextBlock"
