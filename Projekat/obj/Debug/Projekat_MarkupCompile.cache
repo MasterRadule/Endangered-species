@@ -4,16 +4,16 @@
 exe
 C#
 .cs
-C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\
+D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\
 Projekat
 none
 false
 DEBUG;TRACE
-C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\App.xaml
+D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\App.xaml
 8420941188
 9624608251
 28-1441880943
-25490398629
+25-302501207
 MainWindow.xaml;OtherWindows\DodajEtiketuWindow.xaml;OtherWindows\DodajTipWindow.xaml;OtherWindows\DodajVrstuWindow.xaml;OtherWindows\PregledEtiketaWindow.xaml;OtherWindows\PregledTipovaWindow.xaml;OtherWindows\PregledVrsteWindow.xaml;OtherWindows\TutorialWindow.xaml;
 
 False

@@ -59,6 +59,8 @@ namespace Projekat
         public string OtvorenaEtiketaOznaka { get; set; }
         public SnackbarMessageQueue MyCustomMessageQueue { get; set; }
 
+        private bool QuestionMarkPopupOpen = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -520,6 +522,27 @@ namespace Projekat
                 LoadMap(GlavniKontejner.Mape[AktivnaMapa]);
                 MyCustomMessageQueue.Enqueue("Nova datoteka uspešno kreirana");
             }
+        }
+
+        private void Button_QuestionMark_Click(object sender, RoutedEventArgs e)
+        {
+            if (QuestionMarkPopupOpen) {
+                QuestionMarkPopup.IsPopupOpen = false;
+                QuestionMarkPopupOpen = false;
+            }
+            else
+            {
+                QuestionMarkPopup.IsPopupOpen = true;
+                QuestionMarkPopupOpen = true;
+            }
+
+        }
+
+        private void Tutorial_Button_Click(object sender, RoutedEventArgs e)
+        {
+            //TutorialWindow tutorialWindow = new TutorialWindow((sender as Button).Name);
+            TutorialWindow tutorialWindow = new TutorialWindow("DodajVrstu");
+            tutorialWindow.ShowDialog();
         }
     }
 }

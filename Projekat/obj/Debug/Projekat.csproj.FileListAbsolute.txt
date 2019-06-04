@@ -210,3 +210,6 @@ C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\bin\Debug\M
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\OtherWindows\TutorialWindow.g.cs
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\Projekat_Content.g.cs
 C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\OtherWindows\TutorialWindow.baml
+D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\OtherWindows\TutorialWindow.g.cs
+D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\Projekat_Content.g.cs
+D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\OtherWindows\TutorialWindow.baml
