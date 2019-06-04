@@ -8,6 +8,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:val="clr-namespace:Projekat.Validation"
     xmlns:conv="clr-namespace:Projekat.Converters"
+    xmlns:help="clr-namespace:Projekat.HelpProvider"
     mc:Ignorable="d"
     Title="Dodaj vrstu"
     Height="Auto"
@@ -15,7 +16,8 @@
     MinHeight="519"
     MinWidth="450"
     MaxWidth="450"
-    SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    SizeToContent="WidthAndHeight" Loaded="Window_Loaded"
+    help:Help.Filename="Help/DodajVrstu.chm">
     <Window.Resources>
         <Style
             x:Key="ListBoxStil"
@@ -141,7 +143,8 @@
             MaxLength="10"
             Width="120"
             HorizontalAlignment="Left"
-            DataContext="{Binding }">
+            DataContext="{Binding }"
+            help:Help.Keyword="oznaka">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Oznaka">
@@ -156,7 +159,8 @@
         <TextBox x:Name="imeBox"
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Ime"
-            ToolTip="Ljudski čitljiva oznaka">
+            ToolTip="Ljudski čitljiva oznaka"
+            help:Help.Keyword="ime">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Ime">
@@ -170,7 +174,8 @@
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Opis"
             TextWrapping="Wrap"
-            ToolTip="Ljudski čitljiva oznaka">
+            ToolTip="Ljudski čitljiva oznaka"
+            help:Help.Keyword="opis">
             <Binding
                 UpdateSourceTrigger="PropertyChanged"
                 Path="Opis">
@@ -181,6 +186,7 @@
             </Binding>
         </TextBox>
         <ComboBox x:Name="tipBox"
+            help:Help.Keyword="tip"
             Grid.Column="0"
             Grid.Row="3"
             materialDesign:HintAssist.Hint="Tip"
@@ -204,6 +210,7 @@
         </ComboBox>
         <ComboBox x:Name="statusUgrozenostiBox"
             Grid.Column="0"
+            help:Help.Keyword="ugrozenost"
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Status ugroženosti"
             Margin="8,9,8,8">
@@ -228,25 +235,29 @@
         </ComboBox>
         <CheckBox x:Name="opasnaCheck"
             Grid.Column="0"
-            Grid.Row="5">
+            Grid.Row="5"
+            help:Help.Keyword="opasna">
             Opasna po ljude
         </CheckBox>
         <CheckBox x:Name="iucnCheck"
             Grid.Column="0"
             Grid.Row="6"
-            Grid.ColumnSpan="3">
+            Grid.ColumnSpan="3"
+            help:Help.Keyword="iucn">
             Na IUCN listi
         </CheckBox>
         <CheckBox x:Name="naseljenoCheck"
             Grid.Column="0"
-            Grid.Row="7">
+            Grid.Row="7"
+            help:Help.Keyword="naseljeno">
             Živi u naseljenom regionu
         </CheckBox>
         <ComboBox x:Name="turistickiStatusBox"
             Grid.Column="0"
             Grid.Row="8"
             materialDesign:HintAssist.Hint="Turistički status"
-            Margin="8,9,8,8">
+            Margin="8,9,8,8"
+            help:Help.Keyword="turizam">
             <ComboBox.Resources>
                 <conv:TuristickiStatusConverter x:Key="TuristickiStatusConverter" />
             </ComboBox.Resources>
@@ -285,7 +296,8 @@
                     MaxLength="10"
                     ToolTip="Ljudski čitljiva oznaka"
                     KeyDown="GodisnjiPrihod_KeyDown"
-                    TextChanged="GodisnjiPrihod_TextChanged">
+                    TextChanged="GodisnjiPrihod_TextChanged"
+                    help:Help.Keyword="prihod">
                     <Binding
                         UpdateSourceTrigger="PropertyChanged"
                         Path="GodisnjiPrihod">
@@ -313,6 +325,7 @@
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         SelectedDate="1.1.2000."
                 VerticalAlignment="Bottom"
+                help:Help.Keyword="datum"
                 Margin="8 8 8 8"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
@@ -348,6 +361,7 @@
                     </materialDesign:PopupBox.ToggleContent>
                     <ListBox x:Name="etiketeBox"
                         SelectionMode="Multiple"
+                        help:Help.Keyword="etiketa"
                         Width="100"
                         ItemsSource = "{Binding Source={x:Static Application.Current},
                         Path=MainWindow.GlavniKontejner.Etikete}">
@@ -378,7 +392,8 @@
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton"
                     Click="Button_Click"
-                    Margin="8 8 8 8">
+                    Margin="8 8 8 8"
+                    help:Help.Keyword="ikonica">
                 </Button>
             </StackPanel>
         </Grid>
