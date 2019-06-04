@@ -8,6 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/maps/map_1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/dodajetiketu.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/dodajtip.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/dodajvrstu.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/dragndropvrste.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/pregledetiketa.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/pregledtipova.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/pregledvrste.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/pretragafilter.mp4")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorials/snimanjeucitavanje.mp4")]
 
 

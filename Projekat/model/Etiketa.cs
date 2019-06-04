@@ -33,7 +33,39 @@ namespace Projekat.Model
                 }
             }
         }
-        public string Boja { get; set; }
-        public string Opis { get; set; }
+
+        private string _boja;
+        public string Boja
+        {
+            get
+            {
+                return _boja;
+            }
+            set
+            {
+                if (value != _boja)
+                {
+                    _boja = value;
+                    OnPropertyChanged("Boja");
+                }
+            }
+        }
+
+        private string _opis;
+        public string Opis
+        {
+            get
+            {
+                return _opis;
+            }
+            set
+            {
+                if (value != _opis)
+                {
+                    _opis = value;
+                    OnPropertyChanged("Opis");
+                }
+            }
+        }
     }
 }

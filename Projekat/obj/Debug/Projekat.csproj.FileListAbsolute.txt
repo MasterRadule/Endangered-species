@@ -202,3 +202,11 @@ D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\Projekat.csproj
 D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\Projekat.csproj.CopyComplete
 D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\Projekat.exe
 D:\Alex\Sesti semestar\HCI\Endangered-species\Projekat\obj\Debug\Projekat.pdb
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\bin\Debug\BespokeFusion.dll
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\bin\Debug\MahApps.Metro.dll
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\bin\Debug\MahApps.Metro.pdb
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\bin\Debug\MahApps.Metro.xml
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\OtherWindows\TutorialWindow.g.cs
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\Projekat_Content.g.cs
+C:\Users\Danijel\Documents\GitHub\ISAMRS\Endangered-species\Projekat\obj\Debug\OtherWindows\TutorialWindow.baml

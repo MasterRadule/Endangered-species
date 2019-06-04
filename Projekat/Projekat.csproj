@@ -96,6 +96,9 @@
     <Compile Include="Model\StatusUgrozenosti.cs" />
     <Compile Include="Model\TuristickiStatus.cs" />
     <Compile Include="Model\Vrsta.cs" />
+    <Compile Include="OtherWindows\TutorialWindow.xaml.cs">
+      <DependentUpon>TutorialWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\Loader.cs" />
     <Compile Include="Validation\NotEmptyValidationRule .cs" />
     <Compile Include="Validation\OznakaEtiketeValidationRule.cs" />
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtherWindows\PregledVrsteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\TutorialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,6 +204,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\Maps\map_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tutorials\DodajEtiketu.mp4" />
+    <Content Include="Tutorials\DodajTip.mp4" />
+    <Content Include="Tutorials\DodajVrstu.mp4" />
+    <Content Include="Tutorials\DragNDropVrste.mp4" />
+    <Content Include="Tutorials\PregledEtiketa.mp4" />
+    <Content Include="Tutorials\PregledTipova.mp4" />
+    <Content Include="Tutorials\PregledVrste.mp4" />
+    <Content Include="Tutorials\PretragaFilter.mp4" />
+    <Content Include="Tutorials\SnimanjeUcitavanje.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
