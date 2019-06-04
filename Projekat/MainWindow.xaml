@@ -245,6 +245,7 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="0">
                     <TextBox Name="pretragaImeOznakaTB"
+                             help:Help.Keyword="pretraga"
                     		 materialDesign:HintAssist.Hint="Pretraga"
                              Width="150"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -258,6 +259,7 @@
                             <materialDesign:PackIcon Kind="FilterVariant" />
                         </materialDesign:PopupBox.ToggleContent>
                         <Grid Width="300"
+                              help:Help.Filename="Help/GlavniProzor.chm"
                               Height="Auto">
                             <Grid.Resources>
                                 <Style TargetType="CheckBox"
@@ -333,6 +335,7 @@
                                       Margin="8,9,8,8">
                             </ComboBox>
                             <StackPanel Orientation="Horizontal"
+                                        help:Help.Filename="Help/GlavniProzor.chm"
                                         Grid.Row="4"
                                         Margin="0 0 0 4">
                                 <TextBlock Margin="8 8 8 8"
@@ -369,13 +372,14 @@
                             </StackPanel>
                             <GroupBox BorderThickness="0"
                                       Grid.Row="5"
+                                      help:Help.Filename="Help/GlavniProzor.chm"
                                       Height="Auto">
                                 <GroupBox.Header>
 
                                     Da / Ne vrednosti
 
                                 </GroupBox.Header>
-                                <Grid>
+                                <Grid help:Help.Filename="Help/GlavniProzor.chm">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition />
@@ -418,13 +422,15 @@
 
                             <GroupBox BorderThickness="0"
                                       Header="Godišnji prihod"
+                                      help:Help.Filename="Help/GlavniProzor.chm"
                                       Grid.Row="6"
                                       Height="Auto">
-                                <Grid>
+                                <Grid help:Help.Filename="Help/GlavniProzor.chm">
 
                                     <TextBox HorizontalAlignment="Left"
                                              PreviewTextInput="NumberValidationTextBox"
                                              Name="godisnjiPrihodDG"
+                                             help:Help.Keyword="prihodDonja"
                                              MaxLength="10"
                                              ToolTip="Filter po najnižem godišnjem prihodu"
                                              KeyDown="GodisnjiPrihod_KeyDown"
@@ -433,7 +439,7 @@
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center"
-                                                help:Help.Keyword="prihodDonja">
+                                               >
                                 Donja granica
                                                 </TextBlock>
                                                 <materialDesign:PackIcon VerticalAlignment="Bottom"
@@ -448,12 +454,13 @@
                                              MaxLength="10"
                                              ToolTip="Filter po najvišem godišnjem prihodu"
                                              KeyDown="GodisnjiPrihod_KeyDown"
+                                             help:Help.Keyword="prihodGornja"
                                              TextChanged="GodisnjiPrihod_TextChanged">
 
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock VerticalAlignment="Center"
-                                                help:Help.Keyword="prihodGornja">
+                                                >
                                 Gornja granica
                                                 </TextBlock>
                                                 <materialDesign:PackIcon VerticalAlignment="Bottom"
@@ -467,8 +474,9 @@
                             <GroupBox BorderThickness="0"
                                       Header="Datum otkrivanja"
                                       Grid.Row="7"
-                                      Height="Auto">
-                                <Grid>
+                                      Height="Auto"
+                                      help:Help.Filename="Help/GlavniProzor.chm">
+                                <Grid help:Help.Filename="Help/GlavniProzor.chm">
                                     <DatePicker x:Name="datumDG"
                                                 ToolTip="Filter po najranijem datumu otkrivanja"
                                                 VerticalAlignment="Bottom"
